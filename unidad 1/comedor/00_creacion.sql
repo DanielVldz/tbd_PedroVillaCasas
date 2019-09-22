@@ -108,6 +108,8 @@ go
 create table dieta(
 	id_dieta int not null,
 	id_niño int not null,
+	fecha_inicio datetime not null,
+	fecha_fin datetime not null,
 	foreign key (id_niño) references niño(id_niño),
 	primary key(id_dieta, id_niño)
 )
