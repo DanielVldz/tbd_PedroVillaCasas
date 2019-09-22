@@ -26,6 +26,23 @@ create table especie(
 )
 go
 
+create table ataque(
+	id_ataque int identity not null primary key,
+	id_tipo int not null,
+	descripcion_ataque text not null,
+	foreign key(id_tipo) references tipo(id_tipo)
+)
+go
+
+create table ataqueEspecie(
+	id_ataque int not null,
+	id_especie int not null,
+	foreign key(id_ataque) references ataque(id_ataque),
+	foreign key(id_especie) references especie(id_especie),
+	primary key(id_ataque, id_especie)
+)
+go
+
 create table bicho(
 	id_bicho int identity not null primary key,
 	id_especie int not null,
@@ -55,7 +72,7 @@ create table usuarioBicho(
 go
 
 create table intercambio(
-	id_intercambio int identity not null,
+	id_intercambio int identity not null primary key,
 	id_entrenador1 int not null,
 	id_entrenador2 int not null,
 	id_bicho1 int not null,
@@ -82,27 +99,12 @@ create table combate(
 )
 go
 
-create table ataque(
-	id_ataque int identity not null primary key,
-	id_tipo int not null,
-	descripcion_ataque text not null,
-	foreign key(id_tipo) references tipo(id_tipo)
-)
-go
-
-create table ataqueEspecie(
-	id_ataque int not null,
-	id_especie int not null,
-	foreign key(id_ataque) references ataque(id_ataque),
-	foreign key(id_especie) references especie(id_especie)
-)
-go
-
 create table resitenciasTipo(
 	id_tipo int not null,
 	id_ataque int not null,
 	foreign key(id_tipo) references tipo(id_tipo),
-	foreign key(id_ataque) references ataque(id_ataque)
+	foreign key(id_ataque) references ataque(id_ataque),
+	primary key(id_tipo, id_ataque)
 )
 go
 
@@ -110,6 +112,7 @@ create table especieEvolucion(
 	id_especie_actual int not null,
 	id_especie_siguiente int not null,
 	foreign key(id_especie_actual) references especie(id_especie),
-	foreign key(id_especie_siguiente) references especie(id_especie)
+	foreign key(id_especie_siguiente) references especie(id_especie),
+	primary key(id_especie_actual, id_especie_siguiente)
 )
 go
