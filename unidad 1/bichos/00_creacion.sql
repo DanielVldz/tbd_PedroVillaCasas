@@ -85,7 +85,7 @@ go
 create table ataque(
 	id_ataque int identity not null primary key,
 	id_tipo int not null,
-	descripcion_ataque nvarchar(100) not null,
+	descripcion_ataque text not null,
 	foreign key(id_tipo) references tipo(id_tipo)
 )
 go
@@ -113,4 +113,3 @@ create table especieEvolucion(
 	foreign key(id_especie_siguiente) references especie(id_especie)
 )
 go
-
