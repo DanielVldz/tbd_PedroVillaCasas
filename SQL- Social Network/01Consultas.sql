@@ -125,63 +125,26 @@ from (
 		count(ID2) as amigos
 	from Friend
 	group by ID1) hola
--- lo �ltimo seg�n yo es para darle nombre a la tabla que genera el select dentro del from
 
 --12 circulo social
-declare @IDCassandra int = (
-	-- para obtener el id de cassandra (1709)
-	select ID
-from Highschooler
-where name = 'cassandra'
-);
-declare @amigosDeCassandra int = (
-	-- para obtener los amigos de cassandra (2)
-	select count(*)
-from Friend
-where ID1 = @IDCassandra
-);
-declare @amigosDeAmigosDeCassandra int = (
-	-- para obtener los amigos de los amigos de cassandra (5)
-	select count(idAmigo)
-from (
-		-- para obtener los id de los amigos de cassandra (1689 y 1247)
-		select ID1 as idAmigo
-	from Friend
-	where ID2 = @IDCassandra) amigo
-	inner join Friend f on f.ID1 = amigo.idAmigo and f.ID2 <> @IDCassandra
-);
-select "Amigos de Cassandra" = @amigosDeCassandra, "Amigos de amigos de Cassandra" = @amigosDeAmigosDeCassandra
+select count(distinct f1.ID1)
+from Friend as f1, Friend as f2, (select ID from Highschooler where name = 'Cassandra') as C
+where f1.ID2 = C.ID or (f1.ID1 <> C.ID and f1.ID2 = f2.ID1 and f2.ID2 = C.ID)
 
 --13 los guaperris
-declare @numeroDeEnamoradosMayor int = (
-	-- para obtener el valor de enamorados m�s grande que hay (2)
-	select count(*)
-from Likes
-where ID2 = 1709 -- no s� como hacerlo, es el id de Cassandra :c
-);
-select "Nombre" = name, "Grado" = grade, "Enamorados" = @numeroDeEnamoradosMayor
+select name, grade
 from Highschooler
-where @numeroDeEnamoradosMayor = (
-		-- para saber si tiene de enamorados el valor @numeroDeEnamoradosMayor
-		select count(*)
-from Likes
-where ID2 = ID
-	)
+where ID in (select ID2 from Likes group by ID2 having count(distinct ID1)>1)
 
---14 m�s populares, mucho compa tienen estos vatos
-declare @numeroDeAmigosMayor int = max(
-	-- para obtener el valor de enamorados m�s grande que hay (4)
-	4 -- al chile no supe hacerlo :'c
-);
-
-select "Nombre" = name, "Grado" = grade, "Amigos" = @numeroDeAmigosMayor
-from Highschooler
-where @numeroDeAmigosMayor = (
-		-- para saber si tiene de amigos el valor @numeroDeEnamoradosMayor
-		select count(*)
-from Friend
-where ID2 = ID
-	)
+--14 más populares, mucho compa tienen estos vatos
+select name, grade
+from Highschooler join Friend
+	on ID = ID1
+group by name, grade
+having count(ID2) = (select max(f.numF)
+from (select count(ID2) as numF
+	from Friend
+	group by ID1) as f)
 
 --15 fin del año escolar
 update Highschooler
@@ -202,15 +165,16 @@ from Highschooler H1, Friend, Highschooler H2
 where H1.name = 'Austin' and H1.ID = Friend.ID1 and H2.ID = Friend.ID2
 
 --18 Verano pagado, verano pasado
-insert into Friend(ID1, ID2)
-	select f1.ID, f3.ID2
-	from Highschooler f1
+insert into Friend
+	(ID1, ID2)
+select f1.ID, f3.ID2
+from Highschooler f1
 	left join Friend f2 on f1.ID = f2.ID1
 	left join Friend f3 on f2.ID2 = f3.ID1
-	where f1.ID not in(
+where f1.ID not in(
 		select ID1
-		from Friend
-		where ID2 = f3.ID2 or ID1 = f3.ID2
+from Friend
+where ID2 = f3.ID2 or ID1 = f3.ID2
 	)
 select H2.name
 from Highschooler H1, Friend, Highschooler H2
