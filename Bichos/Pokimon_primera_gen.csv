@@ -1,0 +1,149 @@
+Bulbasaur;1;Planta/Veneno;Ninguno;Ivysaur (nivel 16)
+Ivysaur;2;Planta/Veneno;Bulbasaur (nivel 16);Venusaur (nivel 32)
+Venusaur;3;Planta/Veneno;Ivysaur (nivel 32);Mega-Venusaur (Venusaurita)
+Charmander;4;Fuego;Ninguno;Charmeleon (nivel 16)
+Charmeleon;5;Fuego;Charmander (nivel 16);Charizard (nivel 36)
+Squirtle;7;Agua;ninguno;Wartortle ( nivel 16)
+Wartortle;8;Agua;Squirtle (nivel 16);Blastoise (nivel 36)
+Blastoise;9;Agua;Wartortle (nivel 36);Mega-Blastoise (Blastoisita)
+Caterpie;10;Bicho;Ninguno;Metapod (nivel 7)
+Metapod;11;Bicho;Caterpie (nivel 7);Butterfree (nivel 10)
+Butterfree;12;Bicho/Volador;Metapod (nivel 10);Ninguno
+Weedle;13;Bicho/Veneno;Ninguno;Kakuna (nivel 7)
+Kakuna;14;Bicho/Veneno;Weedle (nivel 7);Beedrill (nivel 10)
+Beedrill;15;Bicho/Veneno;Kakuna (nivel 10);Mega-Beedrill (Beedrillita)
+Pidgey;16;Normal/Volador;Ninguno;Pidgeotto (nivel 18)
+Pidgeotto;17;Normal/Volador;Pidgey (nivel 18);Pidgeot (nivel 36)
+Pidgeot;18;Normal/Volador;Pidgeotto (nivel 36);Mega-Pidgeot (Pidgeotita)
+Rattata;19;Normal;Ninguno;Raticate (nivel 20)
+Raticate;20;Normal;Rattata (nivel 20);Ninguno
+Spearow;21;Normal/Volador;Ninguno;Fearow (nivel 20)
+Fearow;22;Normal/Volador;Spearow (nivel 20);Ninguno
+Ekans;23;Veneno;Ninguno;Arbok (nivel 22)
+Arbok;24;Veneno;Ekans (nivel 20);Ninguno
+Pikachu;25;Eléctrico;Pichu (amistad);Raichu (Piedra Trueno)
+Raichu;26;Eléctrico;Pikachu (Piedra Trueno);Ninguno
+Sandshrew;27;Tierra;Ninguno;Sandslash (nivel 22)
+Sandslash;28;Tierra;Sandshrew (nivel 22);Ninguno
+Nidoran♀;29;Veneno;Ninguno;Nidorina (nivel 16)
+Nidorina;30;Veneno;Nidoran♀ (nivel 16);Nidoqueen (Piedra Lunar)
+Nidoqueen;31;Veneno/Tierra;Nidorina (Piedra Lunar);Ninguno
+Nidoran♂;32;Veneno;Ninguno;Nidorino (nivel 16)
+Nidorino;33;Veneno;Nidoran♂ (nivel 16);Nidoking (Piedra Lunar)
+Nidoking;34;Veneno/Tierra;Nidorino (Piedra Lunar);Ninguno
+Clefairy;35;Normal (Primera generación)/Hada (Sexta generación);Cleffa (amistad);Clefable (Piedra Lunar)
+Clefable;36;Normal (primera generación)/Hada (sexta generación);Clefairy (Piedra Lunar);Ninguno
+Vulpix;37;Fuego;Ninguno;Ninetales (Piedra Fuego)
+Ninetales;38;Fuego;Vulpix (Piedra Fuego);Ninguno
+Jigglypuff;39;Normal (primera generación)/Normal/Hada (sexta generación);Igglybuff (amistad);Wigglytuff (Piedra Lunar)
+Wigglytuff;40;Normal (primera generación)/Normal/Hada (sexta generación);Jigglypuff (Piedra Lunar);Ninguno
+Zubat;41;Veneno/Volador;Ninguno;Golbat (nivel 22)
+Golbat;42;Veneno/Volador;Zubat (nivel 22);Crobat (amistad)
+Oddish;43;Planta/Veneno;Ninguno;Gloom (nivel 21)
+Gloom;44;Planta/Veneno;Oddish (nivel 21);Vileplume (Piedra Hoja)Bellossom (Piedra Solar)
+Vileplume;45;Planta/Veneno;Gloom (Piedra Hoja);Ninguno
+Paras;46;Bicho/Planta;Ninguno;Parasect (nivel 24)
+Parasect;47;Bicho/Planta;Paras (nivel 24);Ninguno
+Venonat;48;Bicho/Veneno;Ninguno;Venomoth (nivel 31)
+Venomoth;49;Bicho/Veneno;Venonat (nivel 31);Ninguno
+Diglett;50;Tierra;Ninguno;Dugtrio (nivel 26)
+Dugtrio;51;Tierra;Diglett (nivel 26);Ninguno
+Meowth;52;Normal;Ninguno;Persian (nivel 28)
+Persian;53;Normal;Meowth (nivel 28);Ninguno
+Psyduck;54;Agua;Ninguno;Golduck (nivel 33)
+Golduck;55;Agua;Psyduck (nivel 33);Ninguno
+Mankey;56;Lucha;Ninguno;Primeape (nivel 28)
+Primeape;57;Lucha;Mankey (nivel 28);Ninguno
+Growlithe;58;Fuego;Ninguno;Arcanine (Piedra Fuego)
+Arcanine;59;Fuego;Growlithe (Piedra Fuego);Ninguno
+Poliwag;60;Agua;Ninguno;Poliwhirl (nivel 25)
+Poliwhirl;61;Agua;Poliwag (nivel 21);Poliwrath (Piedra Agua)Politoed (intercambio con Roca Del Rey)
+Poliwrath;62;Agua/Lucha;Poliwhirl (Piedra Agua);Ninguno
+Abra;63;Psíquico;Ninguno;Kadabra (nivel 16)
+Kadabra;64;Psíquico;Abra (nivel 16);Alakazam (intercambio)
+Alakazam;65;Psíquico;Kadabra (intercambio);Mega-Alakazam (Alakazamita)
+Machop;66;Lucha;Ninguno;Machoke (nivel 28)
+Machoke;67;Lucha;Machop (nivel 28);Machamp (intercambio)
+Machamp;68;Lucha;Machoke (intercambio);Ninguno
+Bellsprout;69;Planta/Veneno;Ninguno;Weepinbell (nivel 21)
+Weepinbell;70;Planta/Veneno;Bellsprout (nivel 21);Victreebel (Piedra Hoja)
+Victreebel;71;Planta/Veneno;Weepinbell (Piedra Hoja);Ninguno
+Tentacool;72;Agua/Veneno;Ninguno;Tentacruel (nivel 30)
+Tentacruel;73;Agua/Veneno;Tentacool (nivel 30);Ninguno
+Geodude;74;Roca/Tierra;Ninguno;Graveler (nivel 25)
+Graveler;75;Roca/Tierra;Geodude (nivel 25);Golem (intercambio)
+Golem;76;Roca/Tierra;Graveler (intercambio);Ninguno
+Ponyta;77;Fuego;Ninguno;Rapidash (nivel 40)
+Rapidash;78;Fuego;Ponyta (nivel 40);Ninguno
+Slowpoke;79;Agua/Psíquico;Ninguno;Slowbro (nivel 37)Slowking (intercambio con Roca Del Rey)
+Slowbro;80;Agua/Psíquico;Slowpoke (nivel 37);Mega-Slowbro (Slowbronita)
+Magnemite;81;Eléctrico/Acero;Ninguno;Magneton (nivel 30)
+Magneton;82;Eléctrico/Acero;Magnemite (nivel 30);Magnezone (subiendo de nivel en zonas con magnetismo)
+Farfetch’d;83;Normal/Volador;Ninguno;Sirfetch'd (Evolución en la región Galar)
+Doduo;84;Normal/Volador;Ninguno;Dodrio
+Dodrio;85;Normal/Volador;Doduo (nivel 31);Ninguno
+Seel;86;Agua;Ninguno;Dewgong (nivel 34)
+Dewgong;87;Agua/Hielo;Seel (nivel 34);Ninguno
+Grimer;88;Veneno;Ninguno;Muk (nivel 38)
+Muk;89;Veneno;Grimer (nivel 38);Ninguno
+Shellder;90;Agua;Ninguno;Cloyster (Piedra Agua)
+Cloyster;91;Agua/Hielo;Shellder (Piedra Agua);Ninguno
+Gastly;92;Fantasma/Veneno;Ninguno;Haunter (nivel 25)
+Haunter;93;Fantasma/Veneno;Gastly (nivel 25);Gengar (intercambio)
+Gengar;94;Fantasma/Veneno;Haunter (intercambio);Mega-Gengar (Gengarita)
+Onix;95;Roca/Tierra;Ninguno;Steelix (intercambio con Revestimiento Metálico)
+Drowzee;96;Psíquico;Ninguno;Hypno (nivel 26)
+Hypno;97;Psíquico;Drowzee (nivel 26);Ninguno
+Krabby;98;Agua;Ninguno;Kingler (nivel 28)
+Kingler;99;Agua;Krabby (nivel 28);Ninguno
+Voltorb;100;Eléctrico;Ninguno;Electrode (nivel 30)
+Electrode;101;Eléctrico;Voltorb (nivel 30);Ninguno
+Exeggcute;102;Planta/Psíquico;Ninguno;Exeggutor (Piedra Hoja)
+Exeggutor;103;Planta/Psíquico;Exeggcute (Piedra Hoja);Ninguno
+Cubone;104;Tierra;Ninguno;Marowak (nivel 28)
+Marowak;105;Tierra;Cubone (nivel 28);Ninguno
+Hitmonlee;106;Lucha;Tyrogue (nivel 20, siempre y cuando su ataque sea más alto que su defensa);Ninguno
+Hitmonchan;107;Lucha;Tyrogue (nivel 20, siempre y cuando su defensa sea más alta que su ataque);Ninguno
+Lickitung;108;Normal;Ninguno;Lickilicky (subiendo de nivel al conocer el movimiento Desenrollar)
+Koffing;109;Veneno;Ninguno;Weezing (nivel 35)
+Weezing;110;Veneno;Koffing (nivel 35);Ninguno
+Rhyhorn;111;Tierra/Roca;Ninguno;Rhydon (nivel 42)
+Rhydon;112;Tierra/Roca;Rhyhorn (nivel 42);Rhyperior (intercambio con protector)
+Chansey;113;Normal;Happiny (subiendo de nivel teniendo equipado Piedra Oval);Blissey (amistad)
+Tangela;114;Planta;Ninguno;Tangrowth (subiendo de nivel al conocer el movimiento Poder Pasado)
+Kangaskhan;115;Normal;Ninguno;Mega-Kangaskhan (Kangaskanita)
+Horsea;116;Agua;Ninguno;Seadra (nivel 32)
+Seadra;117;Agua;Horsea (nivel 32);Kingdra (intercambio con Escama Dragón)
+Goldeen;118;Agua;Ninguno;Seaking (nivel 33)
+Seaking;119;Agua;Goldeen (nivel 33);Ninguno
+Staryu;120;Agua;Ninguno;Starmie (Piedra Agua)
+Starmie;121;Agua/Psíquico;Staryu (Piedra Agua);Ninguno
+Mr. Mime;122;Psíquico (Primera generación)/Hada (Sexta generación);Mime Jr. (subiendo de nivel al conocer el movimiento Mimético);Ninguno
+Scyther;123;Bicho/Volador;Ninguno;Scizor (intercambio con Revestimiento Metálico)
+Jynx;124;Hielo/Psíquico;Smoochum (nivel 30);Ninguno
+Electabuzz;125;Eléctrico;Elekid (nivel 30);Electivire (intercambio con Electrizador)
+Magmar;126;Fuego;Magby (nivel 30);Magmortar (intercambio con Magmatizador)
+Pinsir;127;Bicho;Ninguno;Mega-Pinsir (Pinsirita)
+Tauros;128;Normal;null;null
+Magikarp;129;Agua;Ninguno;Gyarados (nivel 20)
+Gyarados;130;Agua/Volador;Magikarp (nivel 20);Mega-Gyarados (Gyaradosita)
+Lapras;131;Agua/Hielo;null;null
+Ditto;132;Normal;null;null
+Eevee;133;Normal;Ninguno;Vaporeon (Piedra Agua)Jolteon (Piedra Trueno)Flareon (Piedra Fuego) Espeon (amistad durante el día o usando Ápice Sol)Umbreon (amistad durante la noche o usando Ápice Luna)Leafeon (subiendo de nivel cerca de Roca Musgo)Glaceon (subiendo de nivel cerca de Roca Hielo)Sylveon (teniendo 2 corazones como mínimo en Poké-Recreo y conociendo un movimiento de Tipo Hada)
+Vaporeon;134;Agua;Eevee (Piedra Agua);Ninguno
+Jolteon;135;Eléctrico;Eevee (Piedra Trueno);Ninguno
+Flareon;136;Fuego;Eevee (Piedra Fuego);Ninguno
+Porygon;137;Normal;Ninguno;Porygon2 (intercambio con mejora)
+Omanyte;138;Roca/Agua;Ninguno;Omastar (nivel 40)
+Omastar;139;Roca/Agua;Omanyte (nivel 40);Ninguno
+Kabuto;140;Roca/Agua;Ninguno;kabutops (nivel 40)
+Kabutops;141;Roca/Agua;Kabuto (nivel 40);Ninguno
+Aerodactyl;142;Roca/Volador;Ninguno;Mega-Aerodactyl (Aerodactylita)
+Snorlax;143;Normal;Munchlax (amistad);Ninguno
+Articuno;144;Hielo/Volador;null;null
+Zapdos;145;Eléctrico/Volador;null;null
+Moltres;146;Fuego/Volador;null;null
+Dratini;147;Dragón;Ninguno;Dragonair (nivel 30)
+Dragonair;148;Dragón;Dratini (nivel 30);Dragonite (nivel 55)
+Dragonite;149;Dragón/Volador;Dragonair (nivel 55);Ninguno
+Mewtwo;150;Psíquico;Ninguno;Mega-Mewtwo X (Mewtwoita X)/Mega-Mewtwo Y (Mewtwoita Y)
