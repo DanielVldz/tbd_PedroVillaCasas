@@ -6,6 +6,8 @@ from bs4 import BeautifulSoup
 
 tipos = []
 lista_poke = []
+datosPoke = []
+
 
 def validarGen(poke):
     for i in range(1, len(lista_poke)):
@@ -15,14 +17,16 @@ def validarGen(poke):
             break
     return False
 
+
 def getPokeID(poke):
-    for i in range(1 , len(lista_poke)):
+    for i in range(1, len(lista_poke)):
         if(lista_poke[i].lower() in poke.lower()):
             return i
 
+
 def escribirCSV(rutaCSV, renglon):
     with open(rutaCSV, 'a', encoding='utf-8') as csvFile:
-        writer = csv.writer(csvFile, delimiter=';')
+        writer = csv.writer(csvFile, delimiter=';', lineterminator='\n')
         writer.writerow(renglon)
     csvFile.close()
 
@@ -49,63 +53,63 @@ def obtenerDatosPoke(soup, lista_poke):
 
     corrimiento = 0
     nivel_evolucion = 0
-
+    datos = [None]
     for i in range(0, len(soup.find_all('td')), 4):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
-        evolucion_siguiente = soup.find_all('td')[i + 2 + corrimiento].text.split(':')
-        regex = re.compile("(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
+        evolucion_anterior = soup.find_all(
+            'td')[i + 2 + corrimiento].text.split(':')
+        regex = re.compile(
+            "(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
 
-        if "No evoluciona" in evolucion_siguiente[0]:
-            evolucion_siguiente = " null"
+        if "No evoluciona" in evolucion_anterior[0]:
             evolucion_anterior = " null"
+            evolucion_siguiente1 = " null"
             corrimiento = corrimiento - 1
+            nivel_evolucion = "null"
 
         else:
-            evolucion_anterior = soup.find_all(
+            evolucion_siguiente1 = soup.find_all(
                 'td')[i + 3 + corrimiento].text.split(':')
 
-            if(("amistad" in evolucion_siguiente[1]) or not validarGen(evolucion_siguiente[1])):    #Si evoluciona por amistad o no es de esta gen, cuello
-                evolucion_siguiente = " null"
-                id_siguiente = "null"
-            else:
-                evolucion_siguiente = evolucion_siguiente[1]
-                id_siguiente = getPokeID(evolucion_siguiente)
-                try:
-                    nv = regex.search(evolucion_siguiente)
-                    nivel_evolucion = nv.group(2)
-                except:
-                    nivel_evolucion = "null"
-
-            if ("amistad" in evolucion_anterior[1]) or not validarGen(evolucion_anterior[1]):       #Lo mismo
-                evolucion_anterior = "null"
+            # Si evoluciona por amistad o no es de esta gen, cuello
+            if(("amistad" in evolucion_anterior[1]) or not validarGen(evolucion_anterior[1])):
+                evolucion_anterior = " null"
                 id_anterior = "null"
             else:
                 evolucion_anterior = evolucion_anterior[1]
                 id_anterior = getPokeID(evolucion_anterior)
 
+
+            # Lo mismo
+            if ("amistad" in evolucion_siguiente1[1]) or not validarGen(evolucion_siguiente1[1]):
+                evolucion_siguiente1 = "null"
+                id_siguiente = "null"
+                nivel_evolucion = "null"
+            else:
+                evolucion_siguiente1 = evolucion_siguiente1[1]
+                id_siguiente = getPokeID(evolucion_siguiente1)
+                try:
+                    nv = regex.search(evolucion_siguiente1)
+                    nivel_evolucion = nv.group(2)
+                except:
+                    nivel_evolucion = "null"
+
         nombre_actual = lista_poke[int(numero_actual[1])]
         print("Poke actual", nombre_actual)
-        print("Evoluciona a: ", id_siguiente)
+        print("Evoluciona de: ", id_anterior, " : ", evolucion_anterior)
         print("Nivel evolucion ", nivel_evolucion)
-        print("Evoluciona de: ", id_anterior)
-
-        try:
-            numero_actual[1] = numero_actual[1].replace(
-                '\n', '').replace('\r', '')
-            evolucion_siguiente[1] = evolucion_siguiente[1].replace(
-                '\n', '').replace('\r', '')
-            evolucion_anterior[1] = evolucion_anterior[1].replace(
-                '\n', '').replace('\r', '')
-        except:
-            pass
-    return 0
+        print("Evoluciona a: ", id_siguiente, " : ", evolucion_siguiente1)
+        datos.append([nombre_actual, id_anterior,
+                      nivel_evolucion, id_siguiente])
+    datos.insert(5, ["Charizard", "null", "null", 5])
+    return datos
 
 
 def obtenerDetallePokemon(soup, lista_poke):
     url = "https://pokemon.fandom.com/es/wiki/"
-
-    for i in range(1, len(lista_poke)):
+    csv = "Bichos/Bichos.csv"
+    for i in range(1, len(lista_poke) - 1):
         if(lista_poke[i] != "Farfetch’d"):
             url_actual = url + (lista_poke[i].replace(' ', '_'))
         else:
@@ -118,34 +122,49 @@ def obtenerDetallePokemon(soup, lista_poke):
         # TD's : ps - 6, ataque - 7 y velocidad - 11
         #tabla_stats = soup.find("table", class_="estadisticas")
 
-        Descripcion = soup.find("table", class_="pokedex radius10").find_all("tr")[9].find("td").text.replace('\r', '').replace('\n', '')
+        Descripcion = soup.find("table", class_="pokedex radius10").find_all("tr")[
+            9].find("td").text.replace('\r', '').replace('\n', '')
 
         ratio_captura = soup.find("div", class_="otrosdatos sombra radius10").find_all(
             "li")[1].text.replace('\r', '').replace('\n', '').split()
 
-        tipo1 = soup.find("div", {"data-source" : "tipo1"}).find_all("img")[0].get("alt").replace('\r', '').replace('\n', '').split()
+        tipo1 = soup.find("div", {"data-source": "tipo1"}).find_all(
+            "img")[0].get("alt").replace('\r', '').replace('\n', '').split()
         tipo1 = getTiposID(tipo1[1])
         try:
-            tipo2 = soup.find("div", {"data-source" : "tipo1"}).find_all("img")[2].get("alt").replace('\r', '').replace('\n', '').split()
+            tipo2 = soup.find("div", {"data-source": "tipo1"}).find_all(
+                "img")[2].get("alt").replace('\r', '').replace('\n', '').split()
             tipo2 = getTiposID(tipo2[1])
         except:
-            tipo2 = None
+            tipo2 = "null"
 
         # Estadísticas base
-        ps_base = soup.find("table", class_="estadisticas").find_all('td')[6].next_element.replace('\r', '').replace('\n', '')
-        ataque_base = soup.find("table", class_="estadisticas").find_all('td')[7].next_element.replace('\r', '').replace('\n', '')
-        defensa_base = soup.find("table", class_="estadisticas").find_all('td')[8].next_element.replace('\r', '').replace('\n', '')
-        ataque_especial_base = soup.find("table", class_="estadisticas").find_all('td')[9].next_element.replace('\r', '').replace('\n', '')
-        defensa_especial_base = soup.find("table", class_="estadisticas").find_all('td')[10].next_element.replace('\r', '').replace('\n', '')
-        velocidad_base = soup.find("table", class_="estadisticas").find_all('td')[11].next_element.replace('\r', '').replace('\n', '')
+        ps_base = soup.find("table", class_="estadisticas").find_all(
+            'td')[6].next_element.replace('\r', '').replace('\n', '')
+        ataque_base = soup.find("table", class_="estadisticas").find_all(
+            'td')[7].next_element.replace('\r', '').replace('\n', '')
+        defensa_base = soup.find("table", class_="estadisticas").find_all('td')[
+            8].next_element.replace('\r', '').replace('\n', '')
+        ataque_especial_base = soup.find("table", class_="estadisticas").find_all('td')[
+            9].next_element.replace('\r', '').replace('\n', '')
+        defensa_especial_base = soup.find("table", class_="estadisticas").find_all(
+            'td')[10].next_element.replace('\r', '').replace('\n', '')
+        velocidad_base = soup.find("table", class_="estadisticas").find_all('td')[
+            11].next_element.replace('\r', '').replace('\n', '')
 
         # Estadísticas máximas con naturaleza neutra
-        ps_maximo = soup.find("table", class_="estadisticas").find_all('td')[18].next_element.replace('\r', '').replace('\n', '')
-        ataque_maximo = soup.find("table", class_="estadisticas").find_all('td')[19].next_element.replace('\r', '').replace('\n', '')
-        defensa_maxima = soup.find("table", class_="estadisticas").find_all('td')[20].next_element.replace('\r', '').replace('\n', '')
-        ataque_especial_maximo = soup.find("table", class_="estadisticas").find_all('td')[21].next_element.replace('\r', '').replace('\n', '')
-        defensa_especial_maxima = soup.find("table", class_="estadisticas").find_all('td')[22].next_element.replace('\r', '').replace('\n', '')
-        velocidad_maxima = soup.find("table", class_="estadisticas").find_all('td')[23].next_element.replace('\r', '').replace('\n', '')
+        ps_maximo = soup.find("table", class_="estadisticas").find_all(
+            'td')[18].next_element.replace('\r', '').replace('\n', '')
+        ataque_maximo = soup.find("table", class_="estadisticas").find_all(
+            'td')[19].next_element.replace('\r', '').replace('\n', '')
+        defensa_maxima = soup.find("table", class_="estadisticas").find_all('td')[
+            20].next_element.replace('\r', '').replace('\n', '')
+        ataque_especial_maximo = soup.find("table", class_="estadisticas").find_all(
+            'td')[21].next_element.replace('\r', '').replace('\n', '')
+        defensa_especial_maxima = soup.find("table", class_="estadisticas").find_all(
+            'td')[22].next_element.replace('\r', '').replace('\n', '')
+        velocidad_maxima = soup.find("table", class_="estadisticas").find_all('td')[
+            23].next_element.replace('\r', '').replace('\n', '')
 
         print("Poke: ", lista_poke[i])
         print("Descripción: ", Descripcion)
@@ -155,7 +174,7 @@ def obtenerDetallePokemon(soup, lista_poke):
         print("Puntos de salud base: ", ps_base)
         print("Ataque normal base: ", ataque_base)
         print("Defensa base: ", defensa_base)
-        print("Ataque especial base: ",ataque_especial_base)
+        print("Ataque especial base: ", ataque_especial_base)
         print("Defensa especial base: ", defensa_especial_base)
         print("Velocidad base: ", velocidad_base)
         print("Puntos de salud máximos: ", ps_maximo)
@@ -165,9 +184,16 @@ def obtenerDetallePokemon(soup, lista_poke):
         print("Defensa especial máxima: ", defensa_especial_maxima)
         print("Velocidad máxima: ", velocidad_maxima)
 
+        renglon = [i, lista_poke[i], Descripcion, tipo1, tipo2, datosPoke[i][1], datosPoke[i][2], datosPoke[i][3], ratio_captura[3], ps_base, ataque_base, defensa_base, ataque_especial_base, defensa_especial_base, velocidad_base,
+                   ps_maximo, ataque_maximo, defensa_maxima, ataque_especial_maximo, defensa_especial_maxima, velocidad_maxima]
+        print(renglon)
+
+        escribirCSV(csv, renglon)
+
 
 def obtenerTipos(soup):
     url = 'https://pokemon.fandom.com/es/wiki/Tipos_elementales'
+    csv = "Bichos/Tipos.csv"
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
     lista_tipos = []
@@ -178,6 +204,10 @@ def obtenerTipos(soup):
             '\r', '').replace('\n', '')
         lista_tipos.append([id_tipo, str(tipo_actual)])
         id_tipo += 1
+        
+        renglon = [id_tipo, tipo_actual]
+
+        #escribirCSV(csv, renglon)
 
     print(lista_tipos)
     return lista_tipos
@@ -202,29 +232,36 @@ def obtenerAtaques(soup, tipos):
 def obtenerDetalleAtaques(soup, lista_ataques):
     # Ignorar para el CSV los que no tengan potencia
     url = "https://pokemon.fandom.com/es/wiki/"
+    csv = "Bichos/Ataques.csv"
     for i in range(0, len(lista_ataques)):
         url_actual = url + (lista_ataques[i][1:].replace(' ', '_'))
         response = requests.get(url_actual)
         soup = BeautifulSoup(response.text, "html.parser")
-        
+
         # Obtención de los datos del ataque actual
         print(lista_ataques[i])
 
-        categoria = soup.find("div", {"data-source" : "categoría"}).find("img").get("alt")
+        categoria = soup.find(
+            "div", {"data-source": "categoría"}).find("img").get("alt")
         if "Tipo físico" in categoria:
             categoria = "f"
         elif "Tipo especial" in categoria:
             categoria = "e"
         else:
             categoria = None
-        
+        tipo = soup.find("div", {"data-source" : "tipo"}).find("img").get("alt").replace('\r', '').replace('\n', '').split()
+        tipo = getTiposID(tipo[1])
         try:
             potencia = soup.find(
                 "div", {"data-source": "potencia"}).find('div').next_element
-            
+
         except:
             # El ataque no tiene Potencia, por lo tanto es una habilidad que aplica efectos
             potencia = None
+
+        if (categoria != None) and (potencia != None):
+            renglon = [lista_ataques[i][1:], categoria, potencia, tipo]
+            escribirCSV(csv, renglon)
 
         print("Categoría del ataque: ", categoria)
         print("Potencia del ataque", potencia)
@@ -232,6 +269,7 @@ def obtenerDetalleAtaques(soup, lista_ataques):
 
 def obtenerResistencias(soup):
     # Datos en matriz de 18 x 18
+    csv = "Bichos/Resistencias.csv"
     url = 'https://pokemon.fandom.com/es/wiki/Tipos_elementales'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, "html.parser")
@@ -262,6 +300,9 @@ def obtenerResistencias(soup):
             # print(tipo)
             # print(efecto)
             print("Un ataque tipo ", tipo, " x ", efecto, " a ", afectado)
+            if efecto != 1:
+                renglon = [tipo, efecto, afectado]
+                escribirCSV(csv, renglon)
 
         print("Fin del renglón número: ", (i + 1))
 
@@ -274,9 +315,9 @@ direccion_csv = 'D:/Documentos/Escuela/Semestre 7/Taller de base de datos/Proyec
 
 tipos = obtenerTipos(soup)
 lista_poke = obtenerNombres(soup)
+#datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
 #obtenerDetallePokemon(soup, lista_poke)
-obtenerDatosPoke(soup, lista_poke) #Este
-#lista_ataques = obtenerAtaques(soup, tipos)
-#obtenerDetalleAtaques(soup, lista_ataques)
-#obtenerResistencias(soup)
+lista_ataques = obtenerAtaques(soup, tipos)
+obtenerDetalleAtaques(soup, lista_ataques)
+obtenerResistencias(soup)
 print("Ya we")

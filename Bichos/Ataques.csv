@@ -1,0 +1,109 @@
+Burbuja;e;40;1
+Cascada;f;80;1
+Hidrobomba;e;110;1
+Martillazo;f;100;1
+Pistola agua;e;40;1
+Rayo burbuja;e;65;1
+Surf;e;90;1
+Tenaza;f;35;1
+Chupavidas;f;80;2
+Doble ataque;f;25;2
+Pin misil;f;25;2
+Furia dragón;e;-;3
+Impactrueno;e;40;4
+Puño trueno;f;75;4
+Rayo;e;90;4
+Trueno;e;110;4
+Lengüetazo;f;30;5
+Tinieblas;e;-;5
+Ascuas;e;40;6
+Giro fuego;e;35;6
+Lanzallamas;e;90;6
+Llamarada;e;110;6
+Puño fuego;f;75;6
+Puño hielo;f;75;8
+Rayo aurora;e;65;8
+Rayo hielo;e;90;8
+Ventisca;e;110;8
+Contraataque;f;-;9
+Doble patada;f;30;9
+Movimiento sísmico;f;-;9
+Patada baja;f;-;9
+Patada giro;f;60;9
+Patada salto;f;100;9
+Patada salto alta;f;130;9
+Sumisión;f;80;9
+Agarre;f;55;10
+Arañazo;f;40;10
+Atadura;f;15;10
+Ataque furia;f;15;10
+Ataque rápido;f;40;10
+Autodestrucción;f;200;10
+Bomba huevo;f;100;10
+Bomba sónica;e;-;10
+Cabezazo;f;130;10
+Clavo cañón;f;20;10
+Cornada;f;65;10
+Corte;f;50;10
+Cuchillada;f;70;10
+Derribo;f;90;10
+Destructor;f;40;10
+Día de pago;f;40;10
+Doble filo;f;120;10
+Doblebofetón;f;15;10
+Explosión;f;250;10
+Fuerza;f;80;10
+Furia;f;20;10
+Golpe;f;120;10
+Golpe cabeza;f;70;10
+Golpe cuerpo;f;85;10
+Golpe kárate ;f;50;9
+Golpes furia;f;18;10
+Guillotina;f;-;10
+Hiper colmillo;f;80;10
+Hiperrayo;e;150;10
+Megapatada;f;120;10
+Megapuño;f;80;10
+Mordisco ;f;60;14
+Perforador;f;-;10
+Pisotón;f;65;10
+Placaje;f;40;10
+Atizar;f;80;10
+Presa;f;15;10
+Puño cometa;f;18;10
+Puño mareo;f;70;10
+Rapidez;e;60;10
+Constricción;f;15;10
+Restricción;f;10;10
+Superdiente;f;-;10
+Tornado ;e;40;17
+Triataque;e;80;10
+Venganza;f;-;10
+Viento cortante;e;80;10
+Absorber;e;20;11
+Danza pétalo;e;120;11
+Hoja afilada;f;55;11
+Látigo cepa;f;45;11
+Megaagotar;e;40;11
+Rayo solar;e;120;11
+Come sueños;e;100;12
+Confusión;e;50;12
+Psicoonda;e;-;12
+Psicorrayo;e;65;12
+Psíquico;e;90;12
+Avalancha;f;75;13
+Lanzarrocas;f;50;13
+Excavar;f;80;15
+Fisura;f;-;15
+Hueso palo;f;65;15
+Huesomerang;f;50;15
+Terremoto;f;100;15
+Ácido;e;40;16
+Picotazo venenoso;f;15;16
+Polución;e;30;16
+Residuos;e;65;16
+Ataque aéreo;f;140;17
+Ataque ala;f;60;17
+Pico taladro;f;80;17
+Picotazo;f;35;17
+Vuelo;f;90;17
