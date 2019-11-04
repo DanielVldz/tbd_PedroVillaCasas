@@ -54,6 +54,7 @@ def obtenerDatosPoke(soup, lista_poke):
     corrimiento = 0
     nivel_evolucion = 0
     datos = [None]
+    csv = "Bichos/Evoluciones.csv"
     for i in range(0, len(soup.find_all('td')), 4):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
@@ -96,12 +97,16 @@ def obtenerDatosPoke(soup, lista_poke):
                     nivel_evolucion = "null"
 
         nombre_actual = lista_poke[int(numero_actual[1])]
+        id_actual = getPokeID(nombre_actual)
         print("Poke actual", nombre_actual)
         print("Evoluciona de: ", id_anterior, " : ", evolucion_anterior)
         print("Nivel evolucion ", nivel_evolucion)
         print("Evoluciona a: ", id_siguiente, " : ", evolucion_siguiente1)
-        datos.append([nombre_actual, id_anterior,
-                      nivel_evolucion, id_siguiente])
+        datos.append([nombre_actual, nivel_evolucion])
+        
+        if(id_anterior != "null"):
+            evolucion = [id_anterior, id_actual]
+            escribirCSV(csv, evolucion)
     datos.insert(5, ["Charizard", "null", "null", 5])
     return datos
 
@@ -184,7 +189,7 @@ def obtenerDetallePokemon(soup, lista_poke):
         print("Defensa especial máxima: ", defensa_especial_maxima)
         print("Velocidad máxima: ", velocidad_maxima)
 
-        renglon = [i, lista_poke[i], Descripcion, tipo1, tipo2, datosPoke[i][1], datosPoke[i][2], datosPoke[i][3], ratio_captura[3], ps_base, ataque_base, defensa_base, ataque_especial_base, defensa_especial_base, velocidad_base,
+        renglon = [i, lista_poke[i], Descripcion, tipo1, tipo2, datosPoke[i][1], ratio_captura[3], ps_base, ataque_base, defensa_base, ataque_especial_base, defensa_especial_base, velocidad_base,
                    ps_maximo, ataque_maximo, defensa_maxima, ataque_especial_maximo, defensa_especial_maxima, velocidad_maxima]
         print(renglon)
 
@@ -315,9 +320,9 @@ direccion_csv = 'D:/Documentos/Escuela/Semestre 7/Taller de base de datos/Proyec
 
 tipos = obtenerTipos(soup)
 lista_poke = obtenerNombres(soup)
-#datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
-#obtenerDetallePokemon(soup, lista_poke)
-lista_ataques = obtenerAtaques(soup, tipos)
-obtenerDetalleAtaques(soup, lista_ataques)
-obtenerResistencias(soup)
+datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
+obtenerDetallePokemon(soup, lista_poke)
+#lista_ataques = obtenerAtaques(soup, tipos)
+#obtenerDetalleAtaques(soup, lista_ataques)
+#obtenerResistencias(soup)
 print("Ya we")

@@ -1,150 +1,150 @@
-﻿1;Bulbasaur; Este Pokémon nace con una semilla en el lomo. Con el tiempo, la semilla brota.;11;16;null;16;2;45; 45; 49; 49; 65; 65; 45; 294; 197; 197; 229; 229; 189
-2;Ivysaur; Este Pokémon tiene un bulbo en el lomo. Dicen que, al absorber nutrientes, el bulbo se transforma en una flor grande.;11;16;1;32;3;45; 60; 62; 63; 80; 80; 60; 324; 223; 225; 259; 259; 219
-3;Venusaur; La flor que tiene en el lomo libera un delicado aroma. En combate, este aroma tiene un efecto relajante.;11;16;2;null;null;45; 80; 82; 83; 100; 100; 80; 364; 263; 265; 299; 299; 259
-4;Charmander; Este Pokémon nace con una llama en la punta de la cola. Si la llama se apagara, el Pokémon se debilitaría.;6;null;null;16;5;45; 39; 52; 43; 60; 50; 65; 282; 203; 185; 219; 199; 229
-5;Charmeleon; Suele usar la cola para derribar a su rival. Cuando lo tira, se vale de sus afiladas garras para acabar con él.;6;null;null;null;5;45; 58; 64; 58; 80; 65; 80; 320; 227; 215; 259; 229; 259
-6;Charizard; Con las alas que tiene puede alcanzar una altura de casi 1.400 m. Suele escupir fuego por la boca.;6;17;4;36;6;45; 78; 84; 78; 109; 85; 100; 360; 267; 255; 317; 269; 299
-7;Squirtle; Cuando se esconde en el caparazón, dispara agua a una presión increíble.;1;null;null;16;8;45; 44; 48; 65; 50; 64; 43; 292; 195; 229; 199; 227; 185
-8;Wartortle; Es el Pokémon que se suele tener como mascota. La cola tan larga y peluda que posee simboliza lo longevo que es.;1;null;7;36;9;45; 59; 63; 80; 65; 80; 58; 322; 225; 259; 229; 259; 215
-9;Blastoise; Para acabar con su enemigo, lo aplasta con el peso de su cuerpo. En momentos de apuro, se esconde en el caparazón.;1;null;8;null;null;45; 79; 83; 100; 85; 105; 78; 362; 265; 299; 269; 309; 255
-10;Caterpie; Tiene la piel de color verde. Cuando la muda, se recubre de seda y se convierte en capullo.;2;null;null;7;11;255; 45; 30; 35; 20; 20; 45; 294; 159; 169; 139; 139; 189
-11;Metapod; Aunque tiene una coraza muy dura, el cuerpo del Pokémon es blando. Un ataque violento puede acabar con él.;2;null;10;10;12;120; 50; 20; 55; 25; 25; 30; 304; 139; 209; 149; 149; 159
-12;Butterfree; Tiene las alas protegidas con una capa impermeable, de ahí que pueda volar también cuando llueve.;2;17;11;null;null;45; 60; 45; 50; 90; 80; 70; 324; 189; 199; 279; 259; 239
-13;Weedle; Suele habitar bosques y praderas. Tiene un afilado y venenoso aguijón de unos 5 cm encima de la cabeza.;2;16;null;7;14;255; 40; 35; 30; 20; 20; 50; 284; 169; 159; 139; 139; 199
-14;Kakuna; Este Pokémon permanece inmóvil mientras desarrolla internamente su organismo. Es prácticamente incapaz de moverse solo.;2;16;13;10;15;120; 45; 25; 50; 25; 25; 35; 294; 149; 199; 149; 149; 169
-15;Beedrill; Puede aparecer en enjambres volando a gran velocidad. Suele usar el venenoso aguijón inferior para atacar.;2;16;14;null;null;45; 65; 90; 40; 45; 80; 75; 334; 279; 179; 189; 259; 249
-16;Pidgey; A este Pokémon no le gusta luchar. Suele permanecer escondido en zonas de hierba alta. Se alimenta de pequeños insectos.;10;17;null;18;17;255; 40; 45; 40; 35; 35; 56; 284; 189; 179; 169; 169; 211
-17;Pidgeotto; Tiene unas garras desarrolladas. Puede atrapar un Exeggcute y transportarlo desde una distancia de casi 100 km.;10;17;16;36;18;120; 63; 60; 55; 50; 50; 71; 330; 219; 209; 199; 199; 241
-18;Pidgeot; Para intimidar a su enemigo, extiende las increíbles alas que tiene. Este Pokémon vuela a una velocidad increíble.;10;17;17;null;null;45; 83; 80; 75; 70; 70; 101; 370; 259; 249; 239; 239; 301
-19;Rattata; Tiene unos largos y afilados colmillos que no dejan de crecer. Le resultan muy útiles para destruir cosas.;10;null;null;20;20;255; 30; 56; 35; 25; 35; 72; 264; 211; 169; 149; 169; 243
-20;Raticate; Cada pata trasera tiene tres dedos palmeados que le permiten nadar por los ríos.;10;null;19;null;null;127; 55; 81; 60; 50; 70; 97; 314; 261; 219; 199; 239; 293
-21;Spearow; Va siempre revoloteando de aquí para allá. Aunque frágil, puede ser un duro rival cuando usa Movimiento espejo.;10;17;null;20;22;255; 40; 60; 30; 31; 31; 70; 284; 219; 159; 161; 161; 239
-22;Fearow; Gracias a sus espléndidas alas puede alcanzar una gran altura y volar durante un día entero sin tener que parar.;10;17;21;null;null;90; 65; 90; 65; 61; 61; 100; 334; 279; 229; 221; 221; 299
-23;Ekans; Es fácil encontrarlo en praderas y zonas similares. A este Pokémon le basta con sacar la lengua para detectar el peligro.;16;null;null;22;24;255; 35; 60; 44; 40; 54; 55; 274; 219; 187; 179; 207; 209
-24;Arbok; El dibujo que tiene en la panza aterroriza. Los rivales más débiles salen huyendo al verlo.;16;null;23;null;null;90; 60; 95; 69; 65; 79; 80; 324; 289; 237; 229; 257; 259
-25;Pikachu; Las bolsas de las mejillas están llenas de electricidad, que libera cuando se siente amenazado.;4;null;null;null;26;190; 35; 55; 40; 50; 50; 90; 274; 209; 179; 199; 199; 279
-26;Raichu; Suelta descargas eléctricas de hasta 100.000 voltios, con lo que es capaz de derribar al mayor de los Pokémon.;4;null;25;null;null;75; 60; 90; 55; 90; 80; 110; 324; 279; 209; 279; 259; 319
-27;Sandshrew; Este Pokémon permanece bajo tierra. Si se siente amenazado, se enrosca para defenderse.;15;null;null;22;28;255; 50; 75; 85; 20; 30; 40; 304; 249; 269; 139; 159; 179
-28;Sandslash; Suele hacerse una bola y rodar a toda velocidad al tiempo que va clavándole las púas y las garras al enemigo.;15;null;27;null;null;90; 75; 100; 110; 45; 55; 65; 354; 299; 319; 189; 209; 229
-29;Nidoran♀; No es grande, pero tampoco inofensivo. Las tóxicas púas que tiene son peligrosas. La hembra tiene cuernos pequeños.;16;null;null;16;30;235; 55; 47; 52; 40; 40; 41; 314; 193; 203; 179; 179; 181
-30;Nidorina; Las hembras tienen una agradable temperatura. Emiten ondas ultrasónicas para confundir al enemigo.;16;null;29;null;31;120; 70; 62; 67; 55; 55; 56; 344; 223; 233; 209; 209; 211
-31;Nidoqueen; Está protegido por duras escamas. Cuando está nervioso, las usa para defenderse.;16;15;30;null;null;45; 90; 92; 87; 75; 85; 76; 384; 283; 273; 249; 269; 251
-32;Nidoran♂; Cambia la orientación de las grandes orejas que tiene para oír mejor. Si se enfada, sus venenosos cuernos crecen.;16;null;null;16;33;235; 46; 57; 40; 40; 40; 50; 296; 213; 179; 179; 179; 199
-33;Nidorino; Se enfada con facilidad y es capaz de romper un diamante con el potente cuerpo que tiene.;16;null;32;null;34;120; 61; 72; 57; 55; 55; 65; 326; 243; 213; 209; 209; 229
-34;Nidoking; Es fácil reconocerlo por tener una dura piel y un gran cuerno lleno de peligrosísimo veneno.;16;15;33;null;null;45; 81; 102; 77; 85; 75; 85; 366; 303; 253; 269; 249; 269
-35;Clefairy; Es una de las mascotas preferidas de todo el mundo por el aspecto tan dulce que tiene. Pero no es fácil dar con él.;7;null;null;null;36;150; 70; 45; 48; 60; 65; 35; 344; 189; 195; 219; 229; 169
-36;Clefable; Tiene un agudísimo sentido del oído. Es capaz de oír la caída de un alfiler a 1km de distancia.;7;null;35;null;null;25; 95; 70; 73; 95; 90; 60; 394; 239; 245; 289; 279; 219
-37;Vulpix; De pequeño, tiene seis colas increíbles. A medida que crece, le van saliendo más.;6;null;null;null;38;190; 38; 41; 40; 50; 65; 65; 280; 181; 179; 199; 229; 229
-38;Ninetales; Tiene nueve colas y un pelaje de color dorado. Dicen que este Pokémon llega a vivir 1000 años.;6;null;37;null;null;75; 73; 76; 75; 81; 100; 100; 350; 251; 249; 261; 299; 299
-39;Jigglypuff; Cautiva con la mirada a su enemigo y hace que se quede profundamente dormido mientras entona una dulce melodía.;10;7;null;null;40;170; 115; 45; 20; 45; 25; 20; 434; 189; 139; 189; 149; 139
-40;Wigglytuff; Tiene un pelaje excepcional, muy fino, pero tupido y suave. Resulta único y llamativo.;10;7;39;null;null;50; 140; 70; 45; 85; 50; 45; 484; 239; 189; 269; 199; 189
-41;Zubat; No tiene ojos. Se guía por las ondas ultrasónicas que emite. El eco le indica por dónde tiene que ir en la oscuridad.;16;17;null;22;42;255; 40; 45; 35; 30; 40; 55; 284; 189; 169; 159; 179; 209
-42;Golbat; Se lanza sobre su presa con los afilados colmillos que tiene y puede chuparle hasta 300 cc de sangre de una vez.;16;17;41;null;null;90; 75; 80; 70; 65; 75; 90; 354; 259; 239; 229; 249; 279
-43;Oddish;" Su nombre científico es ""Oddium Wanderus"". Dicen que usa las raíces para desplazarse. Llega a hacerse 300 m.";11;16;null;21;44;255; 45; 50; 55; 75; 65; 30; 294; 199; 209; 249; 229; 159
-44;Gloom; Libera un fétido olor por los pistilos. El fuerte hedor acaba con cualquier rival que se encuentre a 2 km de distancia.;11;16;43;null;45;120; 60; 65; 70; 85; 75; 40; 324; 229; 239; 269; 249; 179
-45;Vileplume; Tiene unos pétalos inmensos. Libera con la mejor sonrisa un polen que provoca agudos ataques de alergia.;11;16;44;null;null;45; 75; 80; 85; 110; 90; 50; 354; 259; 269; 319; 279; 199
-46;Paras; Lleva en el lomo dos setas parásitas llamadas tochukaso, que crecen con él.;2;11;null;24;46;190; 35; 70; 55; 45; 55; 25; 274; 239; 209; 189; 209; 149
-47;Parasect; Libera esporas tóxicas a través de la seta que lo cubre. En China, las esporas se usan como remedios medicinales.;2;11;46;null;null;75; 60; 95; 80; 60; 80; 30; 324; 289; 259; 219; 259; 159
-48;Venonat; Los ojos le funcionan como radar. Gracias a ellos puede moverse en la oscuridad y disparar potentes rayos.;2;16;null;31;49;190; 60; 55; 50; 40; 55; 45; 324; 209; 199; 179; 209; 189
-49;Venomoth; Tiene alas cubiertas de un polvillo de escamas que esparce cada vez que las bate.;2;16;48;null;null;75; 70; 65; 60; 90; 75; 90; 344; 229; 219; 279; 249; 279
-50;Diglett; Este Pokémon se entierra a gran profundidad, pero como levanta tierra al cavar, es fácil localizarlo.;15;null;null;26;51;255; 10; 55; 25; 35; 45; 95; 224; 209; 149; 169; 189; 289
-51;Dugtrio; En combate, cava la tierra, se esconde y sale de repente para golpear a su rival. Nunca se sabe por dónde puede aparecer.;15;null;50;null;null;50; 35; 100; 50; 50; 70; 120; 274; 299; 199; 199; 239; 339
-52;Meowth; Durante el día se dedica a dormir, y de noche vigila su territorio. Tiene unos ojos muy sensibles a todo lo que brilla.;10;null;null;28;53;255; 40; 45; 35; 40; 40; 90; 284; 189; 169; 179; 179; 279
-53;Persian; Tiene un carácter muy fuerte. Cuando va a propinar un golpe y morder al rival, suele estirar y levantar la cola.;10;null;52;null;null;90; 65; 70; 60; 65; 65; 115; 334; 239; 219; 229; 229; 329
-54;Psyduck; Padece continuamente dolores de cabeza. Cuando son muy fuertes, empieza a usar misteriosos poderes.;1;null;null;33;55;190; 50; 52; 48; 65; 50; 55; 304; 203; 195; 229; 199; 209
-55;Golduck; Las patas traseras palmípedas le permiten nadar. Es común verlo chapotear con estilo en lagos y otras zonas acuáticas.;1;null;54;null;null;75; 80; 82; 78; 95; 80; 85; 364; 263; 255; 289; 259; 269
-56;Mankey; Es muy ligero y ágil, y también violento. Cuando se enfada, no hay quien controle el estado de furia en el que entra.;9;null;null;28;57;190; 40; 80; 35; 35; 45; 70; 284; 259; 169; 169; 189; 239
-57;Primeape; Siempre está tremendamente enfadado. Cuando se empeña en una presa, no hay distancia para él.;9;null;56;null;null;75; 65; 105; 60; 60; 70; 95; 334; 309; 219; 219; 239; 289
-58;Growlithe; Es muy agradable y leal. Para ahuyentar al enemigo, se pone a ladrar y a dar bocados.;6;null;null;null;59;190; 55; 70; 45; 70; 50; 60; 314; 239; 189; 239; 199; 219
-59;Arcanine; Las leyendas chinas hablan de este Pokémon. Se dice que es capaz de correr a velocidades inimaginables.;6;null;58;null;null;75; 90; 110; 80; 100; 80; 95; 384; 319; 259; 299; 259; 289
-60;Poliwag; Tiene una piel extraordinaria, fina y húmeda, que deja entrever las vísceras que tiene dispuestas en espiral.;1;null;null;25;61;255; 40; 50; 40; 40; 40; 90; 284; 199; 179; 179; 179; 279
-61;Poliwhirl; Tiene unas extremidades inferiores muy desarrolladas. Aunque puede vivir en tierra, prefiere el medio acuático.;1;null;60;null;62;120; 65; 65; 65; 50; 50; 90; 334; 229; 229; 199; 199; 279
-62;Poliwrath; Es un nadador nato. Sabe nadar a crol y a mariposa entre otros estilos, y es más rápido que los nadadores profesionales.;1;9;61;null;null;45; 90; 95; 95; 70; 90; 70; 384; 289; 289; 239; 279; 239
-63;Abra; Duerme 18 horas al día y mientras lo hace es capaz de usar una serie de poderes extrasensoriales.;12;null;null;16;63;200; 25; 20; 15; 105; 55; 90; 254; 139; 129; 309; 209; 279
-64;Kadabra; Cuentan que una mañana, un niño que tenía poderes extrasensoriales, se despertó convertido en Kadabra.;12;null;63;null;65;100; 40; 35; 30; 120; 70; 105; 284; 169; 159; 339; 239; 309
-65;Alakazam; No le gustan los ataques físicos. Este Pokémon prefiere hacer uso de sus poderes extrasensoriales cuando lucha.;12;null;63;null;null;50; 55; 50; 45; 135; 95; 120; 314; 199; 189; 369; 289; 339
-66;Machop; Es una masa de músculos y, aunque es pequeño, tiene fuerza de sobra para tomar en brazos a 100 personas.;9;null;null;28;67;180; 70; 80; 50; 35; 35; 35; 344; 259; 199; 169; 169; 169
-67;Machoke; Tiene una complexión tan fuerte que nunca se cansa. Suele ayudar a la gente a cargar objetos pesados.;9;null;66;null;68;90; 80; 100; 70; 50; 60; 45; 364; 299; 239; 199; 219; 189
-68;Machamp; Tiene cuatro brazos tan bien desarrollados que puede dar una serie de 1.000 puñetazos en cuestión de dos segundos.;9;null;67;null;null;45; 90; 130; 80; 65; 85; 55; 384; 359; 259; 229; 269; 209
-69;Bellsprout; Tiene cara de persona. Por el aspecto que tiene se ha comentado que podría ser algún tipo de mandrágora legendaria.;11;16;null;21;70;255; 50; 75; 35; 70; 30; 40; 304; 249; 169; 239; 159; 179
-70;Weepinbell; Las hojas que tiene actúan como cuchillas en combate. Otra de sus armas es el corrosivo fluido que expulsa.;11;16;69;null;71;120; 65; 90; 50; 85; 45; 55; 334; 279; 199; 269; 189; 209
-71;Victreebel; Deja que su presa se le acerque a la boca, atraída por el aroma a miel. Una vez adentro, la disuelve con un fluido.;11;16;70;null;null;45; 80; 105; 65; 100; 70; 70; 364; 309; 229; 299; 239; 239
-72;Tentacool; Tiene unos ojos transparentes como el cristal, que disparan misteriosos rayos.;1;16;null;30;73;190; 40; 40; 35; 50; 100; 70; 284; 179; 169; 199; 299; 239
-73;Tentacruel; Tiene 80 tentáculos que se mueven a su aire. Con ellos pica, envenena, y causa un dolor agudo e intenso.;1;16;72;null;null;60; 80; 70; 65; 80; 120; 100; 364; 239; 229; 259; 339; 299
-74;Geodude; Es fácil atraparlo por la forma redonda que tiene. Cuando hay batallas de bolas de nieve, la gente lo usa para lanzarlo.;13;15;null;25;75;255; 40; 80; 100; 30; 30; 20; 284; 259; 299; 159; 159; 139
-75;Graveler; Este Pokémon es un peligro. Suele bajar rodando las montañas a toda velocidad por los caminos reservados para el senderismo.;13;15;74;null;76;120; 55; 95; 115; 45; 45; 35; 314; 289; 329; 189; 189; 169
-76;Golem; Está encerrado en un duro caparazón formado por escamas de piedra. Para fortalecerse, lo muda una vez al año.;13;15;75;null;null;45; 80; 120; 130; 55; 65; 45; 364; 339; 359; 209; 229; 189
-77;Ponyta; Tiene un cuerpo ligero, pero unas patas tremendamente fuertes. Es capaz de destrozar un peñón de una patada.;6;null;null;40;78;190; 50; 85; 55; 65; 65; 90; 304; 269; 209; 229; 229; 279
-78;Rapidash; Al galope puede alcanzar los 240 km por hora. Impresiona verlo con sus llameantes melenas, a la velocidad del rayo.;6;null;77;null;null;60; 65; 100; 70; 80; 80; 105; 334; 299; 239; 259; 259; 309
-79;Slowpoke; Está siempre en su mundo, pero nadie sabe en qué piensa. Suele pescar con la cola.;1;12;null;37;80;190; 90; 65; 65; 40; 40; 15; 384; 229; 229; 179; 179; 129
-80;Slowbro; Según parece, cuando Slowpoke fue a pescar al río, le mordió un Shellder en la cola y así se convirtió en Slowbro.;1;12;79;null;null;75; 95; 75; 110; 100; 80; 30; 394; 249; 319; 299; 259; 159
-81;Magnemite; Está suspendido en el aire y no para de moverse. A través de las extremidades laterales dispara Onda Trueno.;4;0;null;30;82;190; 25; 35; 70; 95; 55; 45; 254; 169; 239; 289; 209; 189
-82;Magneton; Lo constituye un grupo de Magnemite. Descarga potentes ondas magnéticas de alto voltaje.;4;0;81;null;null;60; 50; 60; 95; 120; 70; 70; 304; 219; 289; 339; 239; 239
-83;Farfetch’d; Siempre lleva una ramita en el pico, con la que construye su nido.;10;17;null;null;null;45; 52; 90; 55; 58; 62; 60; 308; 279; 209; 215; 223; 219
-84;Doduo; Este Pokémon de dos cabezas es el resultado de una mutación. Cuando corre, puede alcanzar casi 100 km por hora.;10;17;null;null;85;190; 35; 85; 45; 35; 35; 75; 274; 269; 189; 169; 169; 249
-85;Dodrio; Pertenece a una rara especie difícil de encontrar. Las tres cabezas simbolizan la alegría, la tristeza y la ira.;10;17;84;null;null;45; 60; 110; 70; 60; 60; 110; 324; 319; 239; 219; 219; 319
-86;Seel; Está recubierto de un pelaje de color azul, y tiene una piel gruesa y tosca. Se mantiene activo a 40 grados bajo 0.;1;null;null;34;87;190; 65; 45; 55; 45; 70; 45; 334; 189; 209; 189; 239; 189
-87;Dewgong; Está recubierto de un luminoso pelaje blanco. Este Pokémon aumenta su actividad cuando bajan las temperaturas.;1;8;86;null;null;75; 90; 70; 80; 70; 95; 70; 384; 239; 259; 239; 289; 239
-88;Grimer; Nace de lodo alterado al filtrarse en el agua los rayos X reflejados por la Luna. Se alimenta de sustancias desagradables.;16;null;null;38;89;190; 80; 80; 50; 40; 50; 25; 364; 259; 199; 179; 199; 149
-89;Muk; Normalmente pasa desapercibido porque se mezcla con lo que haya en el suelo. Al contacto resulta tóxico.;16;null;88;null;null;75; 105; 105; 75; 65; 100; 50; 414; 309; 249; 229; 299; 199
-90;Shellder; Está metido en una concha sólida como el diamante, pero tiene un cuerpo muy blando.;1;null;null;null;91;190; 30; 65; 100; 45; 25; 40; 264; 229; 299; 189; 149; 179
-91;Cloyster; La concha que lo cubre es extremadamente dura. No es posible causarle rasguños y sólo se abre si lo atacan.;1;8;90;null;null;60; 50; 95; 180; 85; 45; 70; 304; 289; 459; 269; 189; 239
-92;Gastly; Está compuesto prácticamente de un gas ligero con el que es capaz de asfixiar al mayor de los Pokémon en dos segundos.;5;16;null;25;93;190; 30; 35; 30; 100; 35; 80; 264; 169; 159; 299; 169; 259
-93;Haunter; Cuando tienes la sensación de que te están observando, seguro que es porque Haunter está cerca.;5;16;92;null;94;90; 45; 50; 45; 115; 55; 95; 294; 199; 189; 329; 209; 289
-94;Gengar; Dicen que sale de la oscuridad para robarle el alma a los que se pierden por las montañas.;5;16;93;null;null;45; 60; 65; 60; 130; 75; 110; 324; 229; 219; 359; 249; 319
-95;Onix; Suele vivir bajo tierra. Va buscando comida a medida que se va abriendo camino a 80 km por hora.;13;15;null;null;null;45; 35; 45; 160; 30; 45; 70; 274; 189; 419; 159; 189; 239
-96;Drowzee; Desciende del legendario animal baku, del que se dice que come sueños. Tiene grandes habilidades hipnóticas.;12;null;null;26;97;190; 60; 48; 45; 43; 90; 42; 324; 195; 189; 185; 279; 183
-97;Hypno; Lleva un péndulo en la mano. Una vez, hizo desaparecer a un niño al que había hipnotizado.;12;null;96;null;null;75; 85; 73; 70; 73; 115; 67; 374; 245; 239; 245; 329; 233
-98;Krabby; Es fácil encontrarlo cerca del mar. Las largas pinzas que tienen vuelven a crecer si se las quitan de su sitio.;1;null;null;28;99;225; 30; 105; 90; 25; 25; 50; 264; 309; 279; 149; 149; 199
-99;Kingler; La pinza tan grande que tiene posee una fuerza de 10.000 caballos de potencia. Pero, por su gran tamaño, cuesta moverla.;1;null;98;null;null;60; 55; 130; 115; 50; 50; 75; 314; 359; 329; 199; 199; 249
-100;Voltorb; La procedencia de esta forma de vida no está muy clara. Dicen que usa chirrido y autodestrucción.;4;null;null;30;101;190; 40; 30; 50; 55; 55; 100; 284; 159; 199; 209; 209; 299
-101;Electrode;" Explotan a la mínima. Por eso se le tiene mucho miedo. Estos Pokémon reciben el nombre de ""Bomba Ball"".";4;null;100;null;null;60; 60; 50; 70; 80; 80; 150; 324; 199; 239; 259; 259; 399
-102;Exeggcute; Aunque los huevos que lo constituyen parecen de verdad, se ha visto que son como semillas.;11;12;null;null;103;90; 60; 40; 80; 60; 45; 40; 324; 179; 259; 219; 189; 179
-103;Exeggutor;" Suelen referirse a él como la ""vegetación del trópico con patas"". Cada una de sus cabezas tiene autonomía.";11;12;102;null;null;45; 95; 95; 85; 125; 75; 55; 394; 289; 269; 349; 249; 209
-104;Cubone; Lleva puesto el cráneo de su madre. Cuando se siente solo se pone a gritar muy fuerte.;15;null;null;28;105;190; 50; 50; 95; 40; 50; 35; 304; 199; 289; 179; 199; 169
-105;Marowak; Es pequeño y siempre ha sido muy débil. Cuando empezó a usar huesos, se volvió más violento.;15;null;104;null;null;75; 60; 80; 110; 50; 80; 45; 324; 259; 319; 199; 259; 189
-106;Hitmonlee; Encoge y estira las patas a su antojo. Cuando las estira, es capaz de propinar una buena patada al enemigo.;9;null;null;null;null;45; 50; 120; 53; 35; 110; 87; 304; 339; 205; 169; 319; 273
-107;Hitmonchan; Dicen que tiene el alma de un boxeador profesional. Da puñetazos a la velocidad del rayo.;9;null;null;null;null;45; 50; 105; 79; 35; 110; 76; 304; 309; 257; 169; 319; 251
-108;Lickitung; La lengua es tan alta que duplica su altura. Es útil porque puede moverla para agarrar comida y atacar.;10;null;null;null;null;45; 90; 55; 75; 60; 75; 30; 384; 209; 249; 219; 249; 159
-109;Koffing; Tiene forma de globo y es muy ligero. Está compuesto por gases tóxicos, y apesta.;16;null;null;35;110;190; 40; 65; 95; 60; 45; 35; 284; 229; 289; 219; 189; 169
-110;Weezing; En ocasiones, puede mutar y originar dos Koffing pequeños idénticos que, al unirse, forman un Weezing.;16;null;109;null;null;60; 65; 90; 120; 85; 70; 60; 334; 279; 339; 269; 239; 219
-111;Rhyhorn; Es muy fuerte, pero no especialmente listo. Es capaz de derribar rascacielos usando placaje varias veces.;15;13;null;42;112;120; 80; 85; 95; 30; 30; 25; 364; 269; 289; 159; 159; 149
-112;Rhydon; Cuando evoluciona, comienza a andar con las patas traseras. Es capaz de horadar rocas con el cuerno que tiene.;15;13;111;null;null;60; 105; 130; 120; 45; 45; 40; 414; 359; 339; 189; 189; 179
-113;Chansey; Pone varios huevos al día. Según parece son muy nutritivos y están riquísimos.;10;null;null;null;null;30; 250; 5; 5; 35; 105; 50; 704; 109; 109; 169; 309; 199
-114;Tangela; Las cintas de tipo alga que tiene a modo de tentáculos le dan su identidad. Es una masa que todo lo enreda.;11;null;null;null;null;45; 65; 55; 115; 100; 40; 60; 334; 209; 329; 299; 179; 219
-115;Kangaskhan; La hembra cría a sus pequeños en la bolsa que tiene en la panza. Es muy buena usando puño cometa.;10;null;null;null;null;45; 105; 95; 80; 40; 80; 90; 414; 289; 259; 179; 259; 279
-116;Horsea; Tiene enrollada la cola y la usa para mantener el equilibrio. En ocasiones tira tinta por la boca.;1;null;null;32;117;225; 30; 40; 70; 70; 25; 60; 264; 179; 239; 239; 149; 219
-117;Seadra; Las afiladas púas que le recubren el cuerpo se le erizan y pueden causar el debilitamiento con sólo tocarlo.;1;null;116;null;null;75; 55; 65; 95; 95; 45; 85; 314; 229; 289; 289; 189; 269
-118;Goldeen; Las aletas dorsales están tan desarrolladas que actúan como músculos. Puede nadar a casi 10 km por hora.;1;null;null;33;119;225; 45; 67; 60; 35; 50; 63; 294; 233; 219; 169; 199; 225
-119;Seaking; El cuerno que tiene en la cabeza está tan afilado como un taladro. Suele usarlo para horadar rocas y construir su nido.;1;null;118;null;null;60; 80; 92; 65; 65; 80; 68; 364; 283; 229; 229; 259; 235
-120;Staryu; Suele aparecer en grupos en la orilla de la playa. Por la noche, el órgano central que tiene brilla con una luz roja.;1;null;null;null;121;225; 30; 45; 55; 70; 55; 85; 264; 189; 209; 239; 209; 269
-121;Starmie; Este Pokémon tiene un cuerpo geométrico que le da un aspecto extraterrestre.;1;12;120;null;null;60; 60; 75; 85; 100; 85; 115; 324; 249; 269; 299; 269; 329
-122;Mr. Mime; Dicen que puede hacer un muro a partir del aire mediante la pantomima. Es experto en crear ilusiones ópticas.;12;7;null;null;null;45; 40; 45; 65; 100; 120; 90; 284; 189; 229; 299; 339; 279
-123;Scyther; Destroza a su presa con las guadañas que tiene. No es común que use las alas para volar.;2;17;null;null;null;45; 70; 110; 80; 55; 80; 105; 344; 319; 259; 209; 259; 309
-124;Jynx; Habla emitiendo sonidos que parecen humanos. Se está intentando descifrar lo que dice cuando habla.;8;12;null;null;null;45; 65; 50; 35; 115; 95; 95; 334; 199; 169; 329; 289; 289
-125;Electabuzz; Le encanta alimentarse de alta tensión. A veces, aparece cerca de centrales eléctricas y zonas similares.;4;null;null;null;null;45; 65; 83; 57; 95; 85; 105; 334; 265; 213; 289; 269; 309
-126;Magmar; A este Pokémon se lo encontraron cerca de un volcán. Esta criatura ígnea tiene una temperatura corporal de unos 1.200º.;6;null;null;null;null;45; 65; 95; 57; 100; 85; 93; 334; 289; 213; 299; 269; 285
-127;Pinsir; Los cuernos que tiene a modo de pinzas son infalibles. Cuando atrapan al rival, no lo sueltan hasta que no acaban con él.;2;null;null;null;null;45; 65; 125; 100; 55; 70; 85; 334; 349; 299; 209; 239; 269
-128;Tauros; Cuando va a utilizar placaje se azota repetidas veces con las tres colas que tiene.;10;null;null;null;null;45; 75; 100; 95; 40; 70; 110; 354; 299; 289; 179; 239; 319
-129;Magikarp; No es precisamente rápido ni fuerte. Es el Pokémon más debilucho y simplón de todos los que hay.;1;null;null;20;130;255; 20; 10; 55; 15; 20; 80; 244; 119; 209; 129; 139; 259
-130;Gyarados; Es exageradamente agresivo. Lanza hiperrayo por la boca para achicharrar a su rival.;1;17;129;null;null;45; 95; 125; 79; 60; 100; 81; 394; 349; 257; 219; 299; 261
-131;Lapras; Tiene un coeficiente intelectual tan alto que puede entender el lenguaje humano. Le encanta llevar a gente sobre el lomo.;1;8;129;null;null;45; 130; 85; 80; 85; 95; 60; 464; 269; 259; 269; 289; 219
-132;Ditto; Tiene la capacidad de reorganizar su estructura celular para convertirse en otras formas de vida.;10;null;129;null;null;35; 48; 48; 48; 48; 48; 48; 300; 195; 195; 195; 195; 195
-133;Eevee; Es un Pokémon rarísimo que puede evolucionar de mil formas distintas según las circunstancias.;10;null;null;null;null;45; 55; 55; 50; 45; 65; 55; 314; 209; 199; 189; 229; 209
-134;Vaporeon; La composición celular de su cuerpo es tan similar a la estructura molecular del agua que se confunde con ella.;1;null;133;null;null;45; 130; 65; 60; 110; 95; 65; 464; 229; 219; 319; 289; 229
-135;Jolteon; Si se le enfada o asusta, se le eriza el pelaje. Cada pelo se le convierte en una afilada púa que hace trizas al rival.;4;null;133;null;null;45; 65; 65; 60; 110; 95; 130; 334; 229; 219; 319; 289; 359
-136;Flareon; Almacena llamas en el interior de su cuerpo. Tras inhalar profundamente, las lanza a una temperatura de 1.700º.;6;null;133;null;null;45; 65; 130; 60; 95; 110; 65; 334; 359; 219; 289; 319; 229
-137;Porygon; Puede convertirse en datos informáticos y entrar en el ciberespacio. Tiene protección anti-copia, así que es imposible duplicarlo.;10;null;null;null;137;45; 65; 60; 70; 85; 75; 40; 334; 219; 239; 269; 249; 179
-138;Omanyte; Pokémon prehistórico que vivió en el océano primordial. Para nadar se valía de sus 10 tentáculos.;13;1;null;40;139;45; 35; 40; 100; 90; 55; 35; 274; 179; 299; 279; 209; 169
-139;Omastar; Tiene los tentáculos tan desarrollados que le sirven de mano y pies.Con ellos atrapa a sus presas y les da un bocado.;13;1;138;null;null;45; 70; 60; 125; 115; 70; 55; 344; 219; 349; 329; 239; 209
-140;Kabuto; Es un Pokémon regenerado a partir de un fósil de una criatura ancestral. Está protegido por un duro caparazón.;13;1;null;40;140;45; 30; 80; 90; 55; 45; 55; 264; 259; 279; 209; 189; 209
-141;Kabutops; Le gusta nadar a su aire. Cuando atrapa a su presa con las garras, le absorbe todos los fluidos.;13;1;140;null;null;45; 60; 115; 105; 65; 70; 80; 324; 329; 309; 229; 239; 259
-142;Aerodactyl; Se regeneró a partir de material genético de un dinosaurio, encontrado en ámbar. Cuando vuela emite escandalosos alaridos.;13;17;null;null;null;45; 80; 105; 65; 60; 75; 130; 364; 309; 229; 219; 249; 359
-143;Snorlax; No se encuentra satisfecho hasta que no se come 400 kg de comida cada día. Cuando acaba de comer, se queda dormido.;10;null;null;null;null;25; 160; 110; 65; 65; 110; 30; 524; 319; 229; 229; 319; 159
-144;Articuno; Es uno de los legendarios pájaros Pokémon. Vuela con la cola al viento haciendo gala de su magnificencia.;8;17;null;null;null;3; 90; 85; 100; 95; 125; 85; 384; 269; 299; 289; 349; 269
-145;Zapdos;" Es uno de los legendarios pájaros Pokémon. Cuando vuela hace ruidos; emite una especie de chasquido y chisporroteo.";4;17;null;null;null;3; 90; 90; 85; 125; 90; 100; 384; 279; 269; 349; 279; 299
-146;Moltres;" Es uno de los legendarios pájaros Pokémon. Quien lo ve, se queda embobado con las alas que tiene; parece que arden.";6;17;null;null;null;3; 90; 100; 90; 125; 85; 90; 384; 299; 279; 349; 269; 279
-147;Dratini; Las crías pueden medir más de 2 m y crecen más mudando muchas veces la piel.;3;null;null;30;148;45; 41; 64; 45; 50; 50; 50; 286; 227; 189; 199; 199; 199
-148;Dragonair; Dicen que habita ríos y mares. Aunque no tiene alas, a veces se le ha visto volar.;3;null;147;55;149;45; 61; 84; 65; 70; 70; 70; 326; 267; 229; 239; 239; 239
-149;Dragonite; A pesar del tamaño que tiene y de lo pesado que es, puede volar. Es capaz de dar la vuelta al mundo en solo 16 horas.;3;17;148;null;null;45; 91; 134; 95; 100; 100; 80; 386; 367; 289; 299; 299; 259
-150;Mewtwo; Su código genético se recombinó repetidas veces por motivos científicos y el resultado fue este curioso Pokémon.;12;null;null;null;null;3; 106; 110; 90; 154; 90 ; 130; 416; 319; 279; 407; 279; 359
+﻿1;Bulbasaur; Este Pokémon nace con una semilla en el lomo. Con el tiempo, la semilla brota.;11;16;16;45; 45; 49; 49; 65; 65; 45; 294; 197; 197; 229; 229; 189
+2;Ivysaur; Este Pokémon tiene un bulbo en el lomo. Dicen que, al absorber nutrientes, el bulbo se transforma en una flor grande.;11;16;32;45; 60; 62; 63; 80; 80; 60; 324; 223; 225; 259; 259; 219
+3;Venusaur; La flor que tiene en el lomo libera un delicado aroma. En combate, este aroma tiene un efecto relajante.;11;16;null;45; 80; 82; 83; 100; 100; 80; 364; 263; 265; 299; 299; 259
+4;Charmander; Este Pokémon nace con una llama en la punta de la cola. Si la llama se apagara, el Pokémon se debilitaría.;6;null;16;45; 39; 52; 43; 60; 50; 65; 282; 203; 185; 219; 199; 229
+5;Charmeleon; Suele usar la cola para derribar a su rival. Cuando lo tira, se vale de sus afiladas garras para acabar con él.;6;null;null;45; 58; 64; 58; 80; 65; 80; 320; 227; 215; 259; 229; 259
+6;Charizard; Con las alas que tiene puede alcanzar una altura de casi 1.400 m. Suele escupir fuego por la boca.;6;17;36;45; 78; 84; 78; 109; 85; 100; 360; 267; 255; 317; 269; 299
+7;Squirtle; Cuando se esconde en el caparazón, dispara agua a una presión increíble.;1;null;16;45; 44; 48; 65; 50; 64; 43; 292; 195; 229; 199; 227; 185
+8;Wartortle; Es el Pokémon que se suele tener como mascota. La cola tan larga y peluda que posee simboliza lo longevo que es.;1;null;36;45; 59; 63; 80; 65; 80; 58; 322; 225; 259; 229; 259; 215
+9;Blastoise; Para acabar con su enemigo, lo aplasta con el peso de su cuerpo. En momentos de apuro, se esconde en el caparazón.;1;null;null;45; 79; 83; 100; 85; 105; 78; 362; 265; 299; 269; 309; 255
+10;Caterpie; Tiene la piel de color verde. Cuando la muda, se recubre de seda y se convierte en capullo.;2;null;7;255; 45; 30; 35; 20; 20; 45; 294; 159; 169; 139; 139; 189
+11;Metapod; Aunque tiene una coraza muy dura, el cuerpo del Pokémon es blando. Un ataque violento puede acabar con él.;2;null;10;120; 50; 20; 55; 25; 25; 30; 304; 139; 209; 149; 149; 159
+12;Butterfree; Tiene las alas protegidas con una capa impermeable, de ahí que pueda volar también cuando llueve.;2;17;null;45; 60; 45; 50; 90; 80; 70; 324; 189; 199; 279; 259; 239
+13;Weedle; Suele habitar bosques y praderas. Tiene un afilado y venenoso aguijón de unos 5 cm encima de la cabeza.;2;16;7;255; 40; 35; 30; 20; 20; 50; 284; 169; 159; 139; 139; 199
+14;Kakuna; Este Pokémon permanece inmóvil mientras desarrolla internamente su organismo. Es prácticamente incapaz de moverse solo.;2;16;10;120; 45; 25; 50; 25; 25; 35; 294; 149; 199; 149; 149; 169
+15;Beedrill; Puede aparecer en enjambres volando a gran velocidad. Suele usar el venenoso aguijón inferior para atacar.;2;16;null;45; 65; 90; 40; 45; 80; 75; 334; 279; 179; 189; 259; 249
+16;Pidgey; A este Pokémon no le gusta luchar. Suele permanecer escondido en zonas de hierba alta. Se alimenta de pequeños insectos.;10;17;18;255; 40; 45; 40; 35; 35; 56; 284; 189; 179; 169; 169; 211
+17;Pidgeotto; Tiene unas garras desarrolladas. Puede atrapar un Exeggcute y transportarlo desde una distancia de casi 100 km.;10;17;36;120; 63; 60; 55; 50; 50; 71; 330; 219; 209; 199; 199; 241
+18;Pidgeot; Para intimidar a su enemigo, extiende las increíbles alas que tiene. Este Pokémon vuela a una velocidad increíble.;10;17;null;45; 83; 80; 75; 70; 70; 101; 370; 259; 249; 239; 239; 301
+19;Rattata; Tiene unos largos y afilados colmillos que no dejan de crecer. Le resultan muy útiles para destruir cosas.;10;null;20;255; 30; 56; 35; 25; 35; 72; 264; 211; 169; 149; 169; 243
+20;Raticate; Cada pata trasera tiene tres dedos palmeados que le permiten nadar por los ríos.;10;null;null;127; 55; 81; 60; 50; 70; 97; 314; 261; 219; 199; 239; 293
+21;Spearow; Va siempre revoloteando de aquí para allá. Aunque frágil, puede ser un duro rival cuando usa Movimiento espejo.;10;17;20;255; 40; 60; 30; 31; 31; 70; 284; 219; 159; 161; 161; 239
+22;Fearow; Gracias a sus espléndidas alas puede alcanzar una gran altura y volar durante un día entero sin tener que parar.;10;17;null;90; 65; 90; 65; 61; 61; 100; 334; 279; 229; 221; 221; 299
+23;Ekans; Es fácil encontrarlo en praderas y zonas similares. A este Pokémon le basta con sacar la lengua para detectar el peligro.;16;null;22;255; 35; 60; 44; 40; 54; 55; 274; 219; 187; 179; 207; 209
+24;Arbok; El dibujo que tiene en la panza aterroriza. Los rivales más débiles salen huyendo al verlo.;16;null;null;90; 60; 95; 69; 65; 79; 80; 324; 289; 237; 229; 257; 259
+25;Pikachu; Las bolsas de las mejillas están llenas de electricidad, que libera cuando se siente amenazado.;4;null;null;190; 35; 55; 40; 50; 50; 90; 274; 209; 179; 199; 199; 279
+26;Raichu; Suelta descargas eléctricas de hasta 100.000 voltios, con lo que es capaz de derribar al mayor de los Pokémon.;4;null;null;75; 60; 90; 55; 90; 80; 110; 324; 279; 209; 279; 259; 319
+27;Sandshrew; Este Pokémon permanece bajo tierra. Si se siente amenazado, se enrosca para defenderse.;15;null;22;255; 50; 75; 85; 20; 30; 40; 304; 249; 269; 139; 159; 179
+28;Sandslash; Suele hacerse una bola y rodar a toda velocidad al tiempo que va clavándole las púas y las garras al enemigo.;15;null;null;90; 75; 100; 110; 45; 55; 65; 354; 299; 319; 189; 209; 229
+29;Nidoran♀; No es grande, pero tampoco inofensivo. Las tóxicas púas que tiene son peligrosas. La hembra tiene cuernos pequeños.;16;null;16;235; 55; 47; 52; 40; 40; 41; 314; 193; 203; 179; 179; 181
+30;Nidorina; Las hembras tienen una agradable temperatura. Emiten ondas ultrasónicas para confundir al enemigo.;16;null;null;120; 70; 62; 67; 55; 55; 56; 344; 223; 233; 209; 209; 211
+31;Nidoqueen; Está protegido por duras escamas. Cuando está nervioso, las usa para defenderse.;16;15;null;45; 90; 92; 87; 75; 85; 76; 384; 283; 273; 249; 269; 251
+32;Nidoran♂; Cambia la orientación de las grandes orejas que tiene para oír mejor. Si se enfada, sus venenosos cuernos crecen.;16;null;16;235; 46; 57; 40; 40; 40; 50; 296; 213; 179; 179; 179; 199
+33;Nidorino; Se enfada con facilidad y es capaz de romper un diamante con el potente cuerpo que tiene.;16;null;null;120; 61; 72; 57; 55; 55; 65; 326; 243; 213; 209; 209; 229
+34;Nidoking; Es fácil reconocerlo por tener una dura piel y un gran cuerno lleno de peligrosísimo veneno.;16;15;null;45; 81; 102; 77; 85; 75; 85; 366; 303; 253; 269; 249; 269
+35;Clefairy; Es una de las mascotas preferidas de todo el mundo por el aspecto tan dulce que tiene. Pero no es fácil dar con él.;7;null;null;150; 70; 45; 48; 60; 65; 35; 344; 189; 195; 219; 229; 169
+36;Clefable; Tiene un agudísimo sentido del oído. Es capaz de oír la caída de un alfiler a 1km de distancia.;7;null;null;25; 95; 70; 73; 95; 90; 60; 394; 239; 245; 289; 279; 219
+37;Vulpix; De pequeño, tiene seis colas increíbles. A medida que crece, le van saliendo más.;6;null;null;190; 38; 41; 40; 50; 65; 65; 280; 181; 179; 199; 229; 229
+38;Ninetales; Tiene nueve colas y un pelaje de color dorado. Dicen que este Pokémon llega a vivir 1000 años.;6;null;null;75; 73; 76; 75; 81; 100; 100; 350; 251; 249; 261; 299; 299
+39;Jigglypuff; Cautiva con la mirada a su enemigo y hace que se quede profundamente dormido mientras entona una dulce melodía.;10;7;null;170; 115; 45; 20; 45; 25; 20; 434; 189; 139; 189; 149; 139
+40;Wigglytuff; Tiene un pelaje excepcional, muy fino, pero tupido y suave. Resulta único y llamativo.;10;7;null;50; 140; 70; 45; 85; 50; 45; 484; 239; 189; 269; 199; 189
+41;Zubat; No tiene ojos. Se guía por las ondas ultrasónicas que emite. El eco le indica por dónde tiene que ir en la oscuridad.;16;17;22;255; 40; 45; 35; 30; 40; 55; 284; 189; 169; 159; 179; 209
+42;Golbat; Se lanza sobre su presa con los afilados colmillos que tiene y puede chuparle hasta 300 cc de sangre de una vez.;16;17;null;90; 75; 80; 70; 65; 75; 90; 354; 259; 239; 229; 249; 279
+43;Oddish;" Su nombre científico es ""Oddium Wanderus"". Dicen que usa las raíces para desplazarse. Llega a hacerse 300 m.";11;16;21;255; 45; 50; 55; 75; 65; 30; 294; 199; 209; 249; 229; 159
+44;Gloom; Libera un fétido olor por los pistilos. El fuerte hedor acaba con cualquier rival que se encuentre a 2 km de distancia.;11;16;null;120; 60; 65; 70; 85; 75; 40; 324; 229; 239; 269; 249; 179
+45;Vileplume; Tiene unos pétalos inmensos. Libera con la mejor sonrisa un polen que provoca agudos ataques de alergia.;11;16;null;45; 75; 80; 85; 110; 90; 50; 354; 259; 269; 319; 279; 199
+46;Paras; Lleva en el lomo dos setas parásitas llamadas tochukaso, que crecen con él.;2;11;24;190; 35; 70; 55; 45; 55; 25; 274; 239; 209; 189; 209; 149
+47;Parasect; Libera esporas tóxicas a través de la seta que lo cubre. En China, las esporas se usan como remedios medicinales.;2;11;null;75; 60; 95; 80; 60; 80; 30; 324; 289; 259; 219; 259; 159
+48;Venonat; Los ojos le funcionan como radar. Gracias a ellos puede moverse en la oscuridad y disparar potentes rayos.;2;16;31;190; 60; 55; 50; 40; 55; 45; 324; 209; 199; 179; 209; 189
+49;Venomoth; Tiene alas cubiertas de un polvillo de escamas que esparce cada vez que las bate.;2;16;null;75; 70; 65; 60; 90; 75; 90; 344; 229; 219; 279; 249; 279
+50;Diglett; Este Pokémon se entierra a gran profundidad, pero como levanta tierra al cavar, es fácil localizarlo.;15;null;26;255; 10; 55; 25; 35; 45; 95; 224; 209; 149; 169; 189; 289
+51;Dugtrio; En combate, cava la tierra, se esconde y sale de repente para golpear a su rival. Nunca se sabe por dónde puede aparecer.;15;null;null;50; 35; 100; 50; 50; 70; 120; 274; 299; 199; 199; 239; 339
+52;Meowth; Durante el día se dedica a dormir, y de noche vigila su territorio. Tiene unos ojos muy sensibles a todo lo que brilla.;10;null;28;255; 40; 45; 35; 40; 40; 90; 284; 189; 169; 179; 179; 279
+53;Persian; Tiene un carácter muy fuerte. Cuando va a propinar un golpe y morder al rival, suele estirar y levantar la cola.;10;null;null;90; 65; 70; 60; 65; 65; 115; 334; 239; 219; 229; 229; 329
+54;Psyduck; Padece continuamente dolores de cabeza. Cuando son muy fuertes, empieza a usar misteriosos poderes.;1;null;33;190; 50; 52; 48; 65; 50; 55; 304; 203; 195; 229; 199; 209
+55;Golduck; Las patas traseras palmípedas le permiten nadar. Es común verlo chapotear con estilo en lagos y otras zonas acuáticas.;1;null;null;75; 80; 82; 78; 95; 80; 85; 364; 263; 255; 289; 259; 269
+56;Mankey; Es muy ligero y ágil, y también violento. Cuando se enfada, no hay quien controle el estado de furia en el que entra.;9;null;28;190; 40; 80; 35; 35; 45; 70; 284; 259; 169; 169; 189; 239
+57;Primeape; Siempre está tremendamente enfadado. Cuando se empeña en una presa, no hay distancia para él.;9;null;null;75; 65; 105; 60; 60; 70; 95; 334; 309; 219; 219; 239; 289
+58;Growlithe; Es muy agradable y leal. Para ahuyentar al enemigo, se pone a ladrar y a dar bocados.;6;null;null;190; 55; 70; 45; 70; 50; 60; 314; 239; 189; 239; 199; 219
+59;Arcanine; Las leyendas chinas hablan de este Pokémon. Se dice que es capaz de correr a velocidades inimaginables.;6;null;null;75; 90; 110; 80; 100; 80; 95; 384; 319; 259; 299; 259; 289
+60;Poliwag; Tiene una piel extraordinaria, fina y húmeda, que deja entrever las vísceras que tiene dispuestas en espiral.;1;null;25;255; 40; 50; 40; 40; 40; 90; 284; 199; 179; 179; 179; 279
+61;Poliwhirl; Tiene unas extremidades inferiores muy desarrolladas. Aunque puede vivir en tierra, prefiere el medio acuático.;1;null;null;120; 65; 65; 65; 50; 50; 90; 334; 229; 229; 199; 199; 279
+62;Poliwrath; Es un nadador nato. Sabe nadar a crol y a mariposa entre otros estilos, y es más rápido que los nadadores profesionales.;1;9;null;45; 90; 95; 95; 70; 90; 70; 384; 289; 289; 239; 279; 239
+63;Abra; Duerme 18 horas al día y mientras lo hace es capaz de usar una serie de poderes extrasensoriales.;12;null;16;200; 25; 20; 15; 105; 55; 90; 254; 139; 129; 309; 209; 279
+64;Kadabra; Cuentan que una mañana, un niño que tenía poderes extrasensoriales, se despertó convertido en Kadabra.;12;null;null;100; 40; 35; 30; 120; 70; 105; 284; 169; 159; 339; 239; 309
+65;Alakazam; No le gustan los ataques físicos. Este Pokémon prefiere hacer uso de sus poderes extrasensoriales cuando lucha.;12;null;null;50; 55; 50; 45; 135; 95; 120; 314; 199; 189; 369; 289; 339
+66;Machop; Es una masa de músculos y, aunque es pequeño, tiene fuerza de sobra para tomar en brazos a 100 personas.;9;null;28;180; 70; 80; 50; 35; 35; 35; 344; 259; 199; 169; 169; 169
+67;Machoke; Tiene una complexión tan fuerte que nunca se cansa. Suele ayudar a la gente a cargar objetos pesados.;9;null;null;90; 80; 100; 70; 50; 60; 45; 364; 299; 239; 199; 219; 189
+68;Machamp; Tiene cuatro brazos tan bien desarrollados que puede dar una serie de 1.000 puñetazos en cuestión de dos segundos.;9;null;null;45; 90; 130; 80; 65; 85; 55; 384; 359; 259; 229; 269; 209
+69;Bellsprout; Tiene cara de persona. Por el aspecto que tiene se ha comentado que podría ser algún tipo de mandrágora legendaria.;11;16;21;255; 50; 75; 35; 70; 30; 40; 304; 249; 169; 239; 159; 179
+70;Weepinbell; Las hojas que tiene actúan como cuchillas en combate. Otra de sus armas es el corrosivo fluido que expulsa.;11;16;null;120; 65; 90; 50; 85; 45; 55; 334; 279; 199; 269; 189; 209
+71;Victreebel; Deja que su presa se le acerque a la boca, atraída por el aroma a miel. Una vez adentro, la disuelve con un fluido.;11;16;null;45; 80; 105; 65; 100; 70; 70; 364; 309; 229; 299; 239; 239
+72;Tentacool; Tiene unos ojos transparentes como el cristal, que disparan misteriosos rayos.;1;16;30;190; 40; 40; 35; 50; 100; 70; 284; 179; 169; 199; 299; 239
+73;Tentacruel; Tiene 80 tentáculos que se mueven a su aire. Con ellos pica, envenena, y causa un dolor agudo e intenso.;1;16;null;60; 80; 70; 65; 80; 120; 100; 364; 239; 229; 259; 339; 299
+74;Geodude; Es fácil atraparlo por la forma redonda que tiene. Cuando hay batallas de bolas de nieve, la gente lo usa para lanzarlo.;13;15;25;255; 40; 80; 100; 30; 30; 20; 284; 259; 299; 159; 159; 139
+75;Graveler; Este Pokémon es un peligro. Suele bajar rodando las montañas a toda velocidad por los caminos reservados para el senderismo.;13;15;null;120; 55; 95; 115; 45; 45; 35; 314; 289; 329; 189; 189; 169
+76;Golem; Está encerrado en un duro caparazón formado por escamas de piedra. Para fortalecerse, lo muda una vez al año.;13;15;null;45; 80; 120; 130; 55; 65; 45; 364; 339; 359; 209; 229; 189
+77;Ponyta; Tiene un cuerpo ligero, pero unas patas tremendamente fuertes. Es capaz de destrozar un peñón de una patada.;6;null;40;190; 50; 85; 55; 65; 65; 90; 304; 269; 209; 229; 229; 279
+78;Rapidash; Al galope puede alcanzar los 240 km por hora. Impresiona verlo con sus llameantes melenas, a la velocidad del rayo.;6;null;null;60; 65; 100; 70; 80; 80; 105; 334; 299; 239; 259; 259; 309
+79;Slowpoke; Está siempre en su mundo, pero nadie sabe en qué piensa. Suele pescar con la cola.;1;12;37;190; 90; 65; 65; 40; 40; 15; 384; 229; 229; 179; 179; 129
+80;Slowbro; Según parece, cuando Slowpoke fue a pescar al río, le mordió un Shellder en la cola y así se convirtió en Slowbro.;1;12;null;75; 95; 75; 110; 100; 80; 30; 394; 249; 319; 299; 259; 159
+81;Magnemite; Está suspendido en el aire y no para de moverse. A través de las extremidades laterales dispara Onda Trueno.;4;0;30;190; 25; 35; 70; 95; 55; 45; 254; 169; 239; 289; 209; 189
+82;Magneton; Lo constituye un grupo de Magnemite. Descarga potentes ondas magnéticas de alto voltaje.;4;0;null;60; 50; 60; 95; 120; 70; 70; 304; 219; 289; 339; 239; 239
+83;Farfetch’d; Siempre lleva una ramita en el pico, con la que construye su nido.;10;17;null;45; 52; 90; 55; 58; 62; 60; 308; 279; 209; 215; 223; 219
+84;Doduo; Este Pokémon de dos cabezas es el resultado de una mutación. Cuando corre, puede alcanzar casi 100 km por hora.;10;17;null;190; 35; 85; 45; 35; 35; 75; 274; 269; 189; 169; 169; 249
+85;Dodrio; Pertenece a una rara especie difícil de encontrar. Las tres cabezas simbolizan la alegría, la tristeza y la ira.;10;17;null;45; 60; 110; 70; 60; 60; 110; 324; 319; 239; 219; 219; 319
+86;Seel; Está recubierto de un pelaje de color azul, y tiene una piel gruesa y tosca. Se mantiene activo a 40 grados bajo 0.;1;null;34;190; 65; 45; 55; 45; 70; 45; 334; 189; 209; 189; 239; 189
+87;Dewgong; Está recubierto de un luminoso pelaje blanco. Este Pokémon aumenta su actividad cuando bajan las temperaturas.;1;8;null;75; 90; 70; 80; 70; 95; 70; 384; 239; 259; 239; 289; 239
+88;Grimer; Nace de lodo alterado al filtrarse en el agua los rayos X reflejados por la Luna. Se alimenta de sustancias desagradables.;16;null;38;190; 80; 80; 50; 40; 50; 25; 364; 259; 199; 179; 199; 149
+89;Muk; Normalmente pasa desapercibido porque se mezcla con lo que haya en el suelo. Al contacto resulta tóxico.;16;null;null;75; 105; 105; 75; 65; 100; 50; 414; 309; 249; 229; 299; 199
+90;Shellder; Está metido en una concha sólida como el diamante, pero tiene un cuerpo muy blando.;1;null;null;190; 30; 65; 100; 45; 25; 40; 264; 229; 299; 189; 149; 179
+91;Cloyster; La concha que lo cubre es extremadamente dura. No es posible causarle rasguños y sólo se abre si lo atacan.;1;8;null;60; 50; 95; 180; 85; 45; 70; 304; 289; 459; 269; 189; 239
+92;Gastly; Está compuesto prácticamente de un gas ligero con el que es capaz de asfixiar al mayor de los Pokémon en dos segundos.;5;16;25;190; 30; 35; 30; 100; 35; 80; 264; 169; 159; 299; 169; 259
+93;Haunter; Cuando tienes la sensación de que te están observando, seguro que es porque Haunter está cerca.;5;16;null;90; 45; 50; 45; 115; 55; 95; 294; 199; 189; 329; 209; 289
+94;Gengar; Dicen que sale de la oscuridad para robarle el alma a los que se pierden por las montañas.;5;16;null;45; 60; 65; 60; 130; 75; 110; 324; 229; 219; 359; 249; 319
+95;Onix; Suele vivir bajo tierra. Va buscando comida a medida que se va abriendo camino a 80 km por hora.;13;15;null;45; 35; 45; 160; 30; 45; 70; 274; 189; 419; 159; 189; 239
+96;Drowzee; Desciende del legendario animal baku, del que se dice que come sueños. Tiene grandes habilidades hipnóticas.;12;null;26;190; 60; 48; 45; 43; 90; 42; 324; 195; 189; 185; 279; 183
+97;Hypno; Lleva un péndulo en la mano. Una vez, hizo desaparecer a un niño al que había hipnotizado.;12;null;null;75; 85; 73; 70; 73; 115; 67; 374; 245; 239; 245; 329; 233
+98;Krabby; Es fácil encontrarlo cerca del mar. Las largas pinzas que tienen vuelven a crecer si se las quitan de su sitio.;1;null;28;225; 30; 105; 90; 25; 25; 50; 264; 309; 279; 149; 149; 199
+99;Kingler; La pinza tan grande que tiene posee una fuerza de 10.000 caballos de potencia. Pero, por su gran tamaño, cuesta moverla.;1;null;null;60; 55; 130; 115; 50; 50; 75; 314; 359; 329; 199; 199; 249
+100;Voltorb; La procedencia de esta forma de vida no está muy clara. Dicen que usa chirrido y autodestrucción.;4;null;30;190; 40; 30; 50; 55; 55; 100; 284; 159; 199; 209; 209; 299
+101;Electrode;" Explotan a la mínima. Por eso se le tiene mucho miedo. Estos Pokémon reciben el nombre de ""Bomba Ball"".";4;null;null;60; 60; 50; 70; 80; 80; 150; 324; 199; 239; 259; 259; 399
+102;Exeggcute; Aunque los huevos que lo constituyen parecen de verdad, se ha visto que son como semillas.;11;12;null;90; 60; 40; 80; 60; 45; 40; 324; 179; 259; 219; 189; 179
+103;Exeggutor;" Suelen referirse a él como la ""vegetación del trópico con patas"". Cada una de sus cabezas tiene autonomía.";11;12;null;45; 95; 95; 85; 125; 75; 55; 394; 289; 269; 349; 249; 209
+104;Cubone; Lleva puesto el cráneo de su madre. Cuando se siente solo se pone a gritar muy fuerte.;15;null;28;190; 50; 50; 95; 40; 50; 35; 304; 199; 289; 179; 199; 169
+105;Marowak; Es pequeño y siempre ha sido muy débil. Cuando empezó a usar huesos, se volvió más violento.;15;null;null;75; 60; 80; 110; 50; 80; 45; 324; 259; 319; 199; 259; 189
+106;Hitmonlee; Encoge y estira las patas a su antojo. Cuando las estira, es capaz de propinar una buena patada al enemigo.;9;null;null;45; 50; 120; 53; 35; 110; 87; 304; 339; 205; 169; 319; 273
+107;Hitmonchan; Dicen que tiene el alma de un boxeador profesional. Da puñetazos a la velocidad del rayo.;9;null;null;45; 50; 105; 79; 35; 110; 76; 304; 309; 257; 169; 319; 251
+108;Lickitung; La lengua es tan alta que duplica su altura. Es útil porque puede moverla para agarrar comida y atacar.;10;null;null;45; 90; 55; 75; 60; 75; 30; 384; 209; 249; 219; 249; 159
+109;Koffing; Tiene forma de globo y es muy ligero. Está compuesto por gases tóxicos, y apesta.;16;null;35;190; 40; 65; 95; 60; 45; 35; 284; 229; 289; 219; 189; 169
+110;Weezing; En ocasiones, puede mutar y originar dos Koffing pequeños idénticos que, al unirse, forman un Weezing.;16;null;null;60; 65; 90; 120; 85; 70; 60; 334; 279; 339; 269; 239; 219
+111;Rhyhorn; Es muy fuerte, pero no especialmente listo. Es capaz de derribar rascacielos usando placaje varias veces.;15;13;42;120; 80; 85; 95; 30; 30; 25; 364; 269; 289; 159; 159; 149
+112;Rhydon; Cuando evoluciona, comienza a andar con las patas traseras. Es capaz de horadar rocas con el cuerno que tiene.;15;13;null;60; 105; 130; 120; 45; 45; 40; 414; 359; 339; 189; 189; 179
+113;Chansey; Pone varios huevos al día. Según parece son muy nutritivos y están riquísimos.;10;null;null;30; 250; 5; 5; 35; 105; 50; 704; 109; 109; 169; 309; 199
+114;Tangela; Las cintas de tipo alga que tiene a modo de tentáculos le dan su identidad. Es una masa que todo lo enreda.;11;null;null;45; 65; 55; 115; 100; 40; 60; 334; 209; 329; 299; 179; 219
+115;Kangaskhan; La hembra cría a sus pequeños en la bolsa que tiene en la panza. Es muy buena usando puño cometa.;10;null;null;45; 105; 95; 80; 40; 80; 90; 414; 289; 259; 179; 259; 279
+116;Horsea; Tiene enrollada la cola y la usa para mantener el equilibrio. En ocasiones tira tinta por la boca.;1;null;32;225; 30; 40; 70; 70; 25; 60; 264; 179; 239; 239; 149; 219
+117;Seadra; Las afiladas púas que le recubren el cuerpo se le erizan y pueden causar el debilitamiento con sólo tocarlo.;1;null;null;75; 55; 65; 95; 95; 45; 85; 314; 229; 289; 289; 189; 269
+118;Goldeen; Las aletas dorsales están tan desarrolladas que actúan como músculos. Puede nadar a casi 10 km por hora.;1;null;33;225; 45; 67; 60; 35; 50; 63; 294; 233; 219; 169; 199; 225
+119;Seaking; El cuerno que tiene en la cabeza está tan afilado como un taladro. Suele usarlo para horadar rocas y construir su nido.;1;null;null;60; 80; 92; 65; 65; 80; 68; 364; 283; 229; 229; 259; 235
+120;Staryu; Suele aparecer en grupos en la orilla de la playa. Por la noche, el órgano central que tiene brilla con una luz roja.;1;null;null;225; 30; 45; 55; 70; 55; 85; 264; 189; 209; 239; 209; 269
+121;Starmie; Este Pokémon tiene un cuerpo geométrico que le da un aspecto extraterrestre.;1;12;null;60; 60; 75; 85; 100; 85; 115; 324; 249; 269; 299; 269; 329
+122;Mr. Mime; Dicen que puede hacer un muro a partir del aire mediante la pantomima. Es experto en crear ilusiones ópticas.;12;7;null;45; 40; 45; 65; 100; 120; 90; 284; 189; 229; 299; 339; 279
+123;Scyther; Destroza a su presa con las guadañas que tiene. No es común que use las alas para volar.;2;17;null;45; 70; 110; 80; 55; 80; 105; 344; 319; 259; 209; 259; 309
+124;Jynx; Habla emitiendo sonidos que parecen humanos. Se está intentando descifrar lo que dice cuando habla.;8;12;null;45; 65; 50; 35; 115; 95; 95; 334; 199; 169; 329; 289; 289
+125;Electabuzz; Le encanta alimentarse de alta tensión. A veces, aparece cerca de centrales eléctricas y zonas similares.;4;null;null;45; 65; 83; 57; 95; 85; 105; 334; 265; 213; 289; 269; 309
+126;Magmar; A este Pokémon se lo encontraron cerca de un volcán. Esta criatura ígnea tiene una temperatura corporal de unos 1.200º.;6;null;null;45; 65; 95; 57; 100; 85; 93; 334; 289; 213; 299; 269; 285
+127;Pinsir; Los cuernos que tiene a modo de pinzas son infalibles. Cuando atrapan al rival, no lo sueltan hasta que no acaban con él.;2;null;null;45; 65; 125; 100; 55; 70; 85; 334; 349; 299; 209; 239; 269
+128;Tauros; Cuando va a utilizar placaje se azota repetidas veces con las tres colas que tiene.;10;null;null;45; 75; 100; 95; 40; 70; 110; 354; 299; 289; 179; 239; 319
+129;Magikarp; No es precisamente rápido ni fuerte. Es el Pokémon más debilucho y simplón de todos los que hay.;1;null;20;255; 20; 10; 55; 15; 20; 80; 244; 119; 209; 129; 139; 259
+130;Gyarados; Es exageradamente agresivo. Lanza hiperrayo por la boca para achicharrar a su rival.;1;17;null;45; 95; 125; 79; 60; 100; 81; 394; 349; 257; 219; 299; 261
+131;Lapras; Tiene un coeficiente intelectual tan alto que puede entender el lenguaje humano. Le encanta llevar a gente sobre el lomo.;1;8;null;45; 130; 85; 80; 85; 95; 60; 464; 269; 259; 269; 289; 219
+132;Ditto; Tiene la capacidad de reorganizar su estructura celular para convertirse en otras formas de vida.;10;null;null;35; 48; 48; 48; 48; 48; 48; 300; 195; 195; 195; 195; 195
+133;Eevee; Es un Pokémon rarísimo que puede evolucionar de mil formas distintas según las circunstancias.;10;null;null;45; 55; 55; 50; 45; 65; 55; 314; 209; 199; 189; 229; 209
+134;Vaporeon; La composición celular de su cuerpo es tan similar a la estructura molecular del agua que se confunde con ella.;1;null;null;45; 130; 65; 60; 110; 95; 65; 464; 229; 219; 319; 289; 229
+135;Jolteon; Si se le enfada o asusta, se le eriza el pelaje. Cada pelo se le convierte en una afilada púa que hace trizas al rival.;4;null;null;45; 65; 65; 60; 110; 95; 130; 334; 229; 219; 319; 289; 359
+136;Flareon; Almacena llamas en el interior de su cuerpo. Tras inhalar profundamente, las lanza a una temperatura de 1.700º.;6;null;null;45; 65; 130; 60; 95; 110; 65; 334; 359; 219; 289; 319; 229
+137;Porygon; Puede convertirse en datos informáticos y entrar en el ciberespacio. Tiene protección anti-copia, así que es imposible duplicarlo.;10;null;null;45; 65; 60; 70; 85; 75; 40; 334; 219; 239; 269; 249; 179
+138;Omanyte; Pokémon prehistórico que vivió en el océano primordial. Para nadar se valía de sus 10 tentáculos.;13;1;40;45; 35; 40; 100; 90; 55; 35; 274; 179; 299; 279; 209; 169
+139;Omastar; Tiene los tentáculos tan desarrollados que le sirven de mano y pies.Con ellos atrapa a sus presas y les da un bocado.;13;1;null;45; 70; 60; 125; 115; 70; 55; 344; 219; 349; 329; 239; 209
+140;Kabuto; Es un Pokémon regenerado a partir de un fósil de una criatura ancestral. Está protegido por un duro caparazón.;13;1;40;45; 30; 80; 90; 55; 45; 55; 264; 259; 279; 209; 189; 209
+141;Kabutops; Le gusta nadar a su aire. Cuando atrapa a su presa con las garras, le absorbe todos los fluidos.;13;1;null;45; 60; 115; 105; 65; 70; 80; 324; 329; 309; 229; 239; 259
+142;Aerodactyl; Se regeneró a partir de material genético de un dinosaurio, encontrado en ámbar. Cuando vuela emite escandalosos alaridos.;13;17;null;45; 80; 105; 65; 60; 75; 130; 364; 309; 229; 219; 249; 359
+143;Snorlax; No se encuentra satisfecho hasta que no se come 400 kg de comida cada día. Cuando acaba de comer, se queda dormido.;10;null;null;25; 160; 110; 65; 65; 110; 30; 524; 319; 229; 229; 319; 159
+144;Articuno; Es uno de los legendarios pájaros Pokémon. Vuela con la cola al viento haciendo gala de su magnificencia.;8;17;null;3; 90; 85; 100; 95; 125; 85; 384; 269; 299; 289; 349; 269
+145;Zapdos;" Es uno de los legendarios pájaros Pokémon. Cuando vuela hace ruidos; emite una especie de chasquido y chisporroteo.";4;17;null;3; 90; 90; 85; 125; 90; 100; 384; 279; 269; 349; 279; 299
+146;Moltres;" Es uno de los legendarios pájaros Pokémon. Quien lo ve, se queda embobado con las alas que tiene; parece que arden.";6;17;null;3; 90; 100; 90; 125; 85; 90; 384; 299; 279; 349; 269; 279
+147;Dratini; Las crías pueden medir más de 2 m y crecen más mudando muchas veces la piel.;3;null;30;45; 41; 64; 45; 50; 50; 50; 286; 227; 189; 199; 199; 199
+148;Dragonair; Dicen que habita ríos y mares. Aunque no tiene alas, a veces se le ha visto volar.;3;null;55;45; 61; 84; 65; 70; 70; 70; 326; 267; 229; 239; 239; 239
+149;Dragonite; A pesar del tamaño que tiene y de lo pesado que es, puede volar. Es capaz de dar la vuelta al mundo en solo 16 horas.;3;17;null;45; 91; 134; 95; 100; 100; 80; 386; 367; 289; 299; 299; 259
+150;Mewtwo; Su código genético se recombinó repetidas veces por motivos científicos y el resultado fue este curioso Pokémon.;12;null;null;3; 106; 110; 90; 154; 90 ; 130; 416; 319; 279; 407; 279; 359
