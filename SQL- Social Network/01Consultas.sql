@@ -51,14 +51,6 @@ except
 		right join Likes l1 on l1.ID1 = h1.ID or l1.ID2 = h1.ID
 order by h1.grade, h1.name
 
--- sin except
-select "Nombre" = h1.name,
-	"Grado" = h1.grade
-from Highschooler h1
-	left join Likes l1 on l1.ID1 = h1.ID or l1.ID2 = h1.ID
-where l1.ID1 is null
-order by h1.grade, h1.name
-
 --6 no sabemos quien le gusta
 select "Enamorado" = h1.name,
 	"Grado" = h1.grade,
@@ -92,7 +84,7 @@ from friend, Highschooler h2
 where h1.id = friend.ID1 and h2.ID = Friend.ID2 and h1.grade = h2.grade
 )
 
---9 me gusta tu amiga jsjsjs
+--9 presentame a tu amigui
 select "Enamorado" = h1.name,
 	"Grado" = h1.grade,
 	"Tercero" = h2.name,
@@ -102,13 +94,13 @@ select "Enamorado" = h1.name,
 from Highschooler h1
 	inner join Likes l on l.ID1 = h1.ID
 	inner join Highschooler h2 on h2.ID = l.ID2
-	inner join Highschooler h3 on (1=1) -- sombadiseeeeeeeeifmiiiiiiii
+	inner join Highschooler h3 on (1=1)
 	inner join Friend fAC on fAC.ID1 = h1.ID and fAC.ID2 = h3.ID
 	inner join Friend fBC on fBC.ID1 = h2.ID and fBC.ID2 = h3.ID
 where h1.id not in(
-  select ID1
-from friend
-where h1.id = ID1 and h2.ID = ID2
+	select ID1
+	from friend
+	where h1.id = ID1 and h2.ID = ID2
 )
 
 --10 duplicados
@@ -128,15 +120,18 @@ from (
 
 --12 circulo social
 select count(distinct f1.ID1)
-from Friend as f1, Friend as f2, (select ID from Highschooler where name = 'Cassandra') as C
+from Friend as f1, Friend as f2, (
+	select ID
+	from Highschooler
+	where name = 'Cassandra') as C
 where f1.ID2 = C.ID or (f1.ID1 <> C.ID and f1.ID2 = f2.ID1 and f2.ID2 = C.ID)
 
---13 los guaperris
+--13 los que tienen pegue
 select name, grade
 from Highschooler
 where ID in (select ID2 from Likes group by ID2 having count(distinct ID1)>1)
 
---14 más populares, mucho compa tienen estos vatos
+--14 los que tienen mucho compa
 select name, grade
 from Highschooler join Friend
 	on ID = ID1
@@ -153,18 +148,19 @@ set grade = grade + 1
 --16 graduación
 delete from Highschooler where grade > 12
 
---17 Friendship ended with the grads, now undergrads are my best friends 
+--17 ese vato ya se graduó, ya no es mi compa
 delete from Friend where ID1 not in (select ID
 	from Highschooler) and ID2 not in (select ID
 	from Highschooler);
 delete from Likes where ID1 not in (select ID
 	from Highschooler) and ID2 not in (select ID
 	from Highschooler);
+
 select H2.name
 from Highschooler H1, Friend, Highschooler H2
 where H1.name = 'Austin' and H1.ID = Friend.ID1 and H2.ID = Friend.ID2
 
---18 Verano pagado, verano pasado
+--18 presentame a tus compas, seamos todos amiguis
 insert into Friend
 	(ID1, ID2)
 select f1.ID, f3.ID2
@@ -176,19 +172,7 @@ where f1.ID not in(
 from Friend
 where ID2 = f3.ID2 or ID1 = f3.ID2
 	)
+
 select H2.name
 from Highschooler H1, Friend, Highschooler H2
 where H1.name = 'Jordan' and H1.ID = Friend.ID1 and H2.ID = Friend.ID2
-
--- Highschooler(ID, name, grade)
--- Friend(ID1, ID2)
--- Likes(ID1, ID2)
-
-select *
-from Highschooler
-select *
-from Friend
-select *
-from Likes
-
-
