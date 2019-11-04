@@ -54,7 +54,7 @@ create table menu(
 	id_menu int identity not null primary key,
 	nombre nvarchar(15),
 	fecha_inicio datetime not null,
-	fecha_final datetime not null
+	fecha_final datetime not null,
 )
 go
 
@@ -111,7 +111,7 @@ create table ingrediente_listaDeCompras(
 go
 
 create table dieta(
-	id_dieta int not null unique,
+	id_dieta int identity not null unique,
 	id_niño int not null,
 	fecha_inicio datetime not null,
 	fecha_fin datetime not null,

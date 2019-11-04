@@ -13,16 +13,26 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Antonia',   'Quintero', 'Zazueta',  'Ama de casa',		   44444444, 40404040)
 
 insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_nacimiento) values
-	('Marco',   'Gonzales',  'Almendra',  2, 'A', 1, '20070102'),
-	('Leticia', 'Gonzales',  'Almendra',  6, 'A', 1, '20010622'),
-	('Jesus',   'Angulo',    'Salazar',   3, 'B', 2, '20070312'),
-	('Gonzalo', 'Angulo',    'Salazar',   1, 'A', 2, '20091130'),
-	('Ariel',   'Hernandez', 'Santillan', 5, 'B', 2, '20070102'),
-	('Joaquin', 'Alvarado',  'Mendez',    2, 'A', 3, '20080715'),
-	('Mario',   'Alvarado',  'Patiño',    3, 'A', 3, '20070102'),
-	('Norma',   'Quintero',  'Felix',     4, 'B', 4, '20070805'),
-	('Leslie',  'Quintero',  'Felix',     2, 'B', 4, '20070417'),
-	('Luis',    'Quintero',  'Felix',     3, 'A', 4, '20070623')
+	('Jorge',		'Martinez',  'Aispuro',  2, 'A', 1, '20070102'),
+	('Luis',		'Mezquillo', 'Almendra',  6, 'A', 1, '20010622'),
+	('Fernando',	'Salazar',   'Salazar',   3, 'B', 2, '20070312'),
+	('Jose',		'Martinez',  'Gonzales',  2, 'A', 1, '20070102'),
+	('Lucho',		'Mezquillo', 'Almendra',  6, 'A', 1, '20010622'),
+	('Martin',		'Moringa',   'Salazar',   3, 'B', 2, '20070312'),
+	('Hernesto',	'Angulo',    'Gonzales',  1, 'A', 2, '20091130'),
+	('Hector',		'Hernandez', 'Gamez',	  5, 'B', 2, '20070102'),
+	('Amalia',		'Lazcano',	 'Santillan', 2, 'A', 3, '20080715'),
+
+	('Marco',		'Gonzales',  'Almendra',  2, 'A', 1, '20070102'),
+	('Leticia',		'Gonzales',  'Almendra',  6, 'A', 1, '20010622'),
+	('Jesus',		'Angulo',    'Salazar',   3, 'B', 2, '20070312'),
+	('Gonzalo',		'Angulo',    'Salazar',   1, 'A', 2, '20091130'),
+	('Ariel',		'Hernandez', 'Santillan', 5, 'B', 2, '20070102'),
+	('Joaquin',		'Alvarado',  'Mendez',    2, 'A', 3, '20080715'),
+	('Mario',		'Alvarado',  'Patiño',    3, 'A', 3, '20070102'),
+	('Norma',		'Quintero',  'Felix',     4, 'B', 4, '20070805'),
+	('Leslie',		'Quintero',  'Felix',     2, 'B', 4, '20070417'),
+	('Luis',		'Quintero',  'Felix',     3, 'A', 4, '20070623')
 update dbo.niño set especial = 1 where id_niño = 5
 
 insert into niñoAlergias(id_niño, nombre) values
