@@ -15,6 +15,11 @@ def validarGen(poke):
             break
     return False
 
+def getPokeID(poke):
+    for i in range(1 , len(lista_poke)):
+        if(lista_poke[i].lower() in poke.lower()):
+            return i
+
 def escribirCSV(rutaCSV, renglon):
     with open(rutaCSV, 'a', encoding='utf-8') as csvFile:
         writer = csv.writer(csvFile, delimiter=';')
@@ -43,11 +48,13 @@ def obtenerNombres(soup):
 def obtenerDatosPoke(soup, lista_poke):
 
     corrimiento = 0
+    nivel_evolucion = 0
 
     for i in range(0, len(soup.find_all('td')), 4):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
         evolucion_siguiente = soup.find_all('td')[i + 2 + corrimiento].text.split(':')
+        regex = re.compile("(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
 
         if "No evoluciona" in evolucion_siguiente[0]:
             evolucion_siguiente = " null"
@@ -58,20 +65,30 @@ def obtenerDatosPoke(soup, lista_poke):
             evolucion_anterior = soup.find_all(
                 'td')[i + 3 + corrimiento].text.split(':')
 
-            if(("amistad" in evolucion_siguiente[1]) or not validarGen(evolucion_siguiente[1])):
+            if(("amistad" in evolucion_siguiente[1]) or not validarGen(evolucion_siguiente[1])):    #Si evoluciona por amistad o no es de esta gen, cuello
                 evolucion_siguiente = " null"
+                id_siguiente = "null"
             else:
                 evolucion_siguiente = evolucion_siguiente[1]
-            
-            if ("amistad" in evolucion_anterior[1]) or not validarGen(evolucion_anterior[1]):
+                id_siguiente = getPokeID(evolucion_siguiente)
+                try:
+                    nv = regex.search(evolucion_siguiente)
+                    nivel_evolucion = nv.group(2)
+                except:
+                    nivel_evolucion = "null"
+
+            if ("amistad" in evolucion_anterior[1]) or not validarGen(evolucion_anterior[1]):       #Lo mismo
                 evolucion_anterior = "null"
+                id_anterior = "null"
             else:
                 evolucion_anterior = evolucion_anterior[1]
+                id_anterior = getPokeID(evolucion_anterior)
 
         nombre_actual = lista_poke[int(numero_actual[1])]
         print("Poke actual", nombre_actual)
-        print("Evoluciona a: ", evolucion_siguiente)
-        print("Evoluciona de: ", evolucion_anterior)
+        print("Evoluciona a: ", id_siguiente)
+        print("Nivel evolucion ", nivel_evolucion)
+        print("Evoluciona de: ", id_anterior)
 
         try:
             numero_actual[1] = numero_actual[1].replace(
