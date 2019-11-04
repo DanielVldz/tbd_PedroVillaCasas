@@ -1,8 +1,3 @@
-use master
-go
-drop database comedor
-go
-
 create database comedor
 go
 use comedor
@@ -111,7 +106,7 @@ create table ingrediente_listaDeCompras(
 go
 
 create table dieta(
-	id_dieta int not null unique,
+	id_dieta int not null,
 	id_niño int not null,
 	fecha_inicio datetime not null,
 	fecha_fin datetime not null,
@@ -122,7 +117,7 @@ go
 
 create table alimento_dieta(
 	id_alimento int not null,
-	id_dieta int not null,
+	id_dieta int not null
 	foreign key (id_alimento) references alimento(id_alimento),
 	foreign key (id_dieta) references dieta(id_dieta),
 	primary key(id_alimento, id_dieta)
