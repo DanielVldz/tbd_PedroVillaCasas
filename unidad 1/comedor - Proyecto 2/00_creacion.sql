@@ -28,7 +28,7 @@ create table niño(
 	grado char(1) not null,
 	id_tutor int not null,
 	fecha_de_nacimiento date not null,
-	especial bit not null default 0,
+	especial bit default 0,
 	foreign key (id_tutor) references tutor(id_tutor)
 )
 go
@@ -46,13 +46,13 @@ create table adeudo(
 	id_tutor int not null,
 	monto money not null,
 	fecha_ultimo_abono datetime not null,
-	fecha_de_ int,
 	foreign key (id_tutor) references tutor(id_tutor)
 )
 go
 
 create table menu(
 	id_menu int identity not null primary key,
+	nombre nvarchar(15),
 	fecha_inicio datetime not null,
 	fecha_final datetime not null
 )
