@@ -1,8 +1,7 @@
 create database bichos
 go
 use bichos
-go
-
+GO
 create table usuario
 (
 	id_usuario int identity not null primary key,
@@ -41,18 +40,17 @@ create table especie
 	ataque_normal_maximo int not null,
 	defensa_normal_maxima int not null,
 	ataque_especial_maximo int not null,
-	defensa_especial_base int not null,
+	defensa_especial_maxima int not null,
 	velocidad_maxima int not null,
 	foreign key(tipo1) references tipo(id_tipo),
 	foreign key(tipo2) references tipo(id_tipo),
-	foreign key(id_evolucion_anterior) references especie(id_especie),
-	foreign key(id_evolucion_siguiente) references especie(id_especie)
 )
 go
 
 create table ataque
 (
 	id_ataque int identity not null primary key,
+	nombre_ataque nvarchar(20),
 	id_tipo int not null,
 	categoria_ataque char(1) not null,
 	foreign key(id_tipo) references tipo(id_tipo)
@@ -136,7 +134,7 @@ create table resitenciasTipo
 	id_atacado int not null,
 	foreign key(id_tipo_ataque) references tipo(id_tipo),
 	foreign key(id_atacado) references tipo(id_tipo),
-	primary key(id_tipo, id_tipo)
+	primary key(id_tipo_ataque, id_atacado)
 )
 go
 

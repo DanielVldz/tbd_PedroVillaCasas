@@ -34,7 +34,7 @@ def escribirCSV(rutaCSV, renglon):
 def getTiposID(tipo_ataque):
     for j in range(18):
         if tipo_ataque.capitalize() == tipos[j][1]:
-            tipo_ataque = tipos[j][0]
+            tipo_ataque = (tipos[j][0] + 1)
             break
     return tipo_ataque
 
@@ -49,7 +49,7 @@ def obtenerNombres(soup):
     return lista_poke
 
 
-def obtenerDatosPoke(soup, lista_poke):
+def obtenerDatosPoke(soup, lista_pokemon):
 
     corrimiento = 0
     nivel_evolucion = 0
@@ -96,7 +96,8 @@ def obtenerDatosPoke(soup, lista_poke):
                 except:
                     nivel_evolucion = "null"
 
-        nombre_actual = lista_poke[int(numero_actual[1])]
+        # nombre_actual = lista_poke[int(numero_actual[1])]
+        nombre_actual = lista_pokemon[0]
         id_actual = getPokeID(nombre_actual)
         print("Poke actual", nombre_actual)
         print("Evoluciona de: ", id_anterior, " : ", evolucion_anterior)
@@ -265,7 +266,8 @@ def obtenerDetalleAtaques(soup, lista_ataques):
             potencia = None
 
         if (categoria != None) and (potencia != None):
-            renglon = [lista_ataques[i][1:], categoria, potencia, tipo]
+            id_ataque = i + 1
+            renglon = [id_ataque, lista_ataques[i][1:], categoria, potencia, tipo]
             escribirCSV(csv, renglon)
 
         print("Categoría del ataque: ", categoria)
@@ -322,7 +324,7 @@ tipos = obtenerTipos(soup)
 lista_poke = obtenerNombres(soup)
 datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
 obtenerDetallePokemon(soup, lista_poke)
-#lista_ataques = obtenerAtaques(soup, tipos)
-#obtenerDetalleAtaques(soup, lista_ataques)
-#obtenerResistencias(soup)
+lista_ataques = obtenerAtaques(soup, tipos)
+obtenerDetalleAtaques(soup, lista_ataques)
+obtenerResistencias(soup)
 print("Ya we")

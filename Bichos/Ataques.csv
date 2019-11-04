@@ -1,109 +1,109 @@
-Burbuja;e;40;1
-Cascada;f;80;1
-Hidrobomba;e;110;1
-Martillazo;f;100;1
-Pistola agua;e;40;1
-Rayo burbuja;e;65;1
-Surf;e;90;1
-Tenaza;f;35;1
-Chupavidas;f;80;2
-Doble ataque;f;25;2
-Pin misil;f;25;2
-Furia dragón;e;-;3
-Impactrueno;e;40;4
-Puño trueno;f;75;4
-Rayo;e;90;4
-Trueno;e;110;4
-Lengüetazo;f;30;5
-Tinieblas;e;-;5
-Ascuas;e;40;6
-Giro fuego;e;35;6
-Lanzallamas;e;90;6
-Llamarada;e;110;6
-Puño fuego;f;75;6
-Puño hielo;f;75;8
-Rayo aurora;e;65;8
-Rayo hielo;e;90;8
-Ventisca;e;110;8
-Contraataque;f;-;9
-Doble patada;f;30;9
-Movimiento sísmico;f;-;9
-Patada baja;f;-;9
-Patada giro;f;60;9
-Patada salto;f;100;9
-Patada salto alta;f;130;9
-Sumisión;f;80;9
-Agarre;f;55;10
-Arañazo;f;40;10
-Atadura;f;15;10
-Ataque furia;f;15;10
-Ataque rápido;f;40;10
-Autodestrucción;f;200;10
-Bomba huevo;f;100;10
-Bomba sónica;e;-;10
-Cabezazo;f;130;10
-Clavo cañón;f;20;10
-Cornada;f;65;10
-Corte;f;50;10
-Cuchillada;f;70;10
-Derribo;f;90;10
-Destructor;f;40;10
-Día de pago;f;40;10
-Doble filo;f;120;10
-Doblebofetón;f;15;10
-Explosión;f;250;10
-Fuerza;f;80;10
-Furia;f;20;10
-Golpe;f;120;10
-Golpe cabeza;f;70;10
-Golpe cuerpo;f;85;10
-Golpe kárate ;f;50;9
-Golpes furia;f;18;10
-Guillotina;f;-;10
-Hiper colmillo;f;80;10
-Hiperrayo;e;150;10
-Megapatada;f;120;10
-Megapuño;f;80;10
-Mordisco ;f;60;14
-Perforador;f;-;10
-Pisotón;f;65;10
-Placaje;f;40;10
-Atizar;f;80;10
-Presa;f;15;10
-Puño cometa;f;18;10
-Puño mareo;f;70;10
-Rapidez;e;60;10
-Constricción;f;15;10
-Restricción;f;10;10
-Superdiente;f;-;10
-Tornado ;e;40;17
-Triataque;e;80;10
-Venganza;f;-;10
-Viento cortante;e;80;10
-Absorber;e;20;11
-Danza pétalo;e;120;11
-Hoja afilada;f;55;11
-Látigo cepa;f;45;11
-Megaagotar;e;40;11
-Rayo solar;e;120;11
-Come sueños;e;100;12
-Confusión;e;50;12
-Psicoonda;e;-;12
-Psicorrayo;e;65;12
-Psíquico;e;90;12
-Avalancha;f;75;13
-Lanzarrocas;f;50;13
-Excavar;f;80;15
-Fisura;f;-;15
-Hueso palo;f;65;15
-Huesomerang;f;50;15
-Terremoto;f;100;15
-Ácido;e;40;16
-Picotazo venenoso;f;15;16
-Polución;e;30;16
-Residuos;e;65;16
-Ataque aéreo;f;140;17
-Ataque ala;f;60;17
-Pico taladro;f;80;17
-Picotazo;f;35;17
-Vuelo;f;90;17
+1;Burbuja;e;40;2
+2;Cascada;f;80;2
+3;Hidrobomba;e;110;2
+4;Martillazo;f;100;2
+5;Pistola agua;e;40;2
+6;Rayo burbuja;e;65;2
+8;Surf;e;90;2
+9;Tenaza;f;35;2
+10;Chupavidas;f;80;3
+12;Doble ataque;f;25;3
+13;Pin misil;f;25;3
+14;Furia dragón;e;-;4
+15;Impactrueno;e;40;5
+17;Puño trueno;f;75;5
+18;Rayo;e;90;5
+19;Trueno;e;110;5
+20;Lengüetazo;f;30;6
+22;Tinieblas;e;-;6
+23;Ascuas;e;40;7
+24;Giro fuego;e;35;7
+25;Lanzallamas;e;90;7
+26;Llamarada;e;110;7
+27;Puño fuego;f;75;7
+30;Puño hielo;f;75;9
+31;Rayo aurora;e;65;9
+32;Rayo hielo;e;90;9
+33;Ventisca;e;110;9
+34;Contraataque;f;-;10
+35;Doble patada;f;30;10
+36;Movimiento sísmico;f;-;10
+37;Patada baja;f;-;10
+38;Patada giro;f;60;10
+39;Patada salto;f;100;10
+40;Patada salto alta;f;130;10
+41;Sumisión;f;80;10
+43;Agarre;f;55;11
+46;Arañazo;f;40;11
+47;Atadura;f;15;11
+49;Ataque furia;f;15;11
+50;Ataque rápido;f;40;11
+51;Autodestrucción;f;200;11
+53;Bomba huevo;f;100;11
+54;Bomba sónica;e;-;11
+55;Cabezazo;f;130;11
+58;Clavo cañón;f;20;11
+60;Cornada;f;65;11
+61;Corte;f;50;11
+62;Cuchillada;f;70;11
+64;Derribo;f;90;11
+68;Destructor;f;40;11
+69;Día de pago;f;40;11
+71;Doble filo;f;120;11
+72;Doblebofetón;f;15;11
+73;Explosión;f;250;11
+76;Fuerza;f;80;11
+77;Furia;f;20;11
+78;Golpe;f;120;11
+79;Golpe cabeza;f;70;11
+80;Golpe cuerpo;f;85;11
+81;Golpe kárate ;f;50;10
+82;Golpes furia;f;18;11
+84;Guillotina;f;-;11
+85;Hiper colmillo;f;80;11
+86;Hiperrayo;e;150;11
+89;Megapatada;f;120;11
+90;Megapuño;f;80;11
+93;Mordisco ;f;60;15
+95;Perforador;f;-;11
+96;Pisotón;f;65;11
+97;Placaje;f;40;11
+98;Atizar;f;80;11
+99;Presa;f;15;11
+100;Puño cometa;f;18;11
+101;Puño mareo;f;70;11
+102;Rapidez;e;60;11
+106;Constricción;f;15;11
+107;Restricción;f;10;11
+111;Superdiente;f;-;11
+114;Tornado ;e;40;18
+116;Triataque;e;80;11
+117;Venganza;f;-;11
+118;Viento cortante;e;80;11
+119;Absorber;e;20;12
+120;Danza pétalo;e;120;12
+123;Hoja afilada;f;55;12
+124;Látigo cepa;f;45;12
+125;Megaagotar;e;40;12
+127;Rayo solar;e;120;12
+132;Come sueños;e;100;13
+133;Confusión;e;50;13
+139;Psicoonda;e;-;13
+140;Psicorrayo;e;65;13
+141;Psíquico;e;90;13
+144;Avalancha;f;75;14
+145;Lanzarrocas;f;50;14
+146;Excavar;f;80;16
+147;Fisura;f;-;16
+148;Hueso palo;f;65;16
+149;Huesomerang;f;50;16
+150;Terremoto;f;100;16
+151;Ácido;e;40;17
+154;Picotazo venenoso;f;15;17
+155;Polución;e;30;17
+157;Residuos;e;65;17
+159;Ataque aéreo;f;140;18
+160;Ataque ala;f;60;18
+162;Pico taladro;f;80;18
+163;Picotazo;f;35;18
+164;Vuelo;f;90;18
