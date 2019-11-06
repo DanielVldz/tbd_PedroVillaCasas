@@ -3,8 +3,8 @@ go
 use bichos
 GO
 
---use northwind
---drop database bichos
+-- use northwind
+-- drop database bichos
 
 create table usuario
 (
@@ -433,6 +433,7 @@ INSERT INTO especie(id_especie, bicho, descripcion, tipo1, tipo2, nivel_evolucio
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(1,2);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(2,3);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(4,5);
+INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(5,6);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(7,8);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(8,9);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(10,11);
@@ -456,7 +457,7 @@ INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(39,
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(41,42);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(43,44);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(44,45);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(46,46);
+INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(46,47);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(48,49);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(50,51);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(52,53);
@@ -465,8 +466,8 @@ INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(56,
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(58,59);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(60,61);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(61,62);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(63,63);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(63,65);
+INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(63,64);
+INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(64,65);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(66,67);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(67,68);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(69,70);
@@ -498,7 +499,7 @@ INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133,135);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133,136);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(138,139);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(140,140);
+INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(140,141);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(147,148);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(148,149);
 
