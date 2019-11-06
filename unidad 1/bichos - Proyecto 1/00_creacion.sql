@@ -71,6 +71,9 @@ create table bicho
 	id_bicho int identity not null primary key,
 	id_especie int not null,
 	id_ataque1 int not null,
+	salud int not null,
+	nivel int,
+	experiencia int not null,
 	id_ataque2 int,
 	id_ataque3 int,
 	id_ataque4 int,
@@ -86,9 +89,7 @@ create table usuarioBicho
 (
 	id_bicho int identity not null primary key,
 	id_usuario int not null,
-	salud int not null,
 	nombre nvarchar(20),
-	experiencia int not null,
 	latitud_Captura decimal not null,
 	longitud_Captura decimal not null,
 	foreign key(id_usuario) references usuario(id_usuario),
@@ -152,7 +153,7 @@ select * from tipo
 select * from especie
 select * from resitenciasTipo
 
-set identity_insert bichos.dbo.especie off
+set identity_insert bichos.dbo.usuario off
 set identity_insert bichos.dbo.tipo on
 go
 INSERT INTO tipo(id_tipo, nombre) VALUES(1,'Acero');
@@ -493,8 +494,6 @@ INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(116
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(118,119);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(120,121);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(129,130);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(129,131);
-INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(129,132);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133,134);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133,135);
 INSERT INTO especieEvolucion(id_especie_actual, id_especie_siguiente) VALUES(133,136);
@@ -623,3 +622,137 @@ INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,0.5,
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,2,10);
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,2,12);
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,0.5,14);
+set identity_insert bichos.dbo.especie off
+
+set identity_insert bichos.dbo.usuario on
+INSERT INTO usuario(id_usuario, nombre) VALUES(1, 'Red');
+INSERT INTO usuario(id_usuario, nombre) VALUES(2, 'Blue');
+INSERT INTO usuario(id_usuario, nombre) VALUES(3, 'Agatha');
+INSERT INTO usuario(id_usuario, nombre) VALUES(4, 'Antón');
+INSERT INTO usuario(id_usuario, nombre) VALUES(5, 'Anselmo');
+INSERT INTO usuario(id_usuario, nombre) VALUES(6, 'Aníbal');
+INSERT INTO usuario(id_usuario, nombre) VALUES(7, 'Bill');
+INSERT INTO usuario(id_usuario, nombre) VALUES(8, 'Blanca');
+INSERT INTO usuario(id_usuario, nombre) VALUES(9, 'Brock');
+INSERT INTO usuario(id_usuario, nombre) VALUES(10, 'Bruno');
+INSERT INTO usuario(id_usuario, nombre) VALUES(11, 'Clair');
+INSERT INTO usuario(id_usuario, nombre) VALUES(12, 'Erika');
+INSERT INTO usuario(id_usuario, nombre) VALUES(13, 'Falkner');
+INSERT INTO usuario(id_usuario, nombre) VALUES(14, 'Janine');
+INSERT INTO usuario(id_usuario, nombre) VALUES(15, 'Jasmine');
+INSERT INTO usuario(id_usuario, nombre) VALUES(16, 'Karen');
+INSERT INTO usuario(id_usuario, nombre) VALUES(17, 'Koga');
+INSERT INTO usuario(id_usuario, nombre) VALUES(18, 'Lance');
+INSERT INTO usuario(id_usuario, nombre) VALUES(19, 'Surge');
+INSERT INTO usuario(id_usuario, nombre) VALUES(20, 'Misty');
+INSERT INTO usuario(id_usuario, nombre) VALUES(21, 'Morty');
+INSERT INTO usuario(id_usuario, nombre) VALUES(22, 'Pryce');
+INSERT INTO usuario(id_usuario, nombre) VALUES(23, 'Sabrina');
+INSERT INTO usuario(id_usuario, nombre) VALUES(24, 'Sixto');
+INSERT INTO usuario(id_usuario, nombre) VALUES(25, 'Xero');
+set identity_insert bichos.dbo.usuario off
+
+set identity_insert bichos.dbo.bicho on
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(1, 18, 83, 18, 684, 97, null, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(2, 65, 55, 15, 165, 59, null, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(3, 94, 83, 21, 945, 16, 79, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(4, 42, 55, 20, 485, 9, 60, 94, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(5, 11, 60, 6, 102, 62, null, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(6, 123, 75, 35, 162, 35, null, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(7, 69, 50, 21, 489, 76, 68, 89, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(8, 69, 70, 15, 62, 76, 68, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(9, 57, 78, 80, 156, 32, 64, 51, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(10, 62, 55, 30, 358, 5, 47, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(11, 134, 65, 64, 185, 62, 5, 60, 3);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(12, 135, 90, 48, 349, 62, 12, 11, 15);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(13, 53, 130, 87, 21, 32, 60, 45, 42);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(14, 85, 65, 31, 687, 90, 34, 95, 71);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(15, 75, 65, 75, 54, 62, 84, 36, 88);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(16, 95, 61, 84, 765, 62, 33, 84, 63);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(17, 74, 45, 99, 651, 62, 84, 36, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(18, 95, 70, 55, 102, 62, 84, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(19, 106, 50, 26, 156, 26, 27, 28, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(20, 107, 50, 30, 12, 65, 21, 22, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(21, 148, 61, 41, 987, 63, 67, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(22, 148, 70, 48, 105, 63, 63, 67, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(23, 114, 65, 24, 108, 33, 73, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(24, 45, 75, 29, 302, 73, 89, 62, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(25, 16, 45, 7, 654, 70, 35,  62, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(26, 17, 68, 9, 64, 70, 62, 35, 94);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(27, 110, 70, 36, 215, 91, 92, 48, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(28, 49, 75, 39, 489, 62, 9, 81, 82);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(29, 81, 25, 30, 497, 62, 12, 67, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(30, 82, 55, 50, 658, 62, 12, 67, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(31, 94, 65, 45, 123, 16, 79, 62, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(32, 45, 78, 42, 21, 73, 74, 62, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(33, 109, 70, 37, 312, 62, 91, 92, 48);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(34, 89, 130, 39, 167, 44, 92, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(35, 130, 200, 58, 943, 60, 3, 57, 62);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(36, 149, 91, 62, 134, 63, 57, 62, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(37, 25, 50, 18, 946, 12, 67, 15, 62);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(38, 26, 68, 24, 48, 12, 15, 62, 67);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(39, 120, 45, 18, 4, 62, 5, 67, 3);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(40, 121, 68, 21, 95, 62, 67, 3, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(41, 92, 50, 21, 68, 16, 79, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(42, 94, 80, 25, 13, 16, 79, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(43, 86, 70, 27, 64, 52, 23, 43, 24);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(44, 87, 98, 32, 95, 23, 24, 43, 42);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(45, 64, 50, 38, 68, 80, 81, 82, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(46, 122, 50, 37, 48, 80, null, null, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(47, 78, 60, 46, 97, 17, 61, 18, 62);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(48, 78, 75, 51, 51, 17, 61, 18, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(49, 60, 45, 21, 18, 1, 53, 3, null);
+INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(50, 49, 86, 22, 358, 62, 9, 91, null);
+set identity_insert bichos.dbo.bicho off
+
+set identity_insert bichos.dbo.usuarioBicho on
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(1, 1, 'Don Ramón', -20.9360, -71.8732);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(2, 1, 'Toño', -77.7872, -142.8486);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(3, 2, null, -20.9360, -71.8732);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(4, 2, null, -9.5065, -140.0925);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(5, 3, null, -46.5170, 131.7694);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(6, 3, null, 67.4493, -64.4158);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(7, 4, null, 20.1309, 3.5195);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(8, 4, null, -37.6583, 137.3609);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(9, 5, 'Ebony', -6.1147, -66.7094);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(10, 5, 'Ivory', -58.8532, 146.9055);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(11, 6, null, -2.4310, 126.6520);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(12, 6, null, 17.5610, -106.0667);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(13, 7, null, 32.9626, -98.5941);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(14, 7, null, -71.0874, -138.0550);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(15, 8, null, 44.4252, -157.5337);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(16, 8, null, -82.8455, 85.0537);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(17, 9, null, -6.9553, 99.8387);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(18, 9, null, -84.5455, 23.2040);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(19, 10, null, 83.4522, -119.0040);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(20, 10, null, -20.9167, -114.8326);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(21, 11, null, 45.8482, 79.3003);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(22, 11, null, -8.4788, 7.6176);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(23, 12, null, 63.8519, 72.6864);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(24, 12, null, 57.2241, 77.6615);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(25, 13, null, 8.2343, -112.3103);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(26, 13, null, 7.4728, -177.8652);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(27, 14, null, -82.3827, -70.5810);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(28, 14, null, 53.7468, -94.5073);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(29, 15, null, -69.0472, 106.5031);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(30, 15, null, 68.4385, -54.6788);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(31, 16, null, 72.6795, -125.2635);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(32, 16, null, -57.8356, 148.2275);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(33, 17, null, -71.6510, -114.8624);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(34, 17, null, 51.5567, -168.5501);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(35, 18, null, 28.6401, -135.9331);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(36, 18, null, -48.0332, 159.5792);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(37, 19, null, -22.2566, 133.2832);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(38, 19, null, -61.3972, -155.9730);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(39, 20, null, 86.3882, -70.8210);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(40, 20, null, -57.2079, 175.3770);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(41, 21, null, -25.3717, -52.5462);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(42, 21, null, 23.9594, -105.2264);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(43, 22, null, 23.7910, -118.9827);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(44, 22, null, 48.9576, -142.9979);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(45, 23, null, 36.3440, 65.8155);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(46, 23, null, -15.9581, -50.9944);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(47, 24, null, -32.4150, 97.2779);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(48, 24, null, 10.9956, -36.0663);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(49, 25, null, -20.8415, -104.7754);
+INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(50, 25, null, 34.9721, 55.4257);
