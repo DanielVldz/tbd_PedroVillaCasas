@@ -8,6 +8,7 @@ tipos = []
 lista_poke = []
 datosPoke = []
 
+
 def validarGen(poke):
     for i in range(1, len(lista_poke)):
         if (lista_poke[i].lower() in poke.lower()):
@@ -80,7 +81,6 @@ def obtenerDatosPoke(soup, lista_pokemon):
                 evolucion_anterior = evolucion_anterior[1]
                 id_anterior = getPokeID(evolucion_anterior)
 
-
             # Lo mismo
             if ("amistad" in evolucion_siguiente1[1]) or not validarGen(evolucion_siguiente1[1]):
                 evolucion_siguiente1 = "null"
@@ -103,7 +103,7 @@ def obtenerDatosPoke(soup, lista_pokemon):
         print("Nivel evolucion ", nivel_evolucion)
         print("Evoluciona a: ", id_siguiente, " : ", evolucion_siguiente1)
         datos.append([nombre_actual, nivel_evolucion])
-        
+
         if(id_anterior != "null"):
             evolucion = [id_anterior, id_actual]
             escribirCSV(csv, evolucion)
@@ -189,25 +189,25 @@ def obtenerDetallePokemon(soup, lista_poke):
         print("Defensa especial máxima: ", defensa_especial_maxima)
         print("Velocidad máxima: ", velocidad_maxima)
 
-        renglon = [i, 
-                lista_poke[i], 
-                Descripcion, 
-                tipo1, 
-                tipo2, 
-                datosPoke[i][1], 
-                ratio_captura[3], 
-                ps_base,
-                ataque_base, 
-                defensa_base, 
-                ataque_especial_base, 
-                defensa_especial_base, 
-                velocidad_base,
-                ps_maximo, 
-                ataque_maximo, 
-                defensa_maxima, 
-                ataque_especial_maximo, 
-                defensa_especial_maxima, 
-                velocidad_maxima]
+        renglon = [i,
+                   lista_poke[i],
+                   Descripcion,
+                   tipo1,
+                   tipo2,
+                   datosPoke[i][1],
+                   ratio_captura[3],
+                   ps_base,
+                   ataque_base,
+                   defensa_base,
+                   ataque_especial_base,
+                   defensa_especial_base,
+                   velocidad_base,
+                   ps_maximo,
+                   ataque_maximo,
+                   defensa_maxima,
+                   ataque_especial_maximo,
+                   defensa_especial_maxima,
+                   velocidad_maxima]
         print(renglon)
 
         escribirCSV(csv, renglon)
@@ -226,7 +226,7 @@ def obtenerTipos(soup):
             '\r', '').replace('\n', '')
         lista_tipos.append([id_tipo, str(tipo_actual)])
         id_tipo += 1
-        
+
         renglon = [id_tipo, tipo_actual]
 
         #escribirCSV(csv, renglon)
@@ -272,7 +272,8 @@ def obtenerDetalleAtaques(soup, lista_ataques):
             categoria = "e"
         else:
             categoria = None
-        tipo = soup.find("div", {"data-source" : "tipo"}).find("img").get("alt").replace('\r', '').replace('\n', '').split()
+        tipo = soup.find("div", {"data-source": "tipo"}).find(
+            "img").get("alt").replace('\r', '').replace('\n', '').split()
         tipo = getTiposID(tipo[1])
         try:
             potencia = soup.find(
@@ -284,7 +285,8 @@ def obtenerDetalleAtaques(soup, lista_ataques):
 
         if (categoria != None) and (potencia != None and (potencia != "-")):
             ataqueID = ataqueID + 1
-            renglon = [ataqueID, lista_ataques[i][1:], categoria, potencia, tipo]
+            renglon = [ataqueID, lista_ataques[i]
+                       [1:], categoria, potencia, tipo]
             escribirCSV(csv, renglon)
 
         print("Categoría del ataque: ", categoria)
@@ -339,9 +341,9 @@ direccion_csv = 'D:/Documentos/Escuela/Semestre 7/Taller de base de datos/Proyec
 
 tipos = obtenerTipos(soup)
 #lista_poke = obtenerNombres(soup)
-#datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
+# datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
 #obtenerDetallePokemon(soup, lista_poke)
 lista_ataques = obtenerAtaques(soup, tipos)
 obtenerDetalleAtaques(soup, lista_ataques)
-#obtenerResistencias(soup)
+# obtenerResistencias(soup)
 print("Ya we")
