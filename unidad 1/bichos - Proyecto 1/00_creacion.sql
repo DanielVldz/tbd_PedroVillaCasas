@@ -1,161 +1,161 @@
-create database bichos
-go
-use bichos
+CREATE DATABASE bichos
+GO
+USE bichos
 GO
 
 -- use northwind
 -- drop database bichos
 
-create table usuario
+CREATE TABLE usuario
 (
-	id_usuario int identity not null primary key,
-	nombre nvarchar(30) not null
+	id_usuario INT IDENTITY NOT NULL PRIMARY KEY,
+	nombre NVARCHAR(30) NOT NULL
 )
-go
+GO
 
-create table tipo
+CREATE TABLE tipo
 (
-	id_tipo int identity not null primary key,
-	nombre nvarchar(20) not null
+	id_tipo INT IDENTITY NOT NULL PRIMARY KEY,
+	nombre NVARCHAR(20) NOT NULL
 )
-go
+GO
 
-create table especie
+CREATE TABLE especie
 (
-	id_especie int identity not null primary key,
-	bicho nvarchar(30) not null,
-	descripcion nvarchar(250),
-	tipo1 int not null,
-	tipo2 int,
-	nivel_evolucion int,
-	ratio_captura int,
-	salud_base int not null,
-	ataque_normal_base int not null,
-	defensa_normal_base int not null,
-	ataque_especial_base int not null,
-	defensa_especial_base int not null,
-	velocidad_base int not null,
-	salud_maxima int not null,
-	ataque_normal_maximo int not null,
-	defensa_normal_maxima int not null,
-	ataque_especial_maximo int not null,
-	defensa_especial_maxima int not null,
-	velocidad_maxima int not null,
-	foreign key(tipo1) references tipo(id_tipo),
-	foreign key(tipo2) references tipo(id_tipo),
+	id_especie INT IDENTITY NOT NULL PRIMARY KEY,
+	bicho NVARCHAR(30) NOT NULL,
+	descripcion NVARCHAR(250),
+	tipo1 INT NOT NULL,
+	tipo2 INT,
+	nivel_evolucion INT,
+	ratio_captura INT,
+	salud_base INT NOT NULL,
+	ataque_normal_base INT NOT NULL,
+	defensa_normal_base INT NOT NULL,
+	ataque_especial_base INT NOT NULL,
+	defensa_especial_base INT NOT NULL,
+	velocidad_base INT NOT NULL,
+	salud_maxima INT NOT NULL,
+	ataque_normal_maximo INT NOT NULL,
+	defensa_normal_maxima INT NOT NULL,
+	ataque_especial_maximo INT NOT NULL,
+	defensa_especial_maxima INT NOT NULL,
+	velocidad_maxima INT NOT NULL,
+	FOREIGN KEY(tipo1) REFERENCES tipo(id_tipo),
+	FOREIGN KEY(tipo2) REFERENCES tipo(id_tipo),
 )
-go
-create table ataque
+GO
+CREATE TABLE ataque
 (
-	id_ataque int identity not null primary key,
-	nombre_ataque nvarchar(20),
-	categoria_ataque char(1) not null,
-	potencia int not null,
-	id_tipo int not null,
-	foreign key(id_tipo) references tipo(id_tipo)
+	id_ataque INT IDENTITY NOT NULL PRIMARY KEY,
+	nombre_ataque NVARCHAR(20),
+	categoria_ataque CHAR(1) NOT NULL,
+	potencia INT NOT NULL,
+	id_tipo INT NOT NULL,
+	FOREIGN KEY(id_tipo) REFERENCES tipo(id_tipo)
 )
-go
+GO
 
-create table ataqueEspecie
+CREATE TABLE ataqueEspecie
 (
-	id_ataque int not null,
-	id_especie int not null,
-	foreign key(id_ataque) references ataque(id_ataque),
-	foreign key(id_especie) references especie(id_especie),
-	primary key(id_ataque, id_especie)
+	id_ataque INT NOT NULL,
+	id_especie INT NOT NULL,
+	FOREIGN KEY(id_ataque) REFERENCES ataque(id_ataque),
+	FOREIGN KEY(id_especie) REFERENCES especie(id_especie),
+	PRIMARY KEY(id_ataque, id_especie)
 )
-go
+GO
 
-create table bicho
+CREATE TABLE bicho
 (
-	id_bicho int identity not null primary key,
-	id_especie int not null,
-	id_ataque1 int not null,
-	salud int not null,
-	nivel int,
-	experiencia int not null,
-	id_ataque2 int,
-	id_ataque3 int,
-	id_ataque4 int,
-	foreign key(id_especie) references especie(id_especie),
-	foreign key(id_ataque1) references ataque(id_ataque),
-	foreign key(id_ataque2) references ataque(id_ataque),
-	foreign key(id_ataque3) references ataque(id_ataque),
-	foreign key(id_ataque4) references ataque(id_ataque)
+	id_bicho INT IDENTITY NOT NULL PRIMARY KEY,
+	id_especie INT NOT NULL,
+	id_ataque1 INT NOT NULL,
+	salud INT NOT NULL,
+	nivel INT,
+	experiencia INT NOT NULL,
+	id_ataque2 INT,
+	id_ataque3 INT,
+	id_ataque4 INT,
+	FOREIGN KEY(id_especie) REFERENCES especie(id_especie),
+	FOREIGN KEY(id_ataque1) REFERENCES ataque(id_ataque),
+	FOREIGN KEY(id_ataque2) REFERENCES ataque(id_ataque),
+	FOREIGN KEY(id_ataque3) REFERENCES ataque(id_ataque),
+	FOREIGN KEY(id_ataque4) REFERENCES ataque(id_ataque)
 )
-go
+GO
 
-create table usuarioBicho
+CREATE TABLE usuarioBicho
 (
-	id_bicho int identity not null primary key,
-	id_usuario int not null,
-	nombre nvarchar(20),
-	latitud_Captura decimal not null,
-	longitud_Captura decimal not null,
-	foreign key(id_usuario) references usuario(id_usuario),
-	foreign key(id_bicho) references bicho(id_bicho)
+	id_bicho INT IDENTITY NOT NULL PRIMARY KEY,
+	id_usuario INT NOT NULL,
+	nombre NVARCHAR(20),
+	latitud_Captura DECIMAL NOT NULL,
+	longitud_Captura DECIMAL NOT NULL,
+	FOREIGN KEY(id_usuario) REFERENCES usuario(id_usuario),
+	FOREIGN KEY(id_bicho) REFERENCES bicho(id_bicho)
 )
-go
+GO
 
-create table intercambio
+CREATE TABLE intercambio
 (
-	id_intercambio int identity not null primary key,
-	id_entrenador1 int not null,
-	id_entrenador2 int not null,
-	id_bicho1 int not null,
-	id_bicho2 int not null,
-	foreign key(id_entrenador1) references usuario(id_usuario),
-	foreign key(id_entrenador2) references usuario(id_usuario),
-	foreign key(id_bicho1) references bicho(id_bicho),
-	foreign key(id_bicho2) references bicho(id_bicho)
+	id_intercambio INT IDENTITY NOT NULL PRIMARY KEY,
+	id_entrenador1 INT NOT NULL,
+	id_entrenador2 INT NOT NULL,
+	id_bicho1 INT NOT NULL,
+	id_bicho2 INT NOT NULL,
+	FOREIGN KEY(id_entrenador1) REFERENCES usuario(id_usuario),
+	FOREIGN KEY(id_entrenador2) REFERENCES usuario(id_usuario),
+	FOREIGN KEY(id_bicho1) REFERENCES bicho(id_bicho),
+	FOREIGN KEY(id_bicho2) REFERENCES bicho(id_bicho)
 )
-go
+GO
 
-create table combate
+CREATE TABLE combate
 (
-	id_combate int identity not null primary key,
-	id_entrenador1 int not null,
-	id_entrenador2 int not null,
-	id_bicho1 int not null,
-	id_bicho2 int not null,
-	id_ganador int not null,
-	foreign key(id_entrenador1) references usuario(id_usuario),
-	foreign key(id_entrenador2) references usuario(id_usuario),
-	foreign key(id_bicho1) references bicho(id_bicho),
-	foreign key(id_bicho2) references bicho(id_bicho),
-	foreign key(id_ganador) references usuario(id_usuario),
+	id_combate INT IDENTITY NOT NULL PRIMARY KEY,
+	id_entrenador1 INT NOT NULL,
+	id_entrenador2 INT NOT NULL,
+	id_bicho1 INT NOT NULL,
+	id_bicho2 INT NOT NULL,
+	id_ganador INT NOT NULL,
+	FOREIGN KEY(id_entrenador1) REFERENCES usuario(id_usuario),
+	FOREIGN KEY(id_entrenador2) REFERENCES usuario(id_usuario),
+	FOREIGN KEY(id_bicho1) REFERENCES bicho(id_bicho),
+	FOREIGN KEY(id_bicho2) REFERENCES bicho(id_bicho),
+	FOREIGN KEY(id_ganador) REFERENCES usuario(id_usuario),
 )
-go
+GO
 
-create table resitenciasTipo
+CREATE TABLE resitenciasTipo
 (
-	id_tipo_ataque int not null,
-	eficacia float not null,
-	id_atacado int not null,
-	foreign key(id_tipo_ataque) references tipo(id_tipo),
-	foreign key(id_atacado) references tipo(id_tipo),
-	primary key(id_tipo_ataque, id_atacado)
+	id_tipo_ataque INT NOT NULL,
+	eficacia FLOAT NOT NULL,
+	id_atacado INT NOT NULL,
+	FOREIGN KEY(id_tipo_ataque) REFERENCES tipo(id_tipo),
+	FOREIGN KEY(id_atacado) REFERENCES tipo(id_tipo),
+	PRIMARY KEY(id_tipo_ataque, id_atacado)
 )
-go
+GO
 
-create table especieEvolucion
+CREATE TABLE especieEvolucion
 (
-	id_especie_actual int not null,
-	id_especie_siguiente int not null,
-	foreign key(id_especie_actual) references especie(id_especie),
-	foreign key(id_especie_siguiente) references especie(id_especie),
-	primary key(id_especie_actual, id_especie_siguiente)
+	id_especie_actual INT NOT NULL,
+	id_especie_siguiente INT NOT NULL,
+	FOREIGN KEY(id_especie_actual) REFERENCES especie(id_especie),
+	FOREIGN KEY(id_especie_siguiente) REFERENCES especie(id_especie),
+	PRIMARY KEY(id_especie_actual, id_especie_siguiente)
 )
-go
+GO
 
-select * from ataque
-select * from tipo
-select * from especie
-select * from resitenciasTipo
+SELECT * FROM ataque
+SELECT * FROM tipo
+SELECT * FROM especie
+SELECT * FROM resitenciasTipo
 
-set identity_insert bichos.dbo.usuario off
-set identity_insert bichos.dbo.tipo on
-go
+SET IDENTITY_INSERT bichos.dbo.usuario OFF
+SET IDENTITY_INSERT bichos.dbo.tipo ON
+GO
 INSERT INTO tipo(id_tipo, nombre) VALUES(1,'Acero');
 INSERT INTO tipo(id_tipo, nombre) VALUES(2,'Agua');
 INSERT INTO tipo(id_tipo, nombre) VALUES(3,'Bicho');
@@ -174,10 +174,10 @@ INSERT INTO tipo(id_tipo, nombre) VALUES(15,'Siniestro');
 INSERT INTO tipo(id_tipo, nombre) VALUES(16,'Tierra');
 INSERT INTO tipo(id_tipo, nombre) VALUES(17,'Veneno');
 INSERT INTO tipo(id_tipo, nombre) VALUES(18,'Volador');
-set identity_insert bichos.dbo.tipo OFF
-go
+SET IDENTITY_INSERT bichos.dbo.tipo OFF
+GO
 
-set identity_insert bichos.dbo.ataque on
+SET IDENTITY_INSERT bichos.dbo.ataque ON
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(1,'Burbuja','e',40,2);
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(2,'Cascada','f',80,2);
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(3,'Hidrobomba','e',110,2);
@@ -275,10 +275,10 @@ INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(95,'Pico taladro','f',80,18);
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(96,'Picotazo','f',35,18);
 INSERT INTO ataque(id_ataque, nombre_ataque, categoria_ataque, potencia, id_tipo) VALUES(97,'Vuelo','f',90,18);
-set identity_insert ataque off
-go
+SET IDENTITY_INSERT ataque OFF
+GO
 
-set identity_insert bichos.dbo.especie on
+SET IDENTITY_INSERT bichos.dbo.especie ON
 INSERT INTO especie(id_especie, bicho, descripcion, tipo1, tipo2, nivel_evolucion, ratio_captura, salud_base, ataque_normal_base, defensa_normal_base, ataque_especial_base, defensa_especial_base, velocidad_base, salud_maxima, ataque_normal_maximo, defensa_normal_maxima, ataque_especial_maximo, defensa_especial_maxima, velocidad_maxima) VALUES(1,'Bulbasaur',' Este Pokémon nace con una semilla en el lomo. Con el tiempo, la semilla brota.',12,17,16,45, 45, 49, 49, 65, 65, 45, 294, 197, 197, 229, 229, 189);
 INSERT INTO especie(id_especie, bicho, descripcion, tipo1, tipo2, nivel_evolucion, ratio_captura, salud_base, ataque_normal_base, defensa_normal_base, ataque_especial_base, defensa_especial_base, velocidad_base, salud_maxima, ataque_normal_maximo, defensa_normal_maxima, ataque_especial_maximo, defensa_especial_maxima, velocidad_maxima) VALUES(2,'Ivysaur',' Este Pokémon tiene un bulbo en el lomo. Dicen que, al absorber nutrientes, el bulbo se transforma en una flor grande.',12,17,32,45, 60, 62, 63, 80, 80, 60, 324, 223, 225, 259, 259, 219);
 INSERT INTO especie(id_especie, bicho, descripcion, tipo1, tipo2, nivel_evolucion, ratio_captura, salud_base, ataque_normal_base, defensa_normal_base, ataque_especial_base, defensa_especial_base, velocidad_base, salud_maxima, ataque_normal_maximo, defensa_normal_maxima, ataque_especial_maximo, defensa_especial_maxima, velocidad_maxima) VALUES(3,'Venusaur',' La flor que tiene en el lomo libera un delicado aroma. En combate, este aroma tiene un efecto relajante.',12,17,null,45, 80, 82, 83, 100, 100, 80, 364, 263, 265, 299, 299, 259);
@@ -623,9 +623,9 @@ INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,0.5,
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,2,10);
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,2,12);
 INSERT INTO resitenciasTipo(id_tipo_ataque, eficacia, id_atacado) VALUES(18,0.5,14);
-set identity_insert bichos.dbo.especie off
+SET IDENTITY_INSERT bichos.dbo.especie OFF
 
-set identity_insert bichos.dbo.usuario on
+SET IDENTITY_INSERT bichos.dbo.usuario ON
 INSERT INTO usuario(id_usuario, nombre) VALUES(1, 'Red');
 INSERT INTO usuario(id_usuario, nombre) VALUES(2, 'Blue');
 INSERT INTO usuario(id_usuario, nombre) VALUES(3, 'Agatha');
@@ -651,9 +651,9 @@ INSERT INTO usuario(id_usuario, nombre) VALUES(22, 'Pryce');
 INSERT INTO usuario(id_usuario, nombre) VALUES(23, 'Sabrina');
 INSERT INTO usuario(id_usuario, nombre) VALUES(24, 'Sixto');
 INSERT INTO usuario(id_usuario, nombre) VALUES(25, 'Xero');
-set identity_insert bichos.dbo.usuario off
+SET IDENTITY_INSERT bichos.dbo.usuario OFF
 
-set identity_insert bichos.dbo.bicho on
+SET IDENTITY_INSERT bichos.dbo.bicho ON
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(1, 18, 83, 18, 684, 97, null, null, null);
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(2, 65, 55, 15, 165, 59, null, null, null);
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(3, 94, 83, 21, 945, 16, 79, null, null);
@@ -704,9 +704,9 @@ INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, i
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(48, 78, 75, 51, 51, 17, 61, 18, null);
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(49, 60, 45, 21, 18, 1, 53, 3, null);
 INSERT INTO bicho(id_bicho, id_especie, salud, nivel, experiencia, id_ataque1, id_ataque2, id_ataque3, id_ataque4) VALUES(50, 49, 86, 22, 358, 62, 9, 91, null);
-set identity_insert bichos.dbo.bicho off
+SET IDENTITY_INSERT bichos.dbo.bicho OFF
 
-set identity_insert bichos.dbo.usuarioBicho on
+SET IDENTITY_INSERT bichos.dbo.usuarioBicho ON
 INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(1, 1, 'Don Ramón', -20.9360, -71.8732);
 INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(2, 1, 'Toño', -77.7872, -142.8486);
 INSERT INTO usuarioBicho(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura) VALUES(3, 2, null, -20.9360, -71.8732);
