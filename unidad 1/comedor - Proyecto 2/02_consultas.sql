@@ -42,9 +42,21 @@ SELECT [Nombre A] = a.nombre+' '+a.apaterno+' '+a.amaterno, [Nombre B] = b.nombr
 	WHERE (a.amaterno = b.amaterno OR a.amaterno = b.apaterno OR a.apaterno = b.amaterno OR a.apaterno = b.apaterno) AND NOT (a.amaterno=b.amaterno AND a.apaterno=b.apaterno)
 	ORDER BY [Nombre A]
 
--- 11. Nose chale
+-- 11. Muestra todos los hermanos mayores de Jesus Angulo Salazar
+SELECT Nombre = h.nombre+' '+h.apaterno+' '+h.amaterno
+	FROM niño Jesus
+	INNER JOIN niño h ON Jesus.apaterno = h.apaterno AND Jesus.amaterno = h.amaterno
+	WHERE Jesus.nombre+' '+Jesus.apaterno+' '+Jesus.amaterno = 'Jesus Angulo Salazar'AND CONVERT(DATETIME, Jesus.fecha_de_nacimiento)<CONVERT(DATETIME, h.fecha_de_nacimiento)
 
--- 13. Nose chale
+-- 13. Muestra el alumno más viejo
+SELECT Nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, Edad = DATEDIFF(yy, n.fecha_de_nacimiento, GETDATE())
+	FROM niño n
+	WHERE 0 in (
+		SELECT COUNT(*)
+			FROM niño aux
+			WHERE DATEDIFF(dd, n.fecha_de_nacimiento, aux.fecha_de_nacimiento)<0
+	)
+
 
 -- 15. Nose chale
 
