@@ -55,13 +55,12 @@ def obtenerDatosPoke(soup, lista_pokemon):
     nivel_evolucion = 0
     datos = [None]
     csv = "Bichos/Evoluciones.csv"
+    
     for i in range(0, len(soup.find_all('td')), 4):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
-        evolucion_anterior = soup.find_all(
-            'td')[i + 2 + corrimiento].text.split(':')
-        regex = re.compile(
-            "(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
+        evolucion_anterior = soup.find_all('td')[i + 2 + corrimiento].text.split(':')
+        regex = re.compile("(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
 
         if "No evoluciona" in evolucion_anterior[0]:
             evolucion_anterior = " null"
@@ -70,8 +69,7 @@ def obtenerDatosPoke(soup, lista_pokemon):
             nivel_evolucion = "null"
 
         else:
-            evolucion_siguiente1 = soup.find_all(
-                'td')[i + 3 + corrimiento].text.split(':')
+            evolucion_siguiente1 = soup.find_all('td')[i + 3 + corrimiento].text.split(':')
 
             # Si evoluciona por amistad o no es de esta gen, cuello
             if(("amistad" in evolucion_anterior[1]) or not validarGen(evolucion_anterior[1])):
@@ -127,49 +125,32 @@ def obtenerDetallePokemon(soup, lista_poke):
         # TD's : ps - 6, ataque - 7 y velocidad - 11
         #tabla_stats = soup.find("table", class_="estadisticas")
 
-        Descripcion = soup.find("table", class_="pokedex radius10").find_all("tr")[
-            9].find("td").text.replace('\r', '').replace('\n', '')
-
-        ratio_captura = soup.find("div", class_="otrosdatos sombra radius10").find_all(
-            "li")[1].text.replace('\r', '').replace('\n', '').split()
-
-        tipo1 = soup.find("div", {"data-source": "tipo1"}).find_all(
-            "img")[0].get("alt").replace('\r', '').replace('\n', '').split()
+        Descripcion = soup.find("table", class_="pokedex radius10").find_all("tr")[9].find("td").text.replace('\r', '').replace('\n', '')
+        ratio_captura = soup.find("div", class_="otrosdatos sombra radius10").find_all("li")[1].text.replace('\r', '').replace('\n', '').split()
+        tipo1 = soup.find("div", {"data-source": "tipo1"}).find_all("img")[0].get("alt").replace('\r', '').replace('\n', '').split()
         tipo1 = getTiposID(tipo1[1])
+
         try:
-            tipo2 = soup.find("div", {"data-source": "tipo1"}).find_all(
-                "img")[2].get("alt").replace('\r', '').replace('\n', '').split()
+            tipo2 = soup.find("div", {"data-source": "tipo1"}).find_all("img")[2].get("alt").replace('\r', '').replace('\n', '').split()
             tipo2 = getTiposID(tipo2[1])
         except:
             tipo2 = "null"
 
         # Estadísticas base
-        ps_base = soup.find("table", class_="estadisticas").find_all(
-            'td')[6].next_element.replace('\r', '').replace('\n', '')
-        ataque_base = soup.find("table", class_="estadisticas").find_all(
-            'td')[7].next_element.replace('\r', '').replace('\n', '')
-        defensa_base = soup.find("table", class_="estadisticas").find_all('td')[
-            8].next_element.replace('\r', '').replace('\n', '')
-        ataque_especial_base = soup.find("table", class_="estadisticas").find_all('td')[
-            9].next_element.replace('\r', '').replace('\n', '')
-        defensa_especial_base = soup.find("table", class_="estadisticas").find_all(
-            'td')[10].next_element.replace('\r', '').replace('\n', '')
-        velocidad_base = soup.find("table", class_="estadisticas").find_all('td')[
-            11].next_element.replace('\r', '').replace('\n', '')
+        ps_base = soup.find("table", class_="estadisticas").find_all('td')[6].next_element.replace('\r', '').replace('\n', '')
+        ataque_base = soup.find("table", class_="estadisticas").find_all('td')[7].next_element.replace('\r', '').replace('\n', '')
+        defensa_base = soup.find("table", class_="estadisticas").find_all('td')[8].next_element.replace('\r', '').replace('\n', '')
+        ataque_especial_base = soup.find("table", class_="estadisticas").find_all('td')[9].next_element.replace('\r', '').replace('\n', '')
+        defensa_especial_base = soup.find("table", class_="estadisticas").find_all('td')[10].next_element.replace('\r', '').replace('\n', '')
+        velocidad_base = soup.find("table", class_="estadisticas").find_all('td')[11].next_element.replace('\r', '').replace('\n', '')
 
         # Estadísticas máximas con naturaleza neutra
-        ps_maximo = soup.find("table", class_="estadisticas").find_all(
-            'td')[18].next_element.replace('\r', '').replace('\n', '')
-        ataque_maximo = soup.find("table", class_="estadisticas").find_all(
-            'td')[19].next_element.replace('\r', '').replace('\n', '')
-        defensa_maxima = soup.find("table", class_="estadisticas").find_all('td')[
-            20].next_element.replace('\r', '').replace('\n', '')
-        ataque_especial_maximo = soup.find("table", class_="estadisticas").find_all(
-            'td')[21].next_element.replace('\r', '').replace('\n', '')
-        defensa_especial_maxima = soup.find("table", class_="estadisticas").find_all(
-            'td')[22].next_element.replace('\r', '').replace('\n', '')
-        velocidad_maxima = soup.find("table", class_="estadisticas").find_all('td')[
-            23].next_element.replace('\r', '').replace('\n', '')
+        ps_maximo = soup.find("table", class_="estadisticas").find_all('td')[18].next_element.replace('\r', '').replace('\n', '')
+        ataque_maximo = soup.find("table", class_="estadisticas").find_all('td')[19].next_element.replace('\r', '').replace('\n', '')
+        defensa_maxima = soup.find("table", class_="estadisticas").find_all('td')[20].next_element.replace('\r', '').replace('\n', '')
+        ataque_especial_maximo = soup.find("table", class_="estadisticas").find_all('td')[21].next_element.replace('\r', '').replace('\n', '')
+        defensa_especial_maxima = soup.find("table", class_="estadisticas").find_all('td')[22].next_element.replace('\r', '').replace('\n', '')
+        velocidad_maxima = soup.find("table", class_="estadisticas").find_all('td')[23].next_element.replace('\r', '').replace('\n', '')
 
         print("Poke: ", lista_poke[i])
         print("Descripción: ", Descripcion)
@@ -222,8 +203,7 @@ def obtenerTipos(soup):
     id_tipo = 0
 
     for i in range(0, 36, 2):
-        tipo_actual = soup.find_all('td')[i].text.replace(
-            '\r', '').replace('\n', '')
+        tipo_actual = soup.find_all('td')[i].text.replace('\r', '').replace('\n', '')
         lista_tipos.append([id_tipo, str(tipo_actual)])
         id_tipo += 1
 
@@ -243,8 +223,7 @@ def obtenerAtaques(soup, tipos):
     ataques = []
 
     for i in range(37, 857, 5):
-        ataque_actual = soup.find_all('td')[i].text.replace(
-            '\n', '').replace('\r', '').replace('(1ª gen.)', '')
+        ataque_actual = soup.find_all('td')[i].text.replace('\n', '').replace('\r', '').replace('(1ª gen.)', '')
         ataques.append(ataque_actual)
         print("Ataque actual: ", ataque_actual)
 
@@ -264,20 +243,17 @@ def obtenerDetalleAtaques(soup, lista_ataques):
         # Obtención de los datos del ataque actual
         print(lista_ataques[i])
 
-        categoria = soup.find(
-            "div", {"data-source": "categoría"}).find("img").get("alt")
+        categoria = soup.find("div", {"data-source": "categoría"}).find("img").get("alt")
         if "Tipo físico" in categoria:
             categoria = "f"
         elif "Tipo especial" in categoria:
             categoria = "e"
         else:
             categoria = None
-        tipo = soup.find("div", {"data-source": "tipo"}).find(
-            "img").get("alt").replace('\r', '').replace('\n', '').split()
+        tipo = soup.find("div", {"data-source": "tipo"}).find("img").get("alt").replace('\r', '').replace('\n', '').split()
         tipo = getTiposID(tipo[1])
         try:
-            potencia = soup.find(
-                "div", {"data-source": "potencia"}).find('div').next_element
+            potencia = soup.find("div", {"data-source": "potencia"}).find('div').next_element
 
         except:
             # El ataque no tiene Potencia, por lo tanto es una habilidad que aplica efectos
@@ -285,8 +261,7 @@ def obtenerDetalleAtaques(soup, lista_ataques):
 
         if (categoria != None) and (potencia != None and (potencia != "-")):
             ataqueID = ataqueID + 1
-            renglon = [ataqueID, lista_ataques[i]
-                       [1:], categoria, potencia, tipo]
+            renglon = [ataqueID, lista_ataques[i][1:], categoria, potencia, tipo]
             escribirCSV(csv, renglon)
 
         print("Categoría del ataque: ", categoria)
@@ -303,17 +278,14 @@ def obtenerResistencias(soup):
     for i in range(18, 342, 19):
 
         for j in range(1, 19, 1):
-            tipo = soup.find("table", class_="lista").find_all('td')[i].find(
-                'a').get('title').replace('\r', '').replace('\n', '').split()
-            afectado = soup.find("table", class_="lista").find_all(
-                'td')[j - 1].find('a').get('title').replace('\r', '').replace('\n', '').split()
+            tipo = soup.find("table", class_="lista").find_all('td')[i].find('a').get('title').replace('\r', '').replace('\n', '').split()
+            afectado = soup.find("table", class_="lista").find_all('td')[j - 1].find('a').get('title').replace('\r', '').replace('\n', '').split()
 
             tipo = getTiposID(tipo[1])
             afectado = getTiposID(afectado[1])
 
             try:
-                efecto = soup.find("table", class_="lista").find_all(
-                    'td')[i + j].find('a').get('title').replace('\r', '').replace('\n', '')
+                efecto = soup.find("table", class_="lista").find_all('td')[i + j].find('a').get('title').replace('\r', '').replace('\n', '')
                 if(efecto == "Poco efectivo"):
                     efecto = .5
                 elif(efecto == "Muy efectivo"):
