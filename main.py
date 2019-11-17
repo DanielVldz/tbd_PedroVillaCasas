@@ -5,6 +5,7 @@ import csv
 from bs4 import BeautifulSoup
 
 tipos = []
+lista_ataques = []
 lista_poke = []
 datosPoke = []
 
@@ -29,7 +30,7 @@ def escribirCSV(rutaCSV, renglon):
         writer = csv.writer(csvFile, delimiter=';', lineterminator='\n')
         writer.writerow(renglon)
     csvFile.close()
-
+    pass
 
 def getTiposID(tipo_ataque):
     for j in range(18):
@@ -48,6 +49,12 @@ def obtenerNombres(soup):
 
     return lista_poke
 
+def ataqueExiste(ataque):
+    for x in range(len(lista_ataques)):
+        if lista_ataques[x].lower() in ataque.lower():
+            return (x + 1)
+    return False
+
 
 def obtenerDatosPoke(soup, lista_pokemon):
 
@@ -60,7 +67,7 @@ def obtenerDatosPoke(soup, lista_pokemon):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
         evolucion_anterior = soup.find_all('td')[i + 2 + corrimiento].text.split(':')
-        regex = re.compile("(nivel ([1|2|3|4|5|6|7|8|9]*[0|1|2|3|4|5|6|7|8|9]))")
+        regex = re.compile("(nivel (^[1-9][0-9]?$|^100$)")
 
         if "No evoluciona" in evolucion_anterior[0]:
             evolucion_anterior = " null"
@@ -93,7 +100,6 @@ def obtenerDatosPoke(soup, lista_pokemon):
                 except:
                     nivel_evolucion = "null"
 
-        # nombre_actual = lista_poke[int(numero_actual[1])]
         nombre_actual = lista_pokemon[0]
         id_actual = getPokeID(nombre_actual)
         print("Poke actual", nombre_actual)
@@ -152,6 +158,15 @@ def obtenerDetallePokemon(soup, lista_poke):
         defensa_especial_maxima = soup.find("table", class_="estadisticas").find_all('td')[22].next_element.replace('\r', '').replace('\n', '')
         velocidad_maxima = soup.find("table", class_="estadisticas").find_all('td')[23].next_element.replace('\r', '').replace('\n', '')
 
+        #Ataques que puede aprender
+        for j in range(1, len(soup.find("table", class_="movnivel").find_all("tr"))):
+            fila = soup.find("table", class_="movnivel").find_all("tr")[j].find_all("td")
+            ataque = fila[len(fila) - 4].text[1:].replace('\r', '').replace('\n', '')
+            print(ataque)
+            existe = ataqueExiste(ataque)
+            if existe != False:
+                escribirCSV("Bichos/ataque-especie.csv", [existe, i])
+
         print("Poke: ", lista_poke[i])
         print("Descripción: ", Descripcion)
         print("Tipo 1: ", tipo1)
@@ -190,7 +205,6 @@ def obtenerDetallePokemon(soup, lista_poke):
                    defensa_especial_maxima,
                    velocidad_maxima]
         print(renglon)
-
         escribirCSV(csv, renglon)
 
 
@@ -223,20 +237,20 @@ def obtenerAtaques(soup, tipos):
     ataques = []
 
     for i in range(37, 857, 5):
-        ataque_actual = soup.find_all('td')[i].text.replace('\n', '').replace('\r', '').replace('(1ª gen.)', '')
+        ataque_actual = soup.find_all('td')[i].text[1:].replace('\n', '').replace('\r', '').replace('(1ª gen.)', '')
         ataques.append(ataque_actual)
         print("Ataque actual: ", ataque_actual)
 
     return ataques
 
-
-def obtenerDetalleAtaques(soup, lista_ataques):
+def obtenerDetalleAtaques(soup):
     # Ignorar para el CSV los que no tengan potencia
     url = "https://pokemon.fandom.com/es/wiki/"
     ataqueID = 0
     csv = "Bichos/Ataques.csv"
+    borrar = []
     for i in range(0, len(lista_ataques)):
-        url_actual = url + (lista_ataques[i][1:].replace(' ', '_'))
+        url_actual = url + (lista_ataques[i].replace(' ', '_'))
         response = requests.get(url_actual)
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -264,8 +278,14 @@ def obtenerDetalleAtaques(soup, lista_ataques):
             renglon = [ataqueID, lista_ataques[i][1:], categoria, potencia, tipo]
             escribirCSV(csv, renglon)
 
+        else:
+            borrar.append(lista_ataques[i])
+
         print("Categoría del ataque: ", categoria)
         print("Potencia del ataque", potencia)
+    
+    for x in borrar:
+        lista_ataques.remove(x)
 
 
 def obtenerResistencias(soup):
@@ -295,15 +315,12 @@ def obtenerResistencias(soup):
             except:
                 efecto = 1
 
-            # print(tipo)
-            # print(efecto)
             print("Un ataque tipo ", tipo, " x ", efecto, " a ", afectado)
             if efecto != 1:
                 renglon = [tipo, efecto, afectado]
                 escribirCSV(csv, renglon)
 
         print("Fin del renglón número: ", (i + 1))
-
 
 url = 'https://es.wikipedia.org/wiki/Anexo:Pok%C3%A9mon_de_la_primera_generaci%C3%B3n'
 response = requests.get(url)
@@ -312,10 +329,10 @@ soup = BeautifulSoup(response.text, "html.parser")
 direccion_csv = 'D:/Documentos/Escuela/Semestre 7/Taller de base de datos/Proyecto 1/Pokimon_primera_gen.csv'
 
 tipos = obtenerTipos(soup)
-#lista_poke = obtenerNombres(soup)
-# datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
-#obtenerDetallePokemon(soup, lista_poke)
 lista_ataques = obtenerAtaques(soup, tipos)
-obtenerDetalleAtaques(soup, lista_ataques)
-# obtenerResistencias(soup)
+obtenerDetalleAtaques(soup)
+lista_poke = obtenerNombres(soup)
+datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
+obtenerDetallePokemon(soup, lista_poke)
+obtenerResistencias(soup)
 print("Ya we")

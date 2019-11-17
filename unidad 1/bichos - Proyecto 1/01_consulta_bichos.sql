@@ -55,4 +55,4 @@ EXCEPT
 	FROM especie INNER JOIN bicho ON bicho.id_especie = especie.id_especie
 		INNER JOIN usuarioBicho ON usuarioBicho.id_bicho = bicho.id_bicho
 
---6) Bichos que pueden derrotar a Mewtwo de un solo ataque (Al chile que hueva, es igual a la 4 xd)
+--6) 
