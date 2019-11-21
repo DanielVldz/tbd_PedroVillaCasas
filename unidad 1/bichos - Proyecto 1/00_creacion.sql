@@ -3,10 +3,6 @@ GO
 USE bichos
 GO
 
-
--- USE Master
--- DROP DATABASE bichos
-
 CREATE TABLE usuario
 (
 	id INT IDENTITY NOT NULL PRIMARY KEY,
