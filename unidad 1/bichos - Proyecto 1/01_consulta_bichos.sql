@@ -55,4 +55,36 @@ EXCEPT
 	FROM especie INNER JOIN bicho ON bicho.id = especie.id
 		INNER JOIN usuariobicho ON usuariobicho.id = bicho.id
 
---6) 
+--6) Ataque físico más fuerte que puede aprender el bicho con menor ataque físico
+DECLARE @debil INT
+SELECT @debil = especie.id
+FROM especie
+WHERE especie.ataque_normal_maximo = (SELECT MIN(especie.ataque_normal_maximo)
+FROM especie);
+SELECT especie.especie, ataque.nombre
+FROM especie
+	LEFT JOIN ataqueEspecie ae ON ae.id_especie = especie.id
+	LEFT JOIN ataque ON ataque.id = ae.id_ataque
+WHERE ataque.potencia = (SELECT max(ataque.potencia)
+	FROM ataque
+		LEFT JOIN ataqueEspecie ae ON ae.id_ataque = ataque.id
+	WHERE ae.id_especie = @debil)
+	AND especie.id = @debil
+
+--7) Bicho más fuerte recibido por intercambio
+SELECT bicho.id, especie.especie, especie.ataque_normal_maximo
+FROM bicho
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+WHERE especie.ataque_normal_maximo = (SELECT max(especie.ataque_normal_maximo)
+FROM bicho
+	LEFT JOIN especie ON especie.id = bicho.id_especie)
+
+--8) Ataques que ningún entrenador le han enseñado a sus bichos
+	SELECT ataque.nombre
+	FROM ataque
+EXCEPT
+	SELECT ataque.nombre
+	FROM bicho
+	left join ataque on ataque.id = bicho.id_ataque1 or ataque.id = bicho.id_ataque2 or ataque.id = bicho.id_ataque3 or ataque.id = bicho.id_ataque4
+
+--9)

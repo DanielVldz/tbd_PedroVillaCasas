@@ -1,5 +1,6 @@
 CREATE DATABASE bichos
 GO
+
 USE bichos
 GO
 
@@ -53,7 +54,7 @@ CREATE TABLE ataque
 	FOREIGN KEY(id_tipo) REFERENCES tipo(id)
 )
 GO
---Faltan datos
+
 CREATE TABLE ataqueEspecie
 (
 	id_ataque INT NOT NULL,
@@ -94,7 +95,7 @@ CREATE TABLE usuarioBicho
 	FOREIGN KEY(id_bicho) REFERENCES bicho(id)
 )
 GO
---Faltan datos
+
 CREATE TABLE intercambio
 (
 	id_intercambio INT IDENTITY NOT NULL PRIMARY KEY,
@@ -1490,3 +1491,58 @@ VALUES
 	(67, 150),
 	(41, 150),
 	(49, 150);
+
+INSERT INTO intercambio(id_intercambio, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2) VALUES
+(1, 1, 2, 15, 20),
+(2, 5, 8 , 6, 12),
+(3, 3, 7, 8, 18),
+(4, 8, 9, 19, 21),
+(5, 17, 22, 10, 12),
+(6, 14, 3, 17, 11),
+(7, 2, 5, 8, 8),
+(8, 6, 2, 5, 9),
+(9, 10, 11, 12, 13),
+(10, 11, 12, 13, 14),
+(11, 3, 10, 8, 9),
+(12, 5, 6 , 8 , 10),
+(13, 18, 6, 2 , 3),
+(14, 25, 24, 25, 24),
+(15, 1, 2, 30, 48),
+(16, 9, 25, 6, 49),
+(17, 1, 3, 24, 10),
+(18, 5, 6, 7, 8),
+(19, 4, 8, 15, 19),
+(20, 13, 15, 25, 26),
+(21, 22, 21, 35, 20),
+(22, 12, 23, 20, 40),
+(23, 20, 5, 3, 9),
+(24, 2, 5, 8 , 9),
+(25, 2, 7, 9, 3);
+
+INSERT INTO combate (id_combate, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2, id_ganador) VALUES
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+(),
+();
