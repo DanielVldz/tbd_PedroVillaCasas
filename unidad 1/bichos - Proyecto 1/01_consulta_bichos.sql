@@ -53,7 +53,7 @@ SELECT max(((((42) * a1.potencia * e1.ataque_especial_maximo / e2.defensa_especi
 EXCEPT
 	SELECT especie.especie
 	FROM especie INNER JOIN bicho ON bicho.id = especie.id
-		INNER JOIN usuariobicho ON usuariobicho.id = bicho.id
+		INNER JOIN usuariobicho ON usuariobicho.id_bicho = bicho.id
 
 --6) Ataque físico más fuerte que puede aprender el bicho con menor ataque físico
 DECLARE @debil INT
@@ -71,7 +71,7 @@ WHERE ataque.potencia = (SELECT max(ataque.potencia)
 	WHERE ae.id_especie = @debil)
 	AND especie.id = @debil
 
---7) Bicho más fuerte recibido por intercambio
+--7) Bicho más fuerte recibido por intercambio (a caray, olvidé la parte del intercambio jsjs)
 SELECT bicho.id, especie.especie, especie.ataque_normal_maximo
 FROM bicho
 	LEFT JOIN especie ON especie.id = bicho.id_especie
@@ -85,6 +85,42 @@ FROM bicho
 EXCEPT
 	SELECT ataque.nombre
 	FROM bicho
-	left join ataque on ataque.id = bicho.id_ataque1 or ataque.id = bicho.id_ataque2 or ataque.id = bicho.id_ataque3 or ataque.id = bicho.id_ataque4
+		LEFT JOIN ataque ON ataque.id = bicho.id_ataque1 OR ataque.id = bicho.id_ataque2 OR ataque.id = bicho.id_ataque3 OR ataque.id = bicho.id_ataque4
 
---9)
+--9) Especie de bicho que ningún entrenador tiene
+	SELECT especie.especie
+	FROM especie
+EXCEPT
+	SELECT especie.especie
+	FROM bicho
+		LEFT JOIN especie ON especie.id = bicho.id_especie
+
+--10) Especie más común entre los entrenadores
+SELECT ent.nombre, ub.nombre, esp.especie, count(esp.especie) total
+FROM usuariobicho ub
+	INNER JOIN usuario ent ON ent.id = ub.id_usuario
+	INNER JOIN bicho bic ON ub.id_bicho = bic.id
+	INNER JOIN especie esp ON bic.id_especie = esp.id
+GROUP BY esp.especie,ent.nombre,ub.nombre
+
+--11) Especie más intercambiada
+--12) Entrenadores que más veces se han enfrentado
+--13) Todos los entrenadores derrotados por Red
+--14) Entrenador con mayor número de derrotas
+--15) Entrenador con bichos de tipos opuestos (Que los ataques de uno son muy eficaces contra el otro)
+--16) Especie con la que más se han ganado combates
+--17) Especies que no han ganado combates
+--18) 
+--19) 
+--21) 
+--22) 
+--23) 
+--24) 
+--25) 
+--26) 
+--27) 
+--28) 
+--29) 
+--30) 
+--TRIGGER: Calcular la salud resultante de un atacado
+--Stored Procedure: Calcular el daño

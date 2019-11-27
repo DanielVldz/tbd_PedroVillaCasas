@@ -87,11 +87,11 @@ GO
 CREATE TABLE usuarioBicho
 (
 	id_bicho INT IDENTITY NOT NULL PRIMARY KEY,
-	id INT NOT NULL,
+	id_usuario INT NOT NULL,
 	nombre NVARCHAR(20),
 	latitud_Captura DECIMAL NOT NULL,
 	longitud_Captura DECIMAL NOT NULL,
-	FOREIGN KEY(id) REFERENCES usuario(id),
+	FOREIGN KEY(id_usuario) REFERENCES usuario(id),
 	FOREIGN KEY(id_bicho) REFERENCES bicho(id)
 )
 GO
@@ -109,7 +109,7 @@ CREATE TABLE intercambio
 	FOREIGN KEY(id_bicho2) REFERENCES bicho(id)
 )
 GO
---Faltan datos
+
 CREATE TABLE combate
 (
 	id_combate INT IDENTITY NOT NULL PRIMARY KEY,
@@ -718,7 +718,7 @@ SET IDENTITY_INSERT bichos.dbo.bicho OFF
 
 SET IDENTITY_INSERT bichos.dbo.usuarioBicho ON
 INSERT INTO usuarioBicho
-	(id_bicho, id, nombre, latitud_Captura, longitud_Captura)
+	(id_bicho, id_usuario, nombre, latitud_Captura, longitud_Captura)
 VALUES(1, 1, 'Don Ramón', -20.9360, -71.8732),
 	(2, 1, 'Toño', -77.7872, -142.8486),
 	(3, 2, NULL, -20.9360, -71.8732),
@@ -1491,8 +1491,12 @@ VALUES
 	(67, 150),
 	(41, 150),
 	(49, 150);
+	SET IDENTITY_INSERT bichos.dbo.usuarioBicho OFF
 
-INSERT INTO intercambio(id_intercambio, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2) VALUES
+	SET IDENTITY_INSERT bichos.dbo.intercambio ON
+INSERT INTO intercambio
+	(id_intercambio, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2) 
+VALUES
 (1, 1, 2, 15, 20),
 (2, 5, 8 , 6, 12),
 (3, 3, 7, 8, 18),
@@ -1518,31 +1522,34 @@ INSERT INTO intercambio(id_intercambio, id_entrenador1, id_entrenador2, id_bicho
 (23, 20, 5, 3, 9),
 (24, 2, 5, 8 , 9),
 (25, 2, 7, 9, 3);
+SET IDENTITY_INSERT bichos.dbo.intercambio OFF
 
-INSERT INTO combate (id_combate, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2, id_ganador) VALUES
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-(),
-();
+SET IDENTITY_INSERT bichos.dbo.combate ON
+INSERT INTO combate
+	(id_combate, id_entrenador1, id_entrenador2, id_bicho1, id_bicho2, id_ganador)
+VALUES
+(1, 2, 5, 7, 9, 2),
+(2, 5, 10, 15, 6, 10),
+(3, 7, 11, 35, 45, 11),
+(4, 20, 21, 22, 23, 20),
+(5, 25, 24, 30, 40, 25),
+(6, 1, 16, 5, 35, 1),
+(7, 20, 13, 2, 9, 13),
+(8, 2, 8, 10, 11, 8),
+(9, 9, 5, 35, 38, 5),
+(10, 8, 11, 27, 41, 8),
+(11, 5, 9, 31, 49, 9),
+(12, 20, 16, 33, 2, 20),
+(13, 17, 11, 31, 26, 17),
+(14, 17, 11, 38, 25, 11),
+(15, 11, 23, 46, 50, 23),
+(16, 25, 18, 35, 28, 18),
+(17, 1, 3, 28, 19, 1),
+(18, 1, 25, 39, 42, 1),
+(19, 1, 18, 2, 35, 1),
+(20, 1, 15, 27, 48, 1),
+(21, 2, 16, 37, 19, 16),
+(22, 8, 11, 15, 16, 8),
+(23, 6, 3, 17, 21, 3),
+(24, 8, 9, 10, 11, 8),
+(25, 23, 22, 21, 20, 22);
