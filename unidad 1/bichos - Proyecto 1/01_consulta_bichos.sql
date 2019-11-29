@@ -175,14 +175,14 @@ WHERE (usuario.id = combate.id_entrenador1 AND bicho.id <> combate.id_bicho1) OR
 
 --18) Bicho de mayor nivel que ha perdido un combate
 SELECT TOP 1
-	bicho.id, especie.especie, max(bicho.nivel) AS nivel
+	bicho.id, especie.especie, bicho.nivel AS nivel
 FROM combate
 	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
 	LEFT JOIN especie ON especie.id = bicho.id_especie
 	LEFT JOIN usuario ON usuario.id = combate.id_ganador
 WHERE (usuario.id = combate.id_entrenador1 AND bicho.id <> combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id <> combate.id_bicho2)
-GROUP BY bicho.id, especie.especie
-ORDER BY nivel DESC
+GROUP BY bicho.id, especie.especie, bicho.nivel
+ORDER BY bicho.nivel DESC
 
 --19) Entrenadores invictos
 	SELECT usuario.nombre
@@ -204,23 +204,40 @@ WHERE (combate.id_entrenador1 = usuario.id AND bicho.id = combate.id_bicho1) OR 
 
 --21) Evolución de Eevee con mayor velocidad
 SELECT TOP 1
-	especie.especie, MAX(especie.velocidad_maxima) AS velocidad
+	especie.especie, especie.velocidad_maxima AS velocidad
 FROM especieEvolucion
 	LEFT JOIN especie ON especie.id = especieEvolucion.id_especie_siguiente
 WHERE especieEvolucion.id_especie_actual = (SELECT especie.id
 FROM especie
 WHERE especie.especie = 'Eevee')
-GROUP BY especie.especie
-ORDER BY velocidad DESC
+GROUP BY especie.especie, especie.velocidad_maxima
+ORDER BY especie.velocidad_maxima DESC
 
 --22) Especies que pueden usar el ataque físico más poderoso
-SELECT ataque.id, ataque.nombre, MAX(ataque.potencia) poder
-FROM ataque
-WHERE ataque.categoria = 'f'
-GROUP BY ataque.id, ataque.nombre
-ORDER BY poder DESC
+SELECT especie.especie, ataque.nombre
+FROM ataqueEspecie
+	LEFT JOIN especie ON especie.id = ataqueEspecie.id_especie
+	LEFT JOIN ataque ON ataque.id = (
+SELECT TOP 1
+		ataque.id
+	FROM ataque
+	WHERE ataque.categoria = 'f'
+	ORDER BY ataque.potencia DESC)
+WHERE ataqueEspecie.id_ataque = ataque.id
 
---23) Bicho que es invencible
+--23) Bichos que son invencibles
+SELECT bicho.id, especie.especie
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id
+WHERE bicho.id NOT IN(
+	SELECT bicho.id
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+WHERE (usuario.id = combate.id_entrenador1 AND bicho.id <> combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id <> combate.id_bicho2)
+)
 
 --24) Especie más común entre machos
 SELECT TOP 1
