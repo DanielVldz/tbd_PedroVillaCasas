@@ -27,7 +27,6 @@ WHERE ataque.categoria = 'f')
 --Y cuan eficiente es contra el tipo del especie atacado.
 --Considerando, además, las estadísticas de los especies y el ataque.
 --Considerando el especie atacante en su nivel máximo y el especie atacado con estadísticas base
-
 --El cálculo de daño se realiza con la siguiente formula:
 --(((((2 x nivel atacante) / 5) + 2) * potencia de ataque * (poder del atacante / defensa del atacado)) / 50) + 2
 SELECT e1.especie AS 'Atacante', a1.nombre, e2.especie AS 'Atacado', (((((42) * a1.potencia * e1.ataque_especial_maximo / e2.defensa_especial_base) / 50) + 2) * ea.eficacia) AS 'Daño inflingido'
@@ -71,13 +70,14 @@ WHERE ataque.potencia = (SELECT max(ataque.potencia)
 	WHERE ae.id_especie = @debil)
 	AND especie.id = @debil
 
---7) Bicho más fuerte recibido por intercambio (a caray, olvidé la parte del intercambio jsjs)
-SELECT bicho.id, especie.especie, especie.ataque_normal_maximo
-FROM bicho
+--7) Bicho más fuerte recibido por intercambio
+SELECT TOP 1
+	bicho.id, especie.especie, MAX(especie.ataque_normal_maximo) AS ataque
+FROM intercambio
+	LEFT JOIN bicho ON bicho.id = intercambio.id_bicho1 OR bicho.id = intercambio.id_bicho2
 	LEFT JOIN especie ON especie.id = bicho.id_especie
-WHERE especie.ataque_normal_maximo = (SELECT max(especie.ataque_normal_maximo)
-FROM bicho
-	LEFT JOIN especie ON especie.id = bicho.id_especie)
+GROUP BY bicho.id, especie.especie
+ORDER BY ataque DESC
 
 --8) Ataques que ningún entrenador le han enseñado a sus bichos
 	SELECT ataque.nombre
@@ -104,23 +104,180 @@ FROM usuariobicho ub
 GROUP BY esp.especie,ent.nombre,ub.nombre
 
 --11) Especie más intercambiada
+SELECT TOP 1
+	especie.especie, COUNT(especie.especie) AS intercambiado
+FROM intercambio
+	LEFT JOIN bicho ON bicho.id = intercambio.id_bicho1 OR bicho.id = intercambio.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+GROUP BY especie.especie
+ORDER BY intercambiado DESC
+
 --12) Entrenadores que más veces se han enfrentado
+SELECT SUM(repeticiones.cnt) AS Enfrentamientos, repeticiones.entrenador1, repeticiones.entrenador2
+FROM(
+SELECT COUNT(*) cnt, e1.nombre AS 'entrenador1', e2.nombre AS 'entrenador2'
+	FROM combate
+		LEFT JOIN usuario e1 ON e1.id = combate.id_entrenador1
+		LEFT JOIN usuario e2 ON e2.id = combate.id_entrenador2
+	GROUP BY e1.nombre, e2.nombre
+	HAVING COUNT(*) > 1
+)repeticiones
+GROUP BY repeticiones.entrenador1, repeticiones.entrenador2
+
 --13) Todos los entrenadores derrotados por Red
+DECLARE @red INT
+SELECT @red = id
+FROM usuario
+WHERE nombre = 'Red'
+SELECT usuario.nombre
+FROM combate
+	LEFT JOIN usuario ON usuario.id = combate.id_entrenador1 OR usuario.id = combate.id_entrenador2
+WHERE combate.id_ganador = @red AND usuario.id <> @red
+
 --14) Entrenador con mayor número de derrotas
---15) Entrenador con bichos de tipos opuestos (Que los ataques de uno son muy eficaces contra el otro)
+SELECT TOP 1
+	usuario.nombre, COUNT(usuario.nombre) AS derrotas
+FROM combate
+	LEFT JOIN usuario ON usuario.id = combate.id_entrenador1 OR usuario.id = combate.id_entrenador2
+WHERE usuario.id <> combate.id_ganador
+GROUP BY usuario.nombre
+ORDER BY derrotas DESC
+
+--15) Entrenadores que no evolucionan a sus bichos
+SELECT usuario.nombre, bicho.id, especie.especie
+FROM usuarioBicho
+	LEFT JOIN bicho ON bicho.id = usuarioBicho.id_bicho
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = usuarioBicho.id_usuario
+WHERE especie.id NOT IN(
+	SELECT especieEvolucion.id_especie_siguiente
+FROM especieEvolucion
+)
+
 --16) Especie con la que más se han ganado combates
+SELECT TOP 1
+	especie.especie, COUNT(especie.especie) AS Victorias
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+WHERE (usuario.id = combate.id_entrenador1 AND bicho.id = combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id = combate.id_bicho2)
+GROUP BY especie.especie
+ORDER BY Victorias DESC
+
 --17) Especies que no han ganado combates
---18) 
---19) 
---21) 
---22) 
---23) 
---24) 
---25) 
---26) 
---27) 
---28) 
---29) 
---30) 
+SELECT DISTINCT especie.especie
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+WHERE (usuario.id = combate.id_entrenador1 AND bicho.id <> combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id <> combate.id_bicho2)
+
+--18) Bicho de mayor nivel que ha perdido un combate
+SELECT TOP 1
+	bicho.id, especie.especie, max(bicho.nivel) AS nivel
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+WHERE (usuario.id = combate.id_entrenador1 AND bicho.id <> combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id <> combate.id_bicho2)
+GROUP BY bicho.id, especie.especie
+ORDER BY nivel DESC
+
+--19) Entrenadores invictos
+	SELECT usuario.nombre
+	FROM usuario
+EXCEPT
+	SELECT usuario.nombre
+	FROM combate
+		LEFT JOIN usuario ON usuario.id = combate.id_entrenador1 OR usuario.id = combate.id_entrenador2
+	WHERE usuario.id <> combate.id_ganador
+
+--20) Entrenadores que han ganado con un bicho recibido por intercambio
+SELECT combate.id_combate, usuario.nombre, bicho.id, especie.especie
+FROM combate
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id
+	LEFT JOIN intercambio ON (intercambio.id_entrenador1 = usuario.id AND intercambio.id_bicho2 = bicho.id) OR (intercambio.id_entrenador2 = usuario.id AND intercambio.id_bicho1 = bicho.id)
+WHERE (combate.id_entrenador1 = usuario.id AND bicho.id = combate.id_bicho1) OR (combate.id_entrenador2 = usuario.id AND bicho.id = combate.id_bicho2)
+
+--21) Evolución de Eevee con mayor velocidad
+SELECT TOP 1
+	especie.especie, MAX(especie.velocidad_maxima) AS velocidad
+FROM especieEvolucion
+	LEFT JOIN especie ON especie.id = especieEvolucion.id_especie_siguiente
+WHERE especieEvolucion.id_especie_actual = (SELECT especie.id
+FROM especie
+WHERE especie.especie = 'Eevee')
+GROUP BY especie.especie
+ORDER BY velocidad DESC
+
+--22) Especies que pueden usar el ataque físico más poderoso
+SELECT ataque.id, ataque.nombre, MAX(ataque.potencia) poder
+FROM ataque
+WHERE ataque.categoria = 'f'
+GROUP BY ataque.id, ataque.nombre
+ORDER BY poder DESC
+
+--23) Bicho que es invencible
+
+--24) Especie más común entre machos
+SELECT TOP 1
+	especie.especie, COUNT(especie.especie) AS repeticiones
+FROM bicho
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+WHERE bicho.genero = 'm'
+GROUP BY especie.especie
+ORDER BY repeticiones DESC
+
+--25) Bicho hembra más fuerte
+SELECT bicho.id, especie.especie
+FROM bicho
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+WHERE bicho.nivel = (SELECT max(bicho.nivel)
+FROM bicho
+WHERE bicho.genero = 'f')
+
+--26) Bichos más lentos que han ganado un combate
+SELECT TOP 1
+	bicho.id AS bicho, especie.especie, MIN(especie.velocidad_maxima) AS velocidad
+FROM combate
+	LEFT JOIN bicho ON bicho.id = combate.id_bicho1 OR bicho.id = combate.id_bicho2
+	LEFT JOIN especie ON especie.id = bicho.id_especie
+	LEFT JOIN usuario ON usuario.id = combate.id_ganador
+WHERE (usuario.id = combate.id_entrenador1 AND bicho.id = combate.id_bicho1) OR (usuario.id = combate.id_entrenador2 AND bicho.id = combate.id_bicho2)
+GROUP BY bicho.id, especie.especie
+ORDER BY velocidad DESC
+
+--27) Especies que no puede evolucionar
+	SELECT especie.especie
+	FROM especie
+EXCEPT
+	SELECT especie.especie
+	FROM especieEvolucion
+		LEFT JOIN especie ON especie.id = especieEvolucion.id_especie_actual
+
+--28) Especies con más de una evolución
+SELECT especie.especie, COUNT(especie.especie) AS evoluciones
+FROM especieEvolucion
+	LEFT JOIN especie ON especie.id = especieEvolucion.id_especie_actual
+GROUP BY especie.especie
+HAVING COUNT(especie.especie) > 1
+
+--29) Ataque más enseñado por entrenadores
+SELECT TOP 1
+	ataque.nombre, COUNT(ataque.nombre) AS repeticiones
+FROM bicho
+	LEFT JOIN ataque ON ataque.id = bicho.id_ataque1 OR ataque.id = bicho.id_ataque2 OR ataque.id = bicho.id_ataque3 OR ataque.id = bicho.id_ataque4
+GROUP BY ataque.nombre
+ORDER BY repeticiones DESC
+
+--30) Entrenador que no ha ganado ningún combate
+SELECT DISTINCT usuario.nombre
+FROM combate
+	LEFT JOIN usuario ON usuario.id = combate.id_entrenador1 OR usuario.id = combate.id_entrenador2
+WHERE usuario.id <> combate.id_ganador
+
 --TRIGGER: Calcular la salud resultante de un atacado
 --Stored Procedure: Calcular el daño
