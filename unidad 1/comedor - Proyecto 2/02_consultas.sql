@@ -4,7 +4,7 @@ go
 
 
 -- 01. Cantidad de dinero que los tutores le deben a la escuela hijos de perra malapaga
-SELECT SUM(monto) FROM adeudo -- en realidad estÃ¡ bien meco, dudo que este sea bueno :'c'
+SELECT SUM(monto) FROM adeudo -- en realidad está bien meco, dudo que este sea bueno :'c'
 
 -- 02. Alimentos que contienen ingredientes a los que alguien sea alergico
 SELECT Alimento = a.nombre
@@ -43,7 +43,7 @@ SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, count(*) as niños
 	ORDER BY niños DESC
 
 -- 06. ninos con alergias que sus tutores tengan adeudos
-SELECT [ID del niño] = n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, [Adeudo de su tutor] = sum(a.monto), Tutor = t.nombre+' '+t.apaterno+' '+t.amaterno
+SELECT [ID del niño] = n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, [Adeudo de su tutor] = SUM(a.monto), Tutor = t.nombre+' '+t.apaterno+' '+t.amaterno
 	FROM niño n
 	INNER JOIN tutor t on t.id_tutor = n.id_tutor
 	INNER JOIN adeudo a on a.id_tutor = t.id_tutor
@@ -66,7 +66,7 @@ SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, SUM(a.monto)
 	GROUP BY t.nombre, t.apaterno, t.amaterno
 
 -- 08. Alimentos que tengan ingredientes con existencias menores a 20
-SELECT a.nombre
+SELECT Alimento = a.nombre
 	FROM alimento a
 	INNER JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	INNER JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
@@ -87,11 +87,12 @@ SELECT Top 1 Menu = m.nombre, Calorias = SUM(a.calorias)
 	GROUP BY m.nombre
 	ORDER BY SUM(a.calorias) DESC
 
--- 11. Muestra todos los hermanos mayores de Jesus Angulo Salazar
+-- 11. Muestra todos los hermanos menores de Gonzalo Angulo Salazar
 SELECT Nombre = h.nombre+' '+h.apaterno+' '+h.amaterno
-	FROM niño Jesus
-	INNER JOIN niño h ON Jesus.apaterno = h.apaterno AND Jesus.amaterno = h.amaterno
-	WHERE Jesus.nombre+' '+Jesus.apaterno+' '+Jesus.amaterno = 'Jesus Angulo Salazar'AND CONVERT(DATETIME, Jesus.fecha_de_nacimiento)<CONVERT(DATETIME, h.fecha_de_nacimiento)
+	FROM niño Gonzalo
+	INNER JOIN niño h ON Gonzalo.apaterno = h.apaterno AND Gonzalo.amaterno = h.amaterno
+	WHERE Gonzalo.nombre+' '+Gonzalo.apaterno+' '+Gonzalo.amaterno = 'Gonzalo Angulo Salazar'
+		AND CONVERT(DATETIME, Gonzalo.fecha_de_nacimiento) > CONVERT(DATETIME, h.fecha_de_nacimiento)
 
 -- 12. Menu con el mayor numero de alimentos que contengan ingredientes a los que un nino sea alergico
 SELECT TOP 1 Menu = m.nombre, [Cantidad de alimentos a los que hay niños alergicos] = count(DISTINCT a.id_alimento)
