@@ -164,3 +164,13 @@ SELECT a.nombre
 -- 29. Nose chale
 
 -- 30.
+
+/*
+ * EXCEPT
+ * LEFT y RIGHT JOIN
+ * UNION ALL
+ * where [not] exists (<subquery>), o where <expresión><operador de comparación<(<subquery>)
+ * MAX() MIN() AVG()
+ * [not] LIKE 'xd' '%xd' 'xd%' '%xd%' '%[xd]' '[xd]%' '%[xd]%'
+ * is [not] null
+*/
