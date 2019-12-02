@@ -298,3 +298,4 @@ WHERE usuario.id <> combate.id_ganador
 
 --TRIGGER: Calcular la salud resultante de un atacado
 --Stored Procedure: Calcular el daño
+-- quelegancialadefrancia stored procedure y no procedimiento almacenado oemege

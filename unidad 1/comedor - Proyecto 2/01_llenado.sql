@@ -46,8 +46,8 @@ insert into adeudo(id_tutor, monto, fecha_ultimo_abono) values
 	(2, 200, '20190705'),
 	(3, 150, '20190613'),
 	(3, 400, '20190705'),
-	(3, 50,  '20190705'),
-	(4, 100, '20190722')
+	(3, 50,  '20190705')
+
 
 insert into menu(nombre, fecha_inicio, fecha_final) values
 	('Menu verde', '20190808', '20190815'),
@@ -62,7 +62,8 @@ insert into alimento(nombre, tipo, calorias, carbohidratos, proteinas, grasas) v
 	('Pay de limón',	    'Postre', 230,	28,		7,		10),
 	('Helado de limón',		'Postre', 301,	46,		4,		13),
 	('Licuado de frutas',	'Bebida', 130,	33.52,	0.88,	0.29),
-	('Jugo de Manzana',		'Bebida', 117,	28.97,	0.15,	0.27)
+	('Jugo de Manzana',		'Bebida', 117,	28.97,	0.15,	0.27),
+	('Jugo de Naranja',		'Bebida', 100,	30,		0.5,	0.5)
 
 insert into menu_alimento(id_menu, id_alimento) values
 	(1, 2),
@@ -76,7 +77,8 @@ insert into menu_alimento(id_menu, id_alimento) values
 	(2, 4),
 	(2, 6),
 	(2, 7),
-	(2, 8)
+	(2, 8),
+	(2, 10)
 
 insert into ingrediente(nombre, caducidad, existencias) values
 	('Carne de res',	'20200120', 50),
@@ -98,7 +100,8 @@ insert into ingrediente(nombre, caducidad, existencias) values
 	('Queso chihuahua',	'20200315', 20),
 	('Rabano',			'20200105', 15),
 	('Brocoli',			'20191115', 5),
-	('Harina',			'20191215',	15)
+	('Harina',			'20191215',	15),
+	('Naranja',			'20191215',	30)
 
 insert into alimento_ingrediente(id_alimento, id_ingrediente) values
 	(1, 9),
@@ -138,7 +141,8 @@ insert into alimento_ingrediente(id_alimento, id_ingrediente) values
 	(8, 10),
 	(8, 11),
 	(8, 12),
-	(9, 9)
+	(9, 9),
+	(10, 21)
 
 insert into dieta(id_niño, fecha_inicio, fecha_fin) values
 	(3, '20190815', '20191220')
@@ -149,6 +153,18 @@ insert into alimento_dieta(id_alimento, id_dieta) values
 	(5, 1),
 	(8, 1),
 	(9, 1)
+
+insert into listaDeCompras(fecha) values
+	('20191220')
+
+insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
+	(1, 1),
+	(4, 1),
+	(2, 1),
+	(8, 1),
+	(15, 1),
+	(13, 1),
+	(17, 1)
 
 select * from tutor
 select * from niño
