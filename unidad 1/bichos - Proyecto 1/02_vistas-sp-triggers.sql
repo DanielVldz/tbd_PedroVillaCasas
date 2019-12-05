@@ -136,7 +136,7 @@ AS
 END
 GO
 
---2)Validar que a un bicho se le enseña un ataque de los que su especie puede aprender
+--2)Validar que no se agregue una ronda a un combate finalizado y realizar ajuste de las estadísticas de los bichos combatientes tras el turno. Finalizar si la vida de algún bicho llega a 0
 
 --3)Cálculos tras el combate (Llamar SP)
 CREATE TRIGGER postCombate
@@ -179,7 +179,7 @@ BEGIN
 END
 GO
 
---4)
+--4)Llenar los datos al insertar un nuevo bicho con valores aleatorios en rango de las estadísticas de la especie
 
 --5)Validar que el intercambio se realice con bichos pertenecientes a los entrenadores involucrados en el intercambio
 CREATE TRIGGER validarIntercambio

@@ -2,6 +2,7 @@ import requests
 import urllib.request
 import re
 import csv
+import random
 from bs4 import BeautifulSoup
 
 tipos = []
@@ -26,10 +27,10 @@ def getPokeID(poke):
 
 
 def escribirCSV(rutaCSV, renglon):
-    with open(rutaCSV, 'a', encoding='utf-8') as csvFile:
-        writer = csv.writer(csvFile, delimiter=';', lineterminator='\n')
-        writer.writerow(renglon)
-    csvFile.close()
+    # with open(rutaCSV, 'a', encoding='utf-8') as csvFile:
+    #     writer = csv.writer(csvFile, delimiter=';', lineterminator='\n')
+    #     writer.writerow(renglon)
+    # csvFile.close()
     pass
 
 def getTiposID(tipo_ataque):
@@ -67,7 +68,7 @@ def obtenerDatosPoke(soup, lista_pokemon):
 
         numero_actual = soup.find_all('td')[i + corrimiento].text.split(':')
         evolucion_anterior = soup.find_all('td')[i + 2 + corrimiento].text.split(':')
-        regex = re.compile("(nivel (^[1-9][0-9]?$|^100$)")
+        regex = re.compile("(nivel (^[1-9][0-9]?$|^100$))")
 
         if "No evoluciona" in evolucion_anterior[0]:
             evolucion_anterior = " null"
@@ -116,6 +117,12 @@ def obtenerDatosPoke(soup, lista_pokemon):
 
 
 def obtenerDetallePokemon(soup, lista_poke):
+    ataqueNormal = 0
+    ataqueEspecial = 0
+    defensaNormal = 0
+    defensaEspecial = 0
+    velocidad = 0
+
     url = "https://pokemon.fandom.com/es/wiki/"
     csv = "Bichos/Bichos.csv"
     for i in range(1, len(lista_poke) - 1):
@@ -162,29 +169,37 @@ def obtenerDetallePokemon(soup, lista_poke):
         for j in range(1, len(soup.find("table", class_="movnivel").find_all("tr"))):
             fila = soup.find("table", class_="movnivel").find_all("tr")[j].find_all("td")
             ataque = fila[len(fila) - 4].text[1:].replace('\r', '').replace('\n', '')
-            print(ataque)
+            #print(ataque)
             existe = ataqueExiste(ataque)
             if existe != False:
                 escribirCSV("Bichos/ataque-especie.csv", [existe, i])
 
-        print("Poke: ", lista_poke[i])
-        print("Descripción: ", Descripcion)
-        print("Tipo 1: ", tipo1)
-        print("Tipo 2: ", tipo2)
-        print("Ratio de captura: ", ratio_captura[3])
-        print("Puntos de salud base: ", ps_base)
-        print("Ataque normal base: ", ataque_base)
-        print("Defensa base: ", defensa_base)
-        print("Ataque especial base: ", ataque_especial_base)
-        print("Defensa especial base: ", defensa_especial_base)
-        print("Velocidad base: ", velocidad_base)
-        print("Puntos de salud máximos: ", ps_maximo)
-        print("Ataque normal máximo: ", ataque_maximo)
-        print("Defensa máxima: ", defensa_maxima)
-        print("Ataque esppecial máximo: ", ataque_especial_maximo)
-        print("Defensa especial máxima: ", defensa_especial_maxima)
-        print("Velocidad máxima: ", velocidad_maxima)
+        # print("Poke: ", lista_poke[i])
+        # print("Descripción: ", Descripcion)
+        # print("Tipo 1: ", tipo1)
+        # print("Tipo 2: ", tipo2)
+        # print("Ratio de captura: ", ratio_captura[3])
+        # print("Puntos de salud base: ", ps_base)
+        # print("Ataque normal base: ", ataque_base)
+        # print("Defensa base: ", defensa_base)
+        # print("Ataque especial base: ", ataque_especial_base)
+        # print("Defensa especial base: ", defensa_especial_base)
+        # print("Velocidad base: ", velocidad_base)
+        # print("Puntos de salud máximos: ", ps_maximo)
+        # print("Ataque normal máximo: ", ataque_maximo)
+        # print("Defensa máxima: ", defensa_maxima)
+        # print("Ataque esppecial máximo: ", ataque_especial_maximo)
+        # print("Defensa especial máxima: ", defensa_especial_maxima)
+        # print("Velocidad máxima: ", velocidad_maxima)
+        ataqueNormal = random.randint(int(ataque_base), int(ataque_maximo))
+        ataqueEspecial = random.randint(int(ataque_especial_base), int(ataque_especial_maximo))
+        defensaNormal = random.randint(int(defensa_base), int(defensa_maxima))
+        defensaEspecial = random.randint(int(defensa_especial_base), int(defensa_especial_maxima))
+        velocidad = random.randint(int(velocidad_base), int(velocidad_maxima))
 
+
+        print("id poke", i)
+        print(ataqueNormal, "," ,ataqueEspecial, ",", defensaNormal , ",", defensaEspecial, ",", velocidad, ",")
         renglon = [i,
                    lista_poke[i],
                    Descripcion,
@@ -204,7 +219,7 @@ def obtenerDetallePokemon(soup, lista_poke):
                    ataque_especial_maximo,
                    defensa_especial_maxima,
                    velocidad_maxima]
-        print(renglon)
+        #print(renglon)
         escribirCSV(csv, renglon)
 
 
@@ -334,5 +349,5 @@ obtenerDetalleAtaques(soup)
 lista_poke = obtenerNombres(soup)
 datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
 obtenerDetallePokemon(soup, lista_poke)
-obtenerResistencias(soup)
+# obtenerResistencias(soup)
 print("Ya we")
