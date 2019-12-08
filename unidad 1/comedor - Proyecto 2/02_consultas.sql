@@ -1,5 +1,5 @@
-use comedor
-go
+USE comedor
+GO
 
 
 
@@ -16,7 +16,7 @@ SELECT Alimento = a.nombre
 
 -- 03. Niño con más alergias
 SELECT TOP 1 nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
-	from niño n
+	FROM niño n
 	INNER JOIN  niñoAlergias na ON na.id_niño = n.id_niño
 	GROUP BY n.nombre, n.apaterno, n.amaterno
 	ORDER BY alergias DESC
@@ -58,12 +58,8 @@ SELECT [ID del niño] = n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno,
 SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, SUM(a.monto)
 	FROM tutor t
 	INNER JOIN adeudo a ON a.id_tutor = t.id_tutor
-	WHERE (
-		SELECT SUM(aa.monto)
-			FROM adeudo aa
-			WHERE aa.id_tutor = t.id_tutor
-		) BETWEEN 200 and 500
 	GROUP BY t.nombre, t.apaterno, t.amaterno
+	HAVING SUM(a.monto) BETWEEN 200 and 500
 
 -- 08. Alimentos que tengan ingredientes con existencias menores a 20
 SELECT Alimento = a.nombre
@@ -168,9 +164,12 @@ SELECT a.nombre
 /*
  * EXCEPT
  * LEFT y RIGHT JOIN
+ * HAVING
+ * CHECK
  * UNION ALL
  * where [not] exists (<subquery>), o where <expresión><operador de comparación<(<subquery>)
  * MAX() MIN() AVG()
  * [not] LIKE 'xd' '%xd' 'xd%' '%xd%' '%[xd]' '[xd]%' '%[xd]%'
  * is [not] null
+ * compute, compute by
 */

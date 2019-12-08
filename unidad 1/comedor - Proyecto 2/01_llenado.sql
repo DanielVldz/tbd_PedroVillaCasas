@@ -1,9 +1,11 @@
-use master
-go
-drop database comedor
-go
-use comedor
-go
+USE master
+GO
+DROP database comedor
+GO
+CREATE database comedor
+GO
+USE comedor
+GO
 
 
 insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo, telefono_celular) values
@@ -33,7 +35,7 @@ insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_na
 	('Norma',		'Quintero',  'Felix',     4, 'B', 4, '20070805'),
 	('Leslie',		'Quintero',  'Felix',     2, 'B', 4, '20070417'),
 	('Luis',		'Quintero',  'Felix',     3, 'A', 4, '20070623')
-update dbo.niño set especial = 1 where id_niño = 5
+update dbo.niño set especial = 1 where id_niño = 3
 
 insert into niñoAlergias(id_niño, nombre) values
 	(5, 'Brocoli'),
@@ -184,6 +186,3 @@ select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.ap
 	inner join alimento a on a.id_alimento = ad.id_alimento
 	inner join dieta d on d.id_dieta = ad.id_dieta
 	inner join niño n on d.id_niño = n.id_niño
-
-
-delete from menu where id_menu > 2
