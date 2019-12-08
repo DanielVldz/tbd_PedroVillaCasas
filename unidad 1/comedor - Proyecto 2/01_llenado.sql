@@ -1,3 +1,9 @@
+USE master
+GO
+DROP database comedor
+GO
+CREATE database comedor
+GO
 USE comedor
 GO
 
@@ -29,7 +35,7 @@ insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_na
 	('Norma',		'Quintero',  'Felix',     4, 'B', 4, '20070805'),
 	('Leslie',		'Quintero',  'Felix',     2, 'B', 4, '20070417'),
 	('Luis',		'Quintero',  'Felix',     3, 'A', 4, '20070623')
-update dbo.niño set especial = 1 where id_niño = 5
+update dbo.niño set especial = 1 where id_niño = 3
 
 insert into niñoAlergias(id_niño, nombre) values
 	(5, 'Brocoli'),

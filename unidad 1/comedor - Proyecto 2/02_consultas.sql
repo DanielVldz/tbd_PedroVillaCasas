@@ -16,7 +16,7 @@ SELECT Alimento = a.nombre
 
 -- 03. Niño con más alergias
 SELECT TOP 1 nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
-	from niño n
+	FROM niño n
 	INNER JOIN  niñoAlergias na ON na.id_niño = n.id_niño
 	GROUP BY n.nombre, n.apaterno, n.amaterno
 	ORDER BY alergias DESC
@@ -168,9 +168,12 @@ SELECT a.nombre
 /*
  * EXCEPT
  * LEFT y RIGHT JOIN
+ * HAVING
+ * CHECK
  * UNION ALL
  * where [not] exists (<subquery>), o where <expresión><operador de comparación<(<subquery>)
  * MAX() MIN() AVG()
  * [not] LIKE 'xd' '%xd' 'xd%' '%xd%' '%[xd]' '[xd]%' '%[xd]%'
  * is [not] null
+ * compute, compute by
 */

@@ -4,17 +4,24 @@ GO
 --######################################################################################--
 --####################################### VISTAS #######################################--
 --######################################################################################--
--- 02. Alimentos que contienen ingredientes a los que alguien sea alergico
-
-SELECT *
+-- 02. Niños y los alimentos con ingredientes a los que éstos puedan ser alérgicos
+CREATE VIEW AlimentoAlergias
+AS
+SELECT a.id_alimento, Alimento = a.nombre, i.id_ingrediente, Ingrediente = i.nombre, n.id_niño, Niño = n.nombre
 	FROM alimento a
 	INNER JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	INNER JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
 	INNER JOIN niñoAlergias na on na.nombre = i.nombre
+	INNER JOIN niño n on n.id_niño = na.id_niño
+GO
 
--- 03. Niño con más alergias
+-- 03. Niños con dieta
+SELECT *
+	FROM niño n
+	INNER JOIN dieta d on d.id_niño = n.id_niño
+
 SELECT TOP 1 nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
-	from niño n
+	FROM niño n
 	INNER JOIN  niñoAlergias na ON na.id_niño = n.id_niño
 	GROUP BY n.nombre, n.apaterno, n.amaterno
 	ORDER BY alergias DESC
@@ -43,12 +50,16 @@ SELECT TOP 1 Menu = m.nombre, [Cantidad de alimentos a los que hay niños alergi
 	INNER JOIN niñoAlergias na on na.nombre = i.nombre
 	GROUP BY m.nombre
 	ORDER BY count(DISTINCT a.id_alimento) DESC
+GO
 
--- Alimentos en cada menu
-SELECT *
+-- 5. Alimentos en cada menu
+CREATE VIEW alimentosEnMenu
+AS
+SELECT m.id_menu, menu = m.nombre, a.id_alimento, alimento = a.nombre
 	FROM menu_alimento ma
 	inner join menu m on m.id_menu = ma.id_menu
 	inner join alimento a on a.id_alimento = ma.id_alimento
+GO
 
 --######################################################################################--
 --############################# PROCEDIMIENTOS ALMACENADOS #############################--
