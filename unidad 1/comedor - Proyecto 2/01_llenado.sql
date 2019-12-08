@@ -1,9 +1,3 @@
-USE master
-GO
-DROP database comedor
-GO
-CREATE database comedor
-GO
 USE comedor
 GO
 
@@ -15,7 +9,7 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Antonia',   'Quintero', 'Zazueta',  'Ama de casa',		   44444444, 40404040)
 
 insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_nacimiento) values
-	('Jorge',		'Martinez',  'Aispuro',  2, 'A', 1, '20070102'),
+	('Jorge',		'Martinez',  'Aispuro',   2, 'A', 1, '20070102'),
 	('Luis',		'Mezquillo', 'Almendra',  6, 'A', 1, '20010622'),
 	('Fernando',	'Salazar',   'Salazar',   3, 'B', 2, '20070312'),
 	('Jose',		'Martinez',  'Gonzales',  2, 'A', 1, '20070102'),
@@ -105,46 +99,47 @@ insert into ingrediente(nombre, caducidad, existencias) values
 	('Harina',			'20191215',	15),
 	('Naranja',			'20191215',	30)
 
-insert into alimento_ingrediente(id_alimento, id_ingrediente) values
-	(1, 9),
-	(2, 1),
-	(2, 2),
-	(2, 5),
-	(2, 13),
-	(2, 14),
-	(2, 19),
-	(3, 3),
-	(3, 6),
-	(3, 7),
-	(3, 15),
-	(3, 16),
-	(4, 1),
-	(4, 2),
-	(4, 4),
-	(4, 6),
-	(4, 15),
-	(4, 18),
-	(4, 16),
-	(4, 17),
-	(5, 1),
-	(5, 2),
-	(5, 3),
-	(5, 4),
-	(5, 5),
-	(6, 6),
-	(6, 7),
-	(6, 8),
-	(6, 20),
-	(7, 6),
-	(7, 7),
-	(7, 8),
-	(8, 8),
-	(8, 9),
-	(8, 10),
-	(8, 11),
-	(8, 12),
-	(9, 9),
-	(10, 21)
+
+insert into alimento_ingrediente(id_alimento, id_ingrediente, cantidad) values
+	(1, 9,  1),
+	(2, 1,  1),
+	(2, 2,  2),
+	(2, 5,  3),
+	(2, 13, 4),
+	(2, 14, 2),
+	(2, 19, 4),
+	(3, 3,  2),
+	(3, 6,  1),
+	(3, 7,  3),
+	(3, 15, 1),
+	(3, 16, 2),
+	(4, 1,  4),
+	(4, 2,  2),
+	(4, 4,  1),
+	(4, 6,  1),
+	(4, 15, 3),
+	(4, 18, 1),
+	(4, 16, 1),
+	(4, 17, 2),
+	(5, 1,  1),
+	(5, 2,  3),
+	(5, 3,  4),
+	(5, 4,  3),
+	(5, 5,  3),
+	(6, 6,  2),
+	(6, 7,  1),
+	(6, 8,  2),
+	(6, 20, 2),
+	(7, 6,  2),
+	(7, 7,  1),
+	(7, 8,  3),
+	(8, 8,  4),
+	(8, 9,  2),
+	(8, 10, 1),
+	(8, 11, 3),
+	(8, 12, 2),
+	(9, 9,  1),
+	(10,21, 2)
 
 insert into dieta(id_niño, fecha_inicio, fecha_fin) values
 	(3, '20190815', '20191220')
@@ -168,21 +163,23 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 	(13, 1),
 	(17, 1)
 
-select * from tutor
-select * from niño
-select * from niñoAlergias
-select * from adeudo
-select * from menu
-select * from alimento
-select ma.id_menu, m.nombre, ma.id_alimento, a.nombre from menu_alimento ma
-	inner join menu m on m.id_menu = ma.id_menu
-	inner join alimento a on a.id_alimento = ma.id_alimento
-select * from ingrediente
-select ai.id_alimento, a.nombre, ai.id_ingrediente, i.nombre from alimento_ingrediente ai
-	inner join alimento a on a.id_alimento = ai.id_alimento
-	inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
-select * from dieta
-select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_niño from alimento_dieta ad
-	inner join alimento a on a.id_alimento = ad.id_alimento
-	inner join dieta d on d.id_dieta = ad.id_dieta
-	inner join niño n on d.id_niño = n.id_niño
+/*
+	select * from tutor
+	select * from niño
+	select * from niñoAlergias
+	select * from adeudo
+	select * from menu
+	select * from alimento
+	select ma.id_menu, m.nombre, ma.id_alimento, a.nombre from menu_alimento ma
+		inner join menu m on m.id_menu = ma.id_menu
+		inner join alimento a on a.id_alimento = ma.id_alimento
+	select * from ingrediente
+	select ai.id_alimento, a.nombre, ai.id_ingrediente, i.nombre from alimento_ingrediente ai
+		inner join alimento a on a.id_alimento = ai.id_alimento
+		inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
+	select * from dieta
+	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_niño from alimento_dieta ad
+		inner join alimento a on a.id_alimento = ad.id_alimento
+		inner join dieta d on d.id_dieta = ad.id_dieta
+		inner join niño n on d.id_niño = n.id_niño
+*/
