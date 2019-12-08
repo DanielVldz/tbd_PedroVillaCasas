@@ -1,5 +1,5 @@
-use comedor
-go
+USE comedor
+GO
 
 
 

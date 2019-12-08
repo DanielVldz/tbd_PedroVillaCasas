@@ -1,9 +1,5 @@
-use master
-go
-drop database comedor
-go
-use comedor
-go
+USE comedor
+GO
 
 
 insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo, telefono_celular) values
@@ -184,6 +180,3 @@ select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.ap
 	inner join alimento a on a.id_alimento = ad.id_alimento
 	inner join dieta d on d.id_dieta = ad.id_dieta
 	inner join niño n on d.id_niño = n.id_niño
-
-
-delete from menu where id_menu > 2
