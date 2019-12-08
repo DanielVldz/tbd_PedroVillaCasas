@@ -58,12 +58,8 @@ SELECT [ID del niño] = n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno,
 SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, SUM(a.monto)
 	FROM tutor t
 	INNER JOIN adeudo a ON a.id_tutor = t.id_tutor
-	WHERE (
-		SELECT SUM(aa.monto)
-			FROM adeudo aa
-			WHERE aa.id_tutor = t.id_tutor
-		) BETWEEN 200 and 500
 	GROUP BY t.nombre, t.apaterno, t.amaterno
+	HAVING SUM(a.monto) BETWEEN 200 and 500
 
 -- 08. Alimentos que tengan ingredientes con existencias menores a 20
 SELECT Alimento = a.nombre

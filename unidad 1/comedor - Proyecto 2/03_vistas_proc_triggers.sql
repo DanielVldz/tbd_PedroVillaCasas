@@ -4,8 +4,8 @@ GO
 --######################################################################################--
 --####################################### VISTAS #######################################--
 --######################################################################################--
--- 02. Niños y los alimentos con ingredientes a los que éstos puedan ser alérgicos
-CREATE VIEW AlimentoAlergias
+-- 1. Niños y los alimentos con ingredientes a los que éstos puedan ser alérgicos
+CREATE VIEW ViewAlimentoAlergias
 AS
 SELECT a.id_alimento, Alimento = a.nombre, i.id_ingrediente, Ingrediente = i.nombre, n.id_niño, Niño = n.nombre
 	FROM alimento a
@@ -15,44 +15,55 @@ SELECT a.id_alimento, Alimento = a.nombre, i.id_ingrediente, Ingrediente = i.nom
 	INNER JOIN niño n on n.id_niño = na.id_niño
 GO
 
--- 03. Niños con dieta
-SELECT *
+-- 2. Niños con dieta
+CREATE VIEW ViewNiñoDieta
+AS
+SELECT n.id_niño, niño = n.nombre, d.id_dieta, d.fecha_inicio, d.fecha_fin
 	FROM niño n
 	INNER JOIN dieta d on d.id_niño = n.id_niño
+GO
 
-SELECT TOP 1 nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
+-- 3. Niños y cuantas alergias tiene cada uno
+CREATE VIEW ViewNiñoAlergias
+AS
+SELECT n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
 	FROM niño n
 	INNER JOIN  niñoAlergias na ON na.id_niño = n.id_niño
-	GROUP BY n.nombre, n.apaterno, n.amaterno
-	ORDER BY alergias DESC
+	GROUP BY n.id_niño, n.nombre, n.apaterno, n.amaterno
+GO
 
--- tutores con adeudos
-SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, SUM(a.monto)
+-- 4. Tutores con adeudos
+CREATE VIEW ViewTutorDeuda
+AS
+SELECT Tutor = t.nombre+' '+t.apaterno+' '+t.amaterno, deudaTotal = SUM(a.monto)
 	FROM tutor t
 	INNER JOIN adeudo a ON a.id_tutor = t.id_tutor
 	GROUP BY t.nombre, t.apaterno, t.amaterno
+GO
 
--- 10. Menu con el mayor numero de calorias
-SELECT Top 1 Menu = m.nombre, Calorias = SUM(a.calorias)
+-- 5. Contenido nutricional total por cada menu
+CREATE VIEW ViewMenuContenidoNutricional
+AS
+SELECT Menu = m.nombre, Calorias = SUM(a.calorias), Carbohidratos = SUM(a.carbohidratos), Grasas = SUM(a.grasas), Proteinas = SUM(a.proteinas)
 	FROM menu m
 	INNER JOIN menu_alimento ma on ma.id_menu = m.id_menu
 	INNER JOIN alimento a on a.id_alimento = ma.id_alimento
 	GROUP BY m.nombre
-	ORDER BY SUM(a.calorias) DESC
+GO
 
--- 12. Menu con el mayor numero de alimentos que contengan ingredientes a los que un nino sea alergico
-SELECT TOP 1 Menu = m.nombre, [Cantidad de alimentos a los que hay niños alergicos] = count(DISTINCT a.id_alimento)
+-- 6. Menus que tienen alimentos con ingredientes a los que algún niño es alérgico
+SELECT Menu = m.nombre, n.id_niño, Niño = n.nombre+' '+n.apaterno+' '+n.amaterno, a.id_alimento,
+		Alimento = a.nombre, i.id_ingrediente, [Ingrediente de la alergia] = i.nombre
 	FROM menu m
 	INNER JOIN menu_alimento ma on ma.id_menu = m.id_menu
 	INNER JOIN alimento a on a.id_alimento = ma.id_alimento
 	INNER JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	INNER JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
 	INNER JOIN niñoAlergias na on na.nombre = i.nombre
-	GROUP BY m.nombre
-	ORDER BY count(DISTINCT a.id_alimento) DESC
+	JOIN niño n on n.id_niño = na.id_niño
 GO
 
--- 5. Alimentos en cada menu
+-- 7. Alimentos en cada menu
 CREATE VIEW alimentosEnMenu
 AS
 SELECT m.id_menu, menu = m.nombre, a.id_alimento, alimento = a.nombre
