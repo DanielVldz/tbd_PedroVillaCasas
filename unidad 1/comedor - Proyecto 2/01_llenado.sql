@@ -107,13 +107,8 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Claudette', 'Williamson', 'Finn', 'TV Azteca', 3145415126, 4510344260),
 	('Ali', 'Ames', 'Tucker', 'Farmacias GI', 8038240622, 3543177266);
 
-<<<<<<< HEAD
 insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_nacimiento) values
 	('Jorge',		'Martinez',  'Aispuro',  2, 'A', 1, '20070102'),
-=======
-insert into ni�o(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_nacimiento) values
-	('Jorge',		'Martinez',  'Aispuro',   2, 'A', 1, '20070102'),
->>>>>>> f9accbe7cc1912b013cd53105ebf1cd6bf5afdfc
 	('Luis',		'Mezquillo', 'Almendra',  6, 'A', 1, '20010622'),
 	('Fernando',	'Salazar',   'Salazar',   3, 'B', 2, '20070312'),
 	('Jose',		'Martinez',  'Gonzales',  2, 'A', 1, '20070102'),
@@ -501,30 +496,10 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 	(13, 1),
 	(17, 1)
 
-<<<<<<< HEAD
-select * from tutor
-select * from niño
-select * from niñoAlergias
-select * from adeudo
-select * from menu
-select * from alimento
-select ma.id_menu, m.nombre, ma.id_alimento, a.nombre from menu_alimento ma
-	inner join menu m on m.id_menu = ma.id_menu
-	inner join alimento a on a.id_alimento = ma.id_alimento
-select * from ingrediente
-select ai.id_alimento, a.nombre, ai.id_ingrediente, i.nombre from alimento_ingrediente ai
-	inner join alimento a on a.id_alimento = ai.id_alimento
-	inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
-select * from dieta
-select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_niño from alimento_dieta ad
-	inner join alimento a on a.id_alimento = ad.id_alimento
-	inner join dieta d on d.id_dieta = ad.id_dieta
-	inner join niño n on d.id_niño = n.id_niño
-=======
 /*
 	select * from tutor
-	select * from ni�o
-	select * from ni�oAlergias
+	select * from ni�o
+	select * from ni�oAlergias
 	select * from adeudo
 	select * from menu
 	select * from alimento
@@ -536,9 +511,8 @@ select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.a
 		inner join alimento a on a.id_alimento = ai.id_alimento
 		inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
 	select * from dieta
-	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, ni�o = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_ni�o from alimento_dieta ad
+	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, ni�o = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_ni�o from alimento_dieta ad
 		inner join alimento a on a.id_alimento = ad.id_alimento
 		inner join dieta d on d.id_dieta = ad.id_dieta
-		inner join ni�o n on d.id_ni�o = n.id_ni�o
+		inner join ni�o n on d.id_ni�o = n.id_ni�o
 */
->>>>>>> f9accbe7cc1912b013cd53105ebf1cd6bf5afdfc

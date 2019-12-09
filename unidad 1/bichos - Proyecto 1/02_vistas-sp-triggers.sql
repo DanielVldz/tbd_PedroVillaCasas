@@ -1,11 +1,47 @@
 USE bichos
 GO
 --Vistas del proyecto
---1)Ataques que un bicho puede aprender
---2)
---3)
---4)
---5)
+--1)Entrenadores que han perdido
+	create view entrenadoresDerrotados
+	AS
+	select usuario.id from combate
+	left join usuario on usuario.id = combate.id_entrenador1 or usuario.id = combate.id_entrenador2
+	where usuario.id <> combate.id_ganador;
+
+--2)Bichos que están en nivel para evolucionar
+	create view puedeEvolucionar
+	as
+	select bicho.id from bicho
+	left join especie on especie.id = bicho.id_especie
+	where bicho.nivel >= especie.nivel_evolucion;
+
+--3)Entrenadores con bichos eléctricos
+	create view entrenadorElectrico
+	as
+	select especie.especie from usuarioBicho
+	left join bicho on bicho.id = usuarioBicho.id_bicho
+	left join usuario on usuario.id = usuarioBicho.id_usuario
+	left join especie on especie.id = bicho.id_especie
+	left join tipo on tipo.id = especie.tipo1 or tipo.id = especie.tipo2
+	where tipo.nombre = 'Eléctrico'
+
+--4)Bichos que no tienen nombre asignado por su entrenador
+create view sinNombre
+as
+select usuarioBicho.id_bicho from usuarioBicho
+where usuarioBicho.nombre is null
+
+--5)Combates donde había ventaja de tipo
+create view ventajaTipo
+as
+select distinct combate.id_combate, e1.especie as atacante, e2.especie as atacado from combate
+left join ronda on ronda.id_combate = combate.id_combate
+left join bicho b1 on b1.id = ronda.id_atacante
+left join bicho b2 on b2.id = ronda.id_atacado
+left join especie e1 on e1.id = b1.id_especie
+left join especie e2 on e2.id = b2.id_especie
+left join resitenciasTipo on resitenciasTipo.id_atacado = e2.tipo1 or resitenciasTipo.id_atacado = e2.tipo2
+where resitenciasTipo.eficacia > 1;
 
 --Procedimientos almacenados
 --1)Cálculo del daño del ataque y la salud restante del atacado
@@ -19,9 +55,9 @@ BEGIN
 	SELECT (((((42) * a1.potencia * e1.ataque_especial_maximo / e2.defensa_especial_base) / 50) + 2) * ea.eficacia) AS 'Daño inflingido'
 	FROM resitenciasTipo ea
 		JOIN ataque a1 ON a1.id_tipo = ea.id_tipo_ataque
-		JOIN especie e1 ON a1.id_tipo = e1.tipo1 OR a1.id_tipo = e1.tipo2
+		JOIN especie e1 ON e1.tipo1 = a1.id_tipo OR e1.tipo2 = a1.id_tipo
 		JOIN especie e2 ON e2.tipo1 = ea.id_atacado OR e2.tipo2 = ea.id_atacado
-	WHERE e1 = @atacante AND e2 = @atacado AND a1 = @ataque
+	where e1.id = @atacante and e2.id = @atacado and a1.id = @ataque
 END
 GO
 --2)Cálculo de la experiencia adquirida en combate
@@ -38,6 +74,7 @@ BEGIN
 	RETURN @xp
 END
 GO
+
 --3)Formula de aumento de estadísticas
 CREATE PROCEDURE calcularAumento
 	(@base INT,
@@ -45,7 +82,7 @@ CREATE PROCEDURE calcularAumento
 	@esSalud BIT)
 AS
 BEGIN
-	SET NONCOUNT ON
+	SET NOCOUNT ON
 	DECLARE @suma INT, @aumento INT
 	IF(@esSalud = 1)
 BEGIN
@@ -57,7 +94,7 @@ ELSE
 BEGIN
 		SET @suma = 5
 	END
-	SELECT @aumtento = (((@base * 2 * bicho.nivel) / 100) + @suma)
+	SELECT @aumento = (((@base * 2 * bicho.nivel) / 100) + @suma)
 	FROM bicho
 	WHERE bicho.id = @bicho
 	RETURN @aumento
@@ -70,7 +107,7 @@ CREATE PROCEDURE aumentarEstadisticas
 AS
 BEGIN
 	SET NOCOUNT ON
-	DECLARE @base INT, @salud INT, @velocidad INT, @ataque INT
+	DECLARE @base INT, @salud INT, @velocidad INT, @ataque_normal INT, @ataque_especial INT
 
 	--Cálculo de la salud
 	SELECT @base = especie.salud_base
@@ -82,37 +119,45 @@ BEGIN
 	FROM bicho
 		LEFT JOIN especie ON especie.id = bicho.id_especie
 	EXEC @velocidad = calcularAumento @base, @bicho, 0
-	--Cálculo del ataque
-	SELECT @base = especie.ataque_base
+	--Cálculo del ataque normal
+	SELECT @base = especie.ataque_normal_base
 	FROM bicho
 		LEFT JOIN especie ON especie.id = bicho.id_especie
-	EXEC @ataque = calcularAumento @base, @bicho, 0
+	EXEC @ataque_normal = calcularAumento @base, @bicho, 0
+	--Cálculo de ataque especial
+	SELECT @base = especie.ataque_especial_base
+	FROM bicho
+		LEFT JOIN especie ON especie.id = bicho.id_especie
+	EXEC @ataque_especial = calcularAumento @base, @bicho, 0
 
 	UPDATE bicho
-	SET salud = @salud, velocidad = @velocidad, ataque = @ataque
+	SET salud = @salud, velocidad = @velocidad, ataque_normal = @ataque_normal, ataque_especial = @ataque_especial
 	WHERE bicho.id = @bicho
 END
 GO
+
 
 --5)Evolucionar un bicho
 CREATE PROCEDURE evolucionarBicho
 	(@id INT)
 AS
 BEGIN
-	SET NONCOUNT ON
+	SET NOCOUNT ON
 
 	DECLARE @especieSiguiente INT
-	SELECT @especieSiguiente = especieEvolucion.id_especie_siguiente
-	FROM bicho
-		LEFT JOIN especie ON especie.id = bicho.id
-		LEFT JOIN especieEvolucion ON especieEvolucion.id_especie_actual = especie.id
-	WHERE bicho.id = @id
+
+select @especieSiguiente = e1.id from especieEvolucion
+left join bicho on bicho.id_especie = especieEvolucion.id_especie_actual
+left join especie e1 on e1.id = especieEvolucion.id_especie_siguiente
+where bicho.id = @id
+
 
 	UPDATE bicho
 	SET bicho.id_especie = @especieSiguiente
 	WHERE bicho.id = @id
 END
 GO
+
 
 --Triggers
 --1)Cambios de las tablas usuarioBicho al hacer intercambio
@@ -137,22 +182,39 @@ END
 GO
 
 --2)Validar que no se agregue una ronda a un combate finalizado y realizar ajuste de las estadísticas de los bichos combatientes tras el turno. Finalizar si la vida de algún bicho llega a 0
+CREATE TRIGGER validarCombate
+ON ronda
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @ganador INT, @id INT
+
+	SELECT @id = inserted.id_combate
+	FROM inserted
+
+	SELECT @ganador = combate.id_ganador
+	FROM combate
+	WHERE combate.id_combate = @id
+	
+	IF @ganador IS NOT NULL
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR('El combate ya finalizó',16,1)
+	END
+END
+GO
 
 --3)Cálculos tras el combate (Llamar SP)
 CREATE TRIGGER postCombate
 ON combate
-AFTER INSERT
+AFTER UPDATE
 AS 
 BEGIN
-	DECLARE @idGanador INT, @xpTotal INT, @nivelEvolucion INT, @nivelActual INT
-	IF id_entrenador1 = id_ganador
-	BEGIN
-		SET @idGanador = id_bicho1
-	END
-	ELSE
-	BEGIN
-		SET @idGanador = id_bicho2
-	END
+	DECLARE  @xpTotal INT, @nivelEvolucion INT, @nivelActual INT, @idGanador INT
+
+	select @idGanador = ronda.id_atacante from inserted
+	left join ronda on ronda.id_combate = inserted.id_combate
+	where ronda.id_entrenador = inserted.id_ganador
 
 	EXEC @xpTotal = calculoExperiencia @idGanador
 
@@ -160,7 +222,7 @@ BEGIN
 	SET experiencia = bicho.experiencia + @xpTotal
 	WHERE bicho.id = @idGanador
 
-	IF bicho.experiencia >= 1000
+	IF (select bicho.experiencia from bicho where bicho.id = @idGanador) >= 1000
 	BEGIN
 		UPDATE bicho
 		SET bicho.experiencia = 0, bicho.nivel = (bicho.nivel + 1)
@@ -180,24 +242,66 @@ END
 GO
 
 --4)Llenar los datos al insertar un nuevo bicho con valores aleatorios en rango de las estadísticas de la especie
-
---5)Validar que el intercambio se realice con bichos pertenecientes a los entrenadores involucrados en el intercambio
-CREATE TRIGGER validarIntercambio
-ON intercambio
+CREATE TRIGGER crearBicho
+ON capturas
 AFTER INSERT
 AS
 BEGIN
-	DECLARE @bicho1 INT, @bicho2 INT, @entrenador1 INT, @entrenador2 INT
+	DECLARE @especie INT,@salud int, @ataque INT, @genero INT, @ataque_normal INT, @ataque_especial INT, @defensa_normal INT, @defensa_especial INT, @velocidad INT, @nivel int, @experiencia int
+	DECLARE @generoFinal CHAR
+	select @especie = inserted.id_especie from inserted
+	set @genero = rand()*(2 - 1) + 1
+	if @genero = 1
+	begin
+	set @generoFinal = 'f'
+	end
+	else
+	begin
+	set @generoFinal = 'm'
+	end
 
-	SELECT @entrenador1 = id_entrenador1, @entrenador2 = id_entrenador2, @bicho1 = id_bicho1, @bicho2 = id_bicho2
-	FROM inserted
-	IF NOT EXISTS (SELECT *
-		FROM usuarioBicho
-		WHERE id_usuario = @entrenador1 AND id_bicho = @bicho1) AND NOT EXISTS (SELECT *
-		FROM usuarioBicho
-		WHERE id_usuario = @entrenador2 AND id_bicho = @bicho2)
-	BEGIN
-		DELETE FROM intercambio WHERE intercambio.id_intercambio = inserted.id_intercambio
-	END
+	select top 1 @ataque = ataqueEspecie.id_ataque from ataqueEspecie
+	where ataqueEspecie.id_especie = @especie
+	order by newid()
+
+	select @salud = rand()*((especie.salud_maxima - especie.salud_base)+especie.salud_base) ,@ataque_normal = rand()*((especie.ataque_normal_maximo - especie.ataque_normal_base) + especie.ataque_normal_base), @ataque_especial = ((especie.ataque_especial_maximo - especie.ataque_especial_base) + especie.ataque_especial_base), @defensa_normal = ((especie.defensa_normal_maxima - especie.defensa_normal_base) + especie.defensa_normal_base), @defensa_especial = ((especie.defensa_especial_maxima- especie.defensa_especial_base) + especie.defensa_especial_base), @velocidad =((especie.velocidad_maxima - especie.velocidad_base) + especie.velocidad_base), @nivel = rand()*(20 - 5) + 5, @experiencia = rand()*(500 - 50) + 50 from especie
+	where especie.id = @especie
+
+	insert into bicho(id_especie, id_ataque1, genero, salud, ataque_normal, ataque_especial, defensa_normal, defensa_especial, velocidad, nivel, experiencia)
+	values(@especie,@ataque, @genero, @salud, @ataque_normal, @ataque_especial, @defensa_normal, @defensa_especial, @velocidad, @nivel, @experiencia)
+	DECLARE @usuario INT, @bichoNuevo INT
+	SELECT @usuario = inserted.id_usuario from inserted
+	SELECT top 1 @bichoNuevo = bicho.id from bicho order by bicho.id desc
+	insert into usuarioBicho(id_usuario, id_bicho) values(@usuario, @bichoNuevo) 
+END
+GO
+--5)Realizar el cálculo del daño y determinar un ganador si un bicho llega a 0 de vida
+CREATE TRIGGER calculoPostRonda
+ON ronda
+AFTER INSERT
+AS
+BEGIN
+	DECLARE @especie1 INT, @especie2 INT, @ataque INT, @daño INT, @atacado INT
+	select @especie1 = e1.id, @especie2 = e2.id, @ataque = inserted.id_ataque_realizado, @atacado = inserted.id_atacado from inserted
+	left join especie e1 on e1.id = inserted.id_atacante
+	left join especie e2 on e2.id = inserted.id_atacado
+	
+	Exec @daño = calculoDaño @especie1, @especie2, @ataque
+
+	update bicho
+	set bicho.salud = case
+					when bicho.salud - @ataque < 0 then 0
+					else bicho.salud - @ataque
+					end
+	where bicho.id = @atacado
+
+	if (select bicho.salud from bicho where id = @atacado) = 0
+	begin
+	declare @ganador int, @combate INT
+	select @ganador = inserted.id_entrenador, @combate = inserted.id_combate from inserted
+		update combate
+		set combate.id_ganador = @ganador
+		where combate.id_combate = @combate
+	end
 END
 GO
