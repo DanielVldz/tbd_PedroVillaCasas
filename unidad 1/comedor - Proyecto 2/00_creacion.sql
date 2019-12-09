@@ -111,7 +111,7 @@ create table ingrediente_listaDeCompras(
 	primary key(id_ingrediente, id_lista)
 )
 go
-
+ 
 create table dieta(
 	id_dieta int identity not null unique,
 	id_niño int not null,
