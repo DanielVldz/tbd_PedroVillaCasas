@@ -13,9 +13,9 @@ create table tutor(
 	nombre nvarchar(30) not null,
 	apaterno nvarchar(15) not null,
 	amaterno nvarchar(15) not null,
-	lugar_de_trabajo nvarchar(30) not null,
-	telefono_trabajo int,
-	telefono_celular int not null
+	lugar_de_trabajo nvarchar(50) not null,
+	telefono_trabajo BIGINT,
+	telefono_celular BIGINT not null
 )
 go
 
@@ -65,7 +65,8 @@ create table alimento(
 	calorias numeric not null,
 	carbohidratos numeric not null,
 	proteinas numeric not null,
-	grasas numeric not null
+	grasas numeric not null,
+	porcionesDisponibles int default 0
 )
 go
 

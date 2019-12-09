@@ -101,11 +101,11 @@ AS
 	-- si llegó hasta acá, todo bien
 	INSERT INTO niñoAlergias(id_niño, nombre) VALUES (@id_niño, @ingrediente)
 GO
+/*
 EXEC insertarAlergiaAUnNiño 'cebolla', 6
 SELECT * FROM niñoAlergias WHERE id_niño = 6
 GO
-
-
+*/
 -- 2. Darle una dieta a un niño
 CREATE PROCEDURE insertarDietaAUnNiño
 	@id_niño INT = NULL,
@@ -137,11 +137,11 @@ AS
 	-- si llegó hasta acá, todo bien
 	INSERT INTO dieta(id_niño, fecha_inicio, fecha_fin) VALUES (@id_niño, @fecha_inicio, @fecha_fin)
 GO
+/*
 EXEC insertarDietaAUnNiño 6, '20191219', '20200115'
 SELECT * FROM dieta WHERE id_niño = 6
 GO
-
-
+*/
 -- 3. Cambiar de tutor a un niño
 CREATE PROCEDURE cambiarTutor
 	@id_tutor INT = NULL,
@@ -167,10 +167,11 @@ AS
 	-- si llegó hasta acá, todo bien
 	UPDATE niño SET id_tutor = @id_tutor WHERE id_niño = @id_niño
 GO
+/*
 EXEC cambiarTutor 4, 6
 SELECT id_niño, id_tutor from niño where id_niño = 6
 GO
-
+*/
 -- 4. Añadir un platillo a la base de datos
 CREATE PROCEDURE añadirAlimento
 	@nombre NVARCHAR(20) = NULL,
@@ -200,10 +201,11 @@ AS
 	-- si llegó hasta acá, todo bien
 	INSERT INTO alimento(nombre, tipo, calorias, carbohidratos, proteinas, grasas) VALUES (@nombre, @tipo, @calorias, @carbohidratos, @proteinas, @grasas)
 GO
+/*
 EXEC añadirAlimento 'Chocolate caliente', 'Bebida', 100, 30, 20, 10
 SELECT * FROM alimento WHERE nombre = 'Chocolate caliente'
 GO
-
+*/
 -- 5. Añadir un ingrediente a la base de datos
 CREATE PROCEDURE añadirIngrediente
 	@ingrediente NVARCHAR(15) = NULL,
@@ -230,11 +232,12 @@ AS
 	-- si llegó hasta acá, todo bien
 	INSERT INTO ingrediente(nombre, caducidad, existencias) VALUES (@ingrediente, @caducidad, @existencias)
 GO
+/*
 EXEC añadirIngrediente 'Chocolate', 20200318
 UPDATE ingrediente SET existencias = 50 where nombre = 'chocolate'
 SELECT * from ingrediente WHERE nombre = 'chocolate'
 GO
-
+*/
 -- 6. Añadir ingredientes a un alimento
 CREATE PROCEDURE añadirIngredienteAUnAlimento
 	@id_ingrediente INT = NULL,
@@ -266,6 +269,7 @@ AS
 	-- si llegó hasta acá, todo bien
 	INSERT INTO alimento_ingrediente(id_alimento, id_ingrediente, cantidad) VALUES (@id_alimento, @id_ingrediente, @cantidad)
 GO
+/*
 EXEC añadirIngredienteAUnAlimento 8, 11, 2
 EXEC añadirIngredienteAUnAlimento 22, 11, 2
 SELECT alimento = a.nombre, a.tipo, ingrediente = i.nombre, ai.cantidad
@@ -274,18 +278,227 @@ SELECT alimento = a.nombre, a.tipo, ingrediente = i.nombre, ai.cantidad
 	JOIN ingrediente i ON i.id_ingrediente = ai.id_ingrediente
 	WHERE a.id_alimento = 11
 GO
+*/
+-- 7. Hacer albondigas, sólo si hay suficientes ingredientes para ello
+CREATE PROCEDURE hacerAlbondigas
+	@porciones int = 1
+AS
+	-- ID de los distintos ingredientes a usar
+	DECLARE @carne INT = 1, @cebolla INT = 2, @arroz INT = 5, @cilantro INT = 13, @ajo INT = 14, @brocoli INT = 19;
+	DECLARE @id_albondigas INT
+	SELECT @id_albondigas = id_alimento FROM alimento WHERE nombre = 'albondigas'
 
+	IF 1*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @carne)
+	BEGIN
+		PRINT 'No hay suficiente carne para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+	IF 2*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @cebolla)
+	BEGIN
+		PRINT 'No hay suficiente cebolla para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+	IF 3*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @arroz)
+	BEGIN
+		PRINT 'No hay suficiente arroz para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+	IF 4*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @cilantro)
+	BEGIN
+		PRINT 'No hay suficiente cilantro para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+	IF 2*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @ajo)
+	BEGIN
+		PRINT 'No hay suficiente ajo para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+	IF 4*@porciones > (SELECT existencias FROM ingrediente WHERE id_ingrediente = @brocoli)
+	BEGIN
+		PRINT 'No hay suficiente brocoli para '+CONVERT(VARCHAR(8), @porciones)+' porciones de albondigas'
+		RETURN
+	END
+
+	UPDATE ingrediente SET existencias-= 1*@porciones WHERE id_ingrediente = @carne
+	UPDATE ingrediente SET existencias-= 2*@porciones WHERE id_ingrediente = @cebolla
+	UPDATE ingrediente SET existencias-= 3*@porciones WHERE id_ingrediente = @arroz
+	UPDATE ingrediente SET existencias-= 4*@porciones WHERE id_ingrediente = @cilantro
+	UPDATE ingrediente SET existencias-= 2*@porciones WHERE id_ingrediente = @ajo
+	UPDATE ingrediente SET existencias-= 4*@porciones WHERE id_ingrediente = @brocoli
+	
+	UPDATE alimento SET porcionesDisponibles+= @porciones WHERE id_alimento = @id_albondigas
+GO
+/*
+EXEC hacerAlbondigas 3
+SELECT * FROM alimento WHERE nombre = 'albondigas'
+SELECT nombre, existencias FROM ingrediente WHERE id_ingrediente = 1 OR id_ingrediente = 2 OR id_ingrediente = 5 OR id_ingrediente = 13 OR id_ingrediente = 14 OR id_ingrediente = 19
+GO
+*/
 --######################################################################################--
 --###################################### TRIGGERS ######################################--
 --######################################################################################--
--- 1. Al borrar un tutor, desasignarlo de los niños que le tenian de FK
+-- 1. Al borrar un tutor, dar de baja a los niños que le tenian de FK
+CREATE TRIGGER TR_borrarTutor
+ON tutor
+INSTEAD OF DELETE
+AS
+BEGIN
+	DECLARE @id_tutor int
+	SELECT @id_tutor = d.id_tutor FROM deleted d
 
--- 2. Al hacer una comida x, una cantidad de sus ingredientes debe reducirse
+	WHILE 0 < (SELECT COUNT(*) FROM niño WHERE id_tutor = @id_tutor)
+		DELETE FROM niño WHERE id_tutor = @id_tutor
+	RAISERROR ('niños dependientes del tutor eliminados correctamente', 10, 1)
+	DELETE FROM adeudo WHERE id_tutor = @id_tutor
+	RAISERROR ('adeudos del tutor eliminados', 10, 1)
+	DELETE FROM tutor WHERE id_tutor = @id_tutor
+	RAISERROR ('tutor eliminado', 10, 1)
+END	
+GO
+/*
+DELETE FROM tutor WHERE id_tutor = 3
+SELECT * FROM niñoAlergias
+SELECT * FROM niño where id_tutor = 3
+SELECT * FROM tutor
+GO
+*/
+-- 2. Al actualizar un alimento, verificar que este no quede en negativos
+CREATE TRIGGER TR_ReducirCantidadDeAlimento
+ON alimento
+FOR UPDATE
+AS
+BEGIN
+	DECLARE @id_alimento int
+	SELECT @id_alimento = i.id_alimento FROM inserted i
+
+	IF 0 > (SELECT porcionesDisponibles FROM inserted)
+	BEGIN
+		RAISERROR ('No hay suficiente alimento como para solicitar tantos platillos', 10, 1)
+		ROLLBACK TRAN
+		RETURN
+	END
+	RAISERROR ('alimento actualizado', 10, 1)
+END
+GO
+/*
+UPDATE alimento SET porcionesDisponibles-=1 WHERE nombre = 'Albondigas'
+SELECT * from alimento WHERE nombre = 'albondigas'
+GO
+*/
 
 -- 3. Al borrar un menu, eliminar todas sus dependencias
+CREATE TRIGGER TR_BorrarMenu
+ON menu
+INSTEAD OF DELETE
+AS
+BEGIN
+	DECLARE @id_menu int;
+	SELECT @id_menu = d.id_menu from deleted d
 
+	DELETE FROM menu_alimento WHERE id_menu = @id_menu
+	RAISERROR ('alimentos enlistados en el menu eliminados', 10, 1)
+	DELETE FROM menu WHERE id_menu = @id_menu
+	RAISERROR ('menu borrado', 10, 1)
+END
+GO
+/*
+DELETE FROM menu WHERE nombre = 'Menu verde'
+SELECT * from menu
+GO
+*/
 -- 4. Al borrar un niño, quitar todas sus dependencias
-
+CREATE TRIGGER TR_BorrarNiño
+ON niño
+INSTEAD OF DELETE
+AS
+BEGIN
+	DECLARE @id_niño int
+	SELECT @id_niño = d.id_niño
+		FROM deleted d
+	DELETE FROM niñoAlergias WHERE id_niño = @id_niño
+	RAISERROR ('alergias del niño eliminadas', 10, 1)
+	WHILE 0 < (SELECT COUNT(*) FROM dieta WHERE id_niño = @id_niño)
+		DELETE FROM dieta WHERE id_niño = @id_niño
+	RAISERROR ('dietas eliminadas correctamente', 10, 1)
+	DELETE FROM niño WHERE id_niño = @id_niño
+	RAISERROR ('niño dado de baja', 10, 1)
+END
+GO
+/*
+DELETE FROM niño WHERE id_niño = 1
+SELECT * FROM dieta
+SELECT * FROM niñoAlergias
+SELECT * FROM niño
+GO
+*/
 -- 5. Al borrar una dieta, quitar todas sus dependencias
+CREATE TRIGGER TR_BorrarDieta
+ON dieta
+INSTEAD OF DELETE
+AS
+BEGIN
+	DECLARE @id_dieta int
+	SELECT @id_dieta = d.id_dieta FROM deleted d
 
--- 6. Al llegar a la fecha de esta, eliminar una lista de compras
+	DELETE FROM alimento_dieta WHERE id_dieta = @id_dieta
+	RAISERROR ('alimentos de dieta eliminados', 10, 1)
+	DELETE FROM dieta WHERE id_dieta = @id_dieta
+	RAISERROR ('dieta eliminada', 10, 1)
+END
+GO
+/*
+DELETE FROM dieta WHERE id_dieta = 1
+SELECT * FROM dieta
+SELECT * FROM alimento_Dieta
+GO
+*/
+-- 6. Verifica que no exista un alimento con el nombre de un alimento que se quiere introducir a la base de datos
+CREATE TRIGGER TR_InsertarAlimento
+ON alimento
+FOR INSERT
+AS
+BEGIN
+	DECLARE @nombre NVARCHAR(30)
+	SELECT @nombre = nombre FROM inserted
+	IF 0 < (SELECT COUNT(*) FROM alimento WHERE nombre = @nombre)
+	BEGIN
+		ROLLBACK TRAN
+		RAISERROR ('Ese alimento ya existe en la base de datos, se cancela la operación.', 10, 1)
+		RETURN
+	END
+END
+GO
+
+-- 7. Verifica que no exista un menu con el nombre con el que se quiere introducir otro nuevo
+CREATE TRIGGER TR_InsertarMenu
+ON menu
+FOR INSERT
+AS
+BEGIN
+	DECLARE @nombre NVARCHAR(30)
+	SELECT @nombre = nombre FROM inserted
+	IF 0 < (SELECT COUNT(*) FROM menu WHERE nombre = @nombre)
+	BEGIN
+		ROLLBACK TRAN
+		RAISERROR ('Ese menu ya existe en la base de datos, se cancela la operación.', 10, 1)
+		RETURN
+	END
+END
+GO
+
+-- 8. Igual que las dos anteriores, pero para ingredientes
+CREATE TRIGGER TR_InsertarIngrediente
+ON ingrediente
+FOR INSERT
+AS
+BEGIN
+	DECLARE @nombre NVARCHAR(30)
+	SELECT @nombre = nombre FROM inserted
+	IF 0 < (SELECT COUNT(*) FROM ingrediente WHERE nombre = @nombre)
+	BEGIN
+		ROLLBACK TRAN
+		RAISERROR ('Ese ingrediente ya existe en la base de datos, se cancela la operación.', 10, 1)
+		RETURN
+	END
+END
+GO

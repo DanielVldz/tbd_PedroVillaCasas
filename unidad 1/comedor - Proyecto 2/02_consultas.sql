@@ -129,13 +129,33 @@ SELECT a.nombre
 	)
 	GROUP BY a.nombre
 
--- 16.
+-- 16. Nombres de niños que empiecen con X, Y o Z
+SELECT Nombre = n.nombre+' '+n.apaterno+' '+n.amaterno
+	FROM niño n
+	WHERE n.nombre LIKE '[XYZ]%'
 
--- 17. Nose chale
+-- 17. Alimentos que consuman más de 5 ingredientes distintos
+SELECT a.nombre, [ Distintos ingredientes usados ] = COUNT(*)
+	FROM alimento a
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	GROUP BY a.nombre
+	HAVING COUNT(*) > 5
 
--- 18.
+-- 18. Alimentos que usan más de 10 unidades de cantidad de ingredientes en total
+SELECT a.nombre, [ Cantidad de ingredientes total ] = SUM(ai.cantidad)
+	FROM alimento a
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	GROUP BY a.nombre
+	HAVING SUM(ai.cantidad) > 10
 
--- 19. Nose chale
+-- 19. Bebidas que tengan literalmente un solo ingrediente
+SELECT bebida = a.nombre
+	FROM alimento a
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
+	WHERE a.tipo = 'bebida'
+	GROUP BY a.nombre
+	HAVING COUNT(*) = 1
 
 -- 20.
 
@@ -162,7 +182,6 @@ SELECT a.nombre
 /*
  * EXCEPT
  * LEFT y RIGHT JOIN
- * HAVING
  * CHECK
  * UNION ALL
  * where [not] exists (<subquery>), o where <expresión><operador de comparación<(<subquery>)
