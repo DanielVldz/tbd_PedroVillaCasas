@@ -1,25 +1,25 @@
-USE comedor
+ÔªøUSE comedor
 GO
 
 -- 01. Cantidad de dinero que los tutores le deben a la escuela hijos de perra malapaga
-SELECT SUM(monto) FROM adeudo -- en realidad est· bien meco, dudo que este sea bueno :'c'
+SELECT SUM(monto) FROM adeudo -- en realidad est√° bien meco, dudo que este sea bueno :'c'
 
 -- 02. Alimentos que contienen ingredientes a los que alguien sea alergico
 SELECT Alimento = a.nombre
 	FROM alimento a
 	INNER JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	INNER JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
-	INNER JOIN niÒoAlergias na on na.nombre = i.nombre
+	INNER JOIN ni√±oAlergias na on na.nombre = i.nombre
 	GROUP BY a.nombre
 
--- 03. NiÒo con m·s alergias
+-- 03. Ni√±o con m√°s alergias
 SELECT TOP 1 nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
-	FROM niÒo n
-	INNER JOIN  niÒoAlergias na ON na.id_niÒo = n.id_niÒo
+	FROM ni√±o n
+	INNER JOIN  ni√±oAlergias na ON na.id_ni√±o = n.id_ni√±o
 	GROUP BY n.nombre, n.apaterno, n.amaterno
 	ORDER BY alergias DESC
 
--- 04. Ingredientes que caducÛ en noviembre y no esten en la lista de compras
+-- 04. Ingredientes que caduc√≥ en noviembre y no esten en la lista de compras
 SELECT ID = i.id_ingrediente, Nombre = i.nombre, i.caducidad
 	FROM ingrediente i
 	WHERE MONTH(i.caducidad) = 11 and i.id_ingrediente not in (
@@ -28,28 +28,28 @@ SELECT ID = i.id_ingrediente, Nombre = i.nombre, i.caducidad
 		WHERE i.id_ingrediente = il.id_ingrediente
 	)
 
--- 05. Tutores con 4 o m·s niÒos en la escuela
-SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, count(*) as niÒos
+-- 05. Tutores con 4 o m√°s ni√±os en la escuela
+SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, count(*) as ni√±os
 	FROM tutor t
-	INNER JOIN  niÒo n ON n.id_tutor = t.id_tutor
+	INNER JOIN  ni√±o n ON n.id_tutor = t.id_tutor
 	WHERE 3 < (
 		SELECT COUNT(*)
-			FROM niÒo nn
+			FROM ni√±o nn
 			WHERE nn.id_tutor = t.id_tutor
 		)
 	GROUP BY t.nombre, t.apaterno, t.amaterno
-	ORDER BY niÒos DESC
+	ORDER BY ni√±os DESC
 
 -- 06. ninos con alergias que sus tutores tengan adeudos
-SELECT [ID del niÒo] = n.id_niÒo, niÒo = n.nombre+' '+n.apaterno+' '+n.amaterno, [Adeudo de su tutor] = SUM(a.monto), Tutor = t.nombre+' '+t.apaterno+' '+t.amaterno
-	FROM niÒo n
+SELECT [ID del ni√±o] = n.id_ni√±o, ni√±o = n.nombre+' '+n.apaterno+' '+n.amaterno, [Adeudo de su tutor] = SUM(a.monto), Tutor = t.nombre+' '+t.apaterno+' '+t.amaterno
+	FROM ni√±o n
 	INNER JOIN tutor t on t.id_tutor = n.id_tutor
 	INNER JOIN adeudo a on a.id_tutor = t.id_tutor
-	WHERE n.id_niÒo in (
-		SELECT na.id_niÒo
-			FROM niÒoAlergias na
-	) --         ID   -            nombre del niÒo            -           nombre del tutor
-	group by n.id_niÒo, n.nombre+' '+n.apaterno+' '+n.amaterno, t.nombre+' '+t.apaterno+' '+t.amaterno
+	WHERE n.id_ni√±o in (
+		SELECT na.id_ni√±o
+			FROM ni√±oAlergias na
+	) --         ID   -            nombre del ni√±o            -           nombre del tutor
+	group by n.id_ni√±o, n.nombre+' '+n.apaterno+' '+n.amaterno, t.nombre+' '+t.apaterno+' '+t.amaterno
 
 
 -- 07. Tutores con deudas entre $200 y $500
@@ -69,7 +69,7 @@ SELECT Alimento = a.nombre
 
 -- 09. Todos los primos de Leticia Gonzales Almendra
 SELECT Primo = primo.nombre+' '+primo.apaterno+' '+primo.amaterno
-	FROM niÒo primo
+	FROM ni√±o primo
 	WHERE (primo.amaterno = 'Gonzales' OR primo.amaterno = 'Almendra' OR primo.apaterno = 'Gonzales' OR primo.apaterno = 'Almendra')
 		AND NOT (primo.apaterno='Gonzales' AND primo.amaterno='Almendra')
 
@@ -83,42 +83,42 @@ SELECT Top 1 Menu = m.nombre, Calorias = SUM(a.calorias)
 
 -- 11. Muestra todos los hermanos menores de Gonzalo Angulo Salazar
 SELECT Nombre = h.nombre+' '+h.apaterno+' '+h.amaterno
-	FROM niÒo Gonzalo
-	INNER JOIN niÒo h ON Gonzalo.apaterno = h.apaterno AND Gonzalo.amaterno = h.amaterno
+	FROM ni√±o Gonzalo
+	INNER JOIN ni√±o h ON Gonzalo.apaterno = h.apaterno AND Gonzalo.amaterno = h.amaterno
 	WHERE Gonzalo.nombre+' '+Gonzalo.apaterno+' '+Gonzalo.amaterno = 'Gonzalo Angulo Salazar'
 		AND CONVERT(DATETIME, Gonzalo.fecha_de_nacimiento) > CONVERT(DATETIME, h.fecha_de_nacimiento)
 
 -- 12. Menu con el mayor numero de alimentos que contengan ingredientes a los que un nino sea alergico
-SELECT TOP 1 Menu = m.nombre, [Cantidad de alimentos a los que hay niÒos alergicos] = count(DISTINCT a.id_alimento)
+SELECT TOP 1 Menu = m.nombre, [Cantidad de alimentos a los que hay ni√±os alergicos] = count(DISTINCT a.id_alimento)
 	FROM menu m
 	INNER JOIN menu_alimento ma on ma.id_menu = m.id_menu
 	INNER JOIN alimento a on a.id_alimento = ma.id_alimento
 	INNER JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	INNER JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
-	INNER JOIN niÒoAlergias na on na.nombre = i.nombre
+	INNER JOIN ni√±oAlergias na on na.nombre = i.nombre
 	GROUP BY m.nombre
 	ORDER BY count(DISTINCT a.id_alimento) DESC
 
--- 13. Muestra el alumno m·s viejo
+-- 13. Muestra el alumno m√°s viejo
 SELECT Nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, Edad = DATEDIFF(yy, n.fecha_de_nacimiento, GETDATE())
-	FROM niÒo n
+	FROM ni√±o n
 	WHERE 0 in (
 		SELECT COUNT(*)
-			FROM niÒo aux
+			FROM ni√±o aux
 			WHERE DATEDIFF(dd, n.fecha_de_nacimiento, aux.fecha_de_nacimiento)<0
 	)
 
--- 14. øCuales son los hermanos mayores de Marco Gonzales Almendra?
-SELECT ID = h.id_niÒo, nombre = h.nombre+' '+h.apaterno+' '+h.amaterno, Aula = CONVERT(CHAR(1), h.nivel)+h.grado, Edad = DATEDIFF(yy, h.fecha_de_nacimiento, GETDATE())
-	FROM niÒo h
+-- 14. ¬øCuales son los hermanos mayores de Marco Gonzales Almendra?
+SELECT ID = h.id_ni√±o, nombre = h.nombre+' '+h.apaterno+' '+h.amaterno, Aula = CONVERT(CHAR(1), h.nivel)+h.grado, Edad = DATEDIFF(yy, h.fecha_de_nacimiento, GETDATE())
+	FROM ni√±o h
 	WHERE h.apaterno+' '+h.amaterno = 'Gonzales Almendra'
 		AND DATEDIFF(yy, h.fecha_de_nacimiento, GETDATE()) > (
 			SELECT DATEDIFF(yy, Marco.fecha_de_nacimiento, GETDATE())
-			FROM niÒo Marco
+			FROM ni√±o Marco
 			WHERE Marco.nombre+' '+Marco.apaterno+' '+Marco.amaterno = 'Marco Gonzales Almendra'
 			)
 
--- 15. Muestre los alimentos que tienen m·s de 5 ingredientes
+-- 15. Muestre los alimentos que tienen m√°s de 5 ingredientes
 SELECT a.nombre
 	FROM alimento a
 	INNER JOIN alimento_ingrediente ai ON a.id_alimento = ai.id_alimento
@@ -129,19 +129,19 @@ SELECT a.nombre
 	)
 	GROUP BY a.nombre
 
--- 16. Nombres de niÒos que empiecen con X, Y o Z
+-- 16. Nombres de ni√±os que empiecen con X, Y o Z
 SELECT Nombre = n.nombre+' '+n.apaterno+' '+n.amaterno
-	FROM niÒo n
+	FROM ni√±o n
 	WHERE n.nombre LIKE '[XYZ]%'
 
--- 17. Alimentos que consuman m·s de 5 ingredientes distintos
+-- 17. Alimentos que consuman m√°s de 5 ingredientes distintos
 SELECT a.nombre, [ Distintos ingredientes usados ] = COUNT(*)
 	FROM alimento a
 	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
 	GROUP BY a.nombre
 	HAVING COUNT(*) > 5
 
--- 18. Alimentos que usan m·s de 10 unidades de cantidad de ingredientes en total
+-- 18. Alimentos que usan m√°s de 10 unidades de cantidad de ingredientes en total
 SELECT a.nombre, [ Cantidad de ingredientes total ] = SUM(ai.cantidad)
 	FROM alimento a
 	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
@@ -184,7 +184,7 @@ SELECT bebida = a.nombre
  * LEFT y RIGHT JOIN
  * CHECK
  * UNION ALL
- * where [not] exists (<subquery>), o where <expresiÛn><operador de comparaciÛn<(<subquery>)
+ * where [not] exists (<subquery>), o where <expresi√≥n><operador de comparaci√≥n<(<subquery>)
  * MAX() MIN() AVG()
  * [not] LIKE 'xd' '%xd' 'xd%' '%xd%' '%[xd]' '[xd]%' '%[xd]%'
  * is [not] null
