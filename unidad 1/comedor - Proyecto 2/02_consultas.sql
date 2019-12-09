@@ -157,7 +157,7 @@ SELECT bebida = a.nombre
 	GROUP BY a.nombre
 	HAVING COUNT(*) = 1
 
--- 20.
+-- 20. 
 
 -- 21. Nose chale
 
