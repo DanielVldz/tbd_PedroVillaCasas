@@ -1,7 +1,7 @@
-use master
-go
-drop database comedor
-go
+-- use master
+-- go
+-- drop database comedor
+-- go
 
 create database comedor
 go
@@ -19,8 +19,8 @@ create table tutor(
 )
 go
 
-create table niño(
-	id_niño int identity not null primary key,
+create table niÃ±o(
+	id_niÃ±o int identity not null primary key,
 	nombre nvarchar(30) not null,
 	apaterno nvarchar(15) not null,
 	amaterno nvarchar(15) not null,
@@ -33,11 +33,11 @@ create table niño(
 )
 go
 
-create table niñoAlergias(
-	id_niño int not null,
+create table niÃ±oAlergias(
+	id_niÃ±o int not null,
 	nombre nvarchar(30),
-	foreign key (id_niño) references niño(id_niño),
-	primary key(id_niño, nombre)
+	foreign key (id_niÃ±o) references niÃ±o(id_niÃ±o),
+	primary key(id_niÃ±o, nombre)
 )
 go
 
@@ -112,11 +112,11 @@ go
 
 create table dieta(
 	id_dieta int identity not null unique,
-	id_niño int not null,
+	id_niÃ±o int not null,
 	fecha_inicio datetime not null,
 	fecha_fin datetime not null,
-	foreign key (id_niño) references niño(id_niño),
-	primary key(id_dieta, id_niño)
+	foreign key (id_niÃ±o) references niÃ±o(id_niÃ±o),
+	primary key(id_dieta, id_niÃ±o)
 )
 go
 
