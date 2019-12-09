@@ -82,13 +82,14 @@ create table ingrediente(
 	id_ingrediente int identity not null primary key,
 	nombre nvarchar(15) not null,
 	caducidad date not null,
-	existencias int not null
+	existencias int DEFAULT 0
 )
 go
 
 create table alimento_ingrediente(
 	id_alimento int not null,
 	id_ingrediente int not null,
+	cantidad int not null,
 	foreign key (id_alimento) references alimento(id_alimento),
 	foreign key (id_ingrediente) references ingrediente(id_ingrediente),
 	primary key(id_alimento, id_ingrediente)

@@ -1,8 +1,6 @@
 USE comedor
 GO
 
-
-
 -- 01. Cantidad de dinero que los tutores le deben a la escuela hijos de perra malapaga
 SELECT SUM(monto) FROM adeudo -- en realidad está bien meco, dudo que este sea bueno :'c'
 
