@@ -1,11 +1,11 @@
-USE comedor
+﻿USE comedor
 GO
 
 insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo, telefono_celular) values
-	('Guillermo',	'Gonzales', 'Carrazco', 'Carnicería Don Beni',   11111111, 10101010),
-	('Maria',		'Angulo',   'Cevilla',  'Tiendita Doña Mary',    22222222, 20202020),
-	('Augusto',		'Alvarado', 'Jimenez',  'Refaccionaria Jimenez', 33333333, 30303030),
-	('Antonia',		'Quintero', 'Zazueta',  'Ama de casa',		   44444444, 40404040),
+	('Guillermo',	'Gonzales', 'Carrazco', 'Carnicería Don Beni',   1111111111, 1010101010),
+	('Maria',		'Angulo',   'Cevilla',  'Tiendita Doña Mary',    2222222222, 2020202020),
+	('Augusto',		'Alvarado', 'Jimenez',  'Refaccionaria Jimenez', 3333333333, 3030303030),
+	('Antonia',		'Quintero', 'Zazueta',  'Ama de casa',		   4444444444, 4040404040),
 	('Douglas',		'Steger', 'Kraus', 'BBVA', 4962857555, 3895654889),
 	('Tammie',		'Wade', 'Lannon', 'Microsoft', 1689752242, 9805260895),
 	('David',		'Gonnella', 'Kintner', 'Cinépolis', 8853595158, 8499022016),
@@ -13,6 +13,17 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Dorian',		'Nielsen', 'Maloney', 'TV Azteca', 3145415126, 5536789009),
 	('John',		'Weymouth', 'Smith', 'VolksWagen', 3895669389, 7227790554),
 	('Ben',			'Woodard', 'Goff', 'Instituto Tecnológico de Culiacán', 6230567999, 6067091747),
+	('Guillermo',	'Gonzales', 'Carrazco', 'Carnicería Don Beni',   11111111, 10101010),
+	('Maria',		'Angulo',   'Cevilla',  'Tiendita Doña Mary',    22222222, 20202020),
+	('Augusto',		'Alvarado', 'Jimenez',  'Refaccionaria Jimenez', 33333333, 30303030),
+	('Antonia',		'Quintero', 'Zazueta',  'Ama de casa',		   44444444, 40404040),
+	('Douglas',		'Steger', 'Kraus', 'BBVA', 4962857555, 3895654889),
+	('Tammie',		'Wade', 'Lannon', 'Microsoft', 1689752242, 9805260895),
+	('David',		'Gonnella', 'Kintner', 'CinÃ©polis', 8853595158, 8499022016),
+	('Richard',		'Ibanez', 'Mckay', 'Microsoft', 1689752242, 6668917678),
+	('Dorian',		'Nielsen', 'Maloney', 'TV Azteca', 3145415126, 5536789009),
+	('John',		'Weymouth', 'Smith', 'VolksWagen', 3895669389, 7227790554),
+	('Ben',			'Woodard', 'Goff', 'Instituto TecnolÃ³gico de CuliacÃ¡n', 6230567999, 6067091747),
 	('Ann',			'Hedrick', 'Griffitts', 'Coca-Cola', 1511466900, 8102118791),
 	('Kathleen',	'Woodson', 'Bardsley', 'Intel', 4591301323, 1068817734),
 	('Elaine',		'Green', 'Kirk', 'Coppel', 8460198504, 8432618047),
@@ -25,6 +36,9 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Michelle',	'Collins', 'Jones', 'VolksWagen', 3895669389, 7797977341),
 	('Patricia',	'Shumway', 'Martin', 'Escuela Secundaria Técnica No. 50', 2573515139, 7410663417),
 	('Gerald',		'Berry', 'Gutierrez', 'Instituto Tecnológico de Culiacán', 6230567999, 6327517041),
+	('Yolanda',		'Perez', 'Johnston', 'TV Pacífico', 2303365736, 3066093156),
+	('Patricia',	'Shumway', 'Martin', 'Escuela Secundaria TÃ©cnica No. 50', 2573515139, 7410663417),
+	('Gerald',		'Berry', 'Gutierrez', 'Instituto TecnolÃ³gico de CuliacÃ¡n', 6230567999, 6327517041),
 	('Yolanda',		'Perez', 'Johnston', 'TV Pacífico', 2303365736, 3066093156),
 	('Thomas',		'Cross', 'Agee', 'Liverpool', 9163193653, 9258572517),
 	('Micheal',		'Egan', 'Mcfarlane', 'Burger King', 3187392808, 2215497488),
@@ -46,6 +60,10 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Carl', 'Price', 'Osborne', 'Santander', 1602912755, 9068467854),
 	('Abel', 'Kelley', 'Bergmann', 'Wal-Mart', 3756929861, 9699492181),
 	('Brenda', 'Collins', 'Yen', 'Tecnológico de Monterrey', 1972610403, 5299861104),
+	('James', 'White', 'Sanner', 'Escuela Secundaria TÃ©cnica No. 50', 2573515139, 2962402275),
+	('Carl', 'Price', 'Osborne', 'Santander', 1602912755, 9068467854),
+	('Abel', 'Kelley', 'Bergmann', 'Wal-Mart', 3756929861, 9699492181),
+	('Brenda', 'Collins', 'Yen', 'TecnolÃ³gico de Monterrey', 1972610403, 5299861104),
 	('Michael', 'Hardison', 'Beaver', 'Microsoft', 1689752242, 9287554270),
 	('Marsha', 'Meyers', 'Coleman', 'Gasolineras Pemex', 9574972480, 3541807564),
 	('Jorge', 'Rochford', 'Coward', 'Cinemex', 7314945048, 2623164786),
@@ -63,6 +81,9 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Raymond', 'Bruggeman', 'Dent', 'Universidad autónoma de Sinaloa', 3042543261, 1343180505),
 	('Terri', 'Solomon', 'Soderberg', 'Soriana', 5562160334, 2146528075),
 	('Victor', 'Basel', 'Mitchell', 'Escuela Secundaria Técnica No. 50', 2573515139, 3935887359),
+	('Raymond', 'Bruggeman', 'Dent', 'Universidad autÃ³noma de Sinaloa', 3042543261, 1343180505),
+	('Terri', 'Solomon', 'Soderberg', 'Soriana', 5562160334, 2146528075),
+	('Victor', 'Basel', 'Mitchell', 'Escuela Secundaria TÃ©cnica No. 50', 2573515139, 3935887359),
 	('James', 'Cartwright', 'Perez', 'Liverpool', 9163193653, 9757622198),
 	('Wayne', 'Howell', 'Stickler', 'Coppel', 8460198504, 3146591842),
 	('Ramona', 'Cross', 'Bey', 'Unidad De Servicios Estatales', 8521314180, 1238455585),
@@ -74,6 +95,13 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Kimberly', 'Davis', 'Robinson', 'Tecnológico de Monterrey', 1972610403, 7316230831),
 	('Matthew', 'Mancini', 'Johnson', 'Soriana', 5562160334, 9995278837),
 	('Everett', 'Brookins', 'Mcfadden', 'Cinépolis', 8853595158, 5198552528),
+	('Jacob', 'Men', 'Montanye', 'CinÃ©polis', 8853595158, 5075985444),
+	('Jose', 'Pickert', 'Rodriguez', 'Intel', 4591301323, 2591077990),
+	('Kimberly', 'Pruneda', 'Davis', 'Wal-Mart', 3756929861, 8718337025),
+	('John', 'Reynolds', 'Moore', 'Universidad autÃ³noma de Sinaloa', 3042543261, 9774753731),
+	('Kimberly', 'Davis', 'Robinson', 'TecnolÃ³gico de Monterrey', 1972610403, 7316230831),
+	('Matthew', 'Mancini', 'Johnson', 'Soriana', 5562160334, 9995278837),
+	('Everett', 'Brookins', 'Mcfadden', 'CinÃ©polis', 8853595158, 5198552528),
 	('Pat', 'Icardo', 'Tarter', 'Pepsi', 8451343856, 6016077997),
 	('Elizabeth', 'Padron', 'Palmer', 'Farmacias Similares', 4191183710, 7893513781),
 	('Nadine', 'Tollefson', 'Santiago', 'Burger King', 3187392808, 7059167096),
@@ -83,6 +111,8 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Jerry', 'Rodney', 'Harper', 'CBtis', 4181657941, 6156431689),
 	('Joseph', 'Kliment', 'Vanhamlin', 'Universidad autónoma de Sinaloa', 3042543261, 5490238367),
 	('Matthew', 'Cantu', 'Arredondo', 'Hospital pediátrico de Sinaloa', 8776770252, 8673949489),
+	('Joseph', 'Kliment', 'Vanhamlin', 'Universidad autÃ³noma de Sinaloa', 3042543261, 5490238367),
+	('Matthew', 'Cantu', 'Arredondo', 'Hospital pediÃ¡trico de Sinaloa', 8776770252, 8673949489),
 	('Miesha', 'Weiss', 'Nobles', 'Banamex', 5899083049, 3202924481),
 	('Nicholas', 'Richardson', 'Traino', 'Coppel', 8460198504, 2917630034),
 	('Christie', 'Harkness', 'White', 'Sushi Factory', 7919060124, 4677595556),
@@ -104,6 +134,16 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Harley', 'Dix', 'Pierce', 'Escuela Secundaria Técnica No 1', 9741497682, 3547160082),
 	('Martin', 'Wekenborg', 'Hamann', 'Costco', 1679185676, 2951161336),
 	('Florence', 'Earhart', 'Swafford', 'Cinépolis', 8853595158, 4474868448),
+	('Rose', 'Poole', 'Tai', 'Taquería el gÃ¼ero', 4191111575, 6085384714),
+	('Ginny', 'Jones', 'Johnson', 'VolksWagen', 3895669389, 2129006007),
+	('Angela', 'Albright', 'Gaynor', 'Electra', 2261481245, 3488662943),
+	('Joshua', 'Wyatt', 'Moon', 'Conalep', 7660788292, 2013200395),
+	('Mary', 'Bruggeman', 'Rogers', 'TecnolÃ³gico de Monterrey', 1972610403, 2635046272),
+	('Josue', 'Gallant', 'Guilliam', 'Soriana', 5562160334, 4021357690),
+	('Roy', 'Lally', 'Beard', 'Unidad De Servicios Estatales', 8521314180, 9363361135),
+	('Harley', 'Dix', 'Pierce', 'Escuela Secundaria TÃ©cnica No 1', 9741497682, 3547160082),
+	('Martin', 'Wekenborg', 'Hamann', 'Costco', 1679185676, 2951161336),
+	('Florence', 'Earhart', 'Swafford', 'CinÃ©polis', 8853595158, 4474868448),
 	('Claudette', 'Williamson', 'Finn', 'TV Azteca', 3145415126, 4510344260),
 	('Ali', 'Ames', 'Tucker', 'Farmacias GI', 8038240622, 3543177266);
 
@@ -230,14 +270,14 @@ insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_n
 update dbo.niño set especial = 1 where id_niño = 3
 
 insert into niñoAlergias(id_niño, nombre) values
-	(5, 'Brocoli'),
-	(5, 'Rabano'),
 	(5, 'Ajonjolí'),
-	(10, 'Naranja'),
-	(103,'Trigo'),
+	(33,'Trigo'),
 	(11,'Maní'),
 	(39,'Huevo'),
-	(109,'Soya'),
+	(100,'Soya'),
+	(5, 'Brocoli'),
+	(5, 'Rabano'),
+	(10, 'Naranja'),
 	(56,'Lacteos'),
 	(47,'Trigo'),
 	(89,'Almendras'),
@@ -245,27 +285,45 @@ insert into niñoAlergias(id_niño, nombre) values
 	(87,'Soya'),
 	(61,'Apio'),
 	(87,'Camarones'),
-	(118,'Mariscos'),
+	(100,'Mariscos'),
 	(10,'Maní'),
-	(38,'Lacteos'),
-	(107,'Apio'),
+	(100,'Apio'),
 	(7,'Fresas'),
 	(17,'Nueces'),
 	(99,'Trigo'),
-	(104,'Almendras'),
+	(100,'Almendras'),
 	(24,'Maní'),
 	(84,'Trigo'),
-	(111,'Nueces'),
+	(100,'Nueces'),
 	(73,'Fresas'),
-	(108,'Maní'),
-	(115,'Camarones'),
+	(101,'Maní'),
+	(100,'Camarones'),
 	(34,'Almendras'),
 	(34,'Fresas'),
 	(25,'Apio'),
-	(116,'Mariscos'),
+	(11,'Mariscos'),
 	(45,'Huevo'),
 	(79,'Trigo'),
-	(112,'Almendras'),
+	(52,'Almendras'),
+	(18,'Mariscos'),
+	(38,'Lacteos'),
+	(57,'Apio'),
+	(17,'Nueces'),
+	(99,'Trigo'),
+	(94,'Almendras'),
+	(24,'Maní'),
+	(84,'Trigo'),
+	(11,'Nueces'),
+	(73,'Fresas'),
+	(18,'Maní'),
+	(15,'Camarones'),
+	(34,'Almendras'),
+	(34,'Fresas'),
+	(25,'Apio'),
+	(16,'Mariscos'),
+	(45,'Huevo'),
+	(79,'Trigo'),
+	(102,'Almendras'),
 	(84,'Mariscos'),
 	(93,'Fresas'),
 	(91,'Lacteos');
@@ -388,8 +446,8 @@ insert into alimento(nombre, tipo, calorias, carbohidratos, proteinas, grasas) v
 	('Ensalada de huevo',	'Comida', 706,	4.28,	20.42,	67.18),
 	('3 Enchiladas Suizas', 'Comida', 500,	52.9,	25,		11),
 	('Caldo Tlalpeño',		'Comida', 318,	31,		21,		13),
-	('Pay de limón',	    'Postre', 230,	28,		7,		10),
-	('Helado de limón',		'Postre', 301,	46,		4,		13),
+	('Pay de limÃ³n',	    'Postre', 230,	28,		7,		10),
+	('Helado de limÃ³n',		'Postre', 301,	46,		4,		13),
 	('Licuado de frutas',	'Bebida', 130,	33.52,	0.88,	0.29),
 	('Jugo de Manzana',		'Bebida', 117,	28.97,	0.15,	0.27),
 	('Jugo de Naranja',		'Bebida', 100,	30,		0.5,	0.5)
@@ -411,28 +469,29 @@ insert into menu_alimento(id_menu, id_alimento) values
 
 insert into ingrediente(nombre, caducidad, existencias) values
 	('Carne de res',	'20200120', 50),
-	('Cebolla',			'20191201', 5),
-	('Maiz',			'20191215', 10),
-	('Chile seco rojo',	'20191201', 3),
+	('Cebolla',			'20191201', 15),
+	('Maiz',			'20191215', 15),
+	('Chile seco rojo',	'20191201', 30),
 	('Arroz',			'20200101', 50),
-	('Limón',			'20191201', 15),
+	('LimÃ³n',			'20191201', 15),
 	('Huevos',			'20191211', 300),
 	('Leche de soja',	'20191205', 100),
 	('Manzana',			'20191201', 20),
-	('Plátano',			'20191121', 30),
+	('PlÃ¡tano',			'20191121', 30),
 	('Pera',			'20191130', 15),
 	('Papaya',			'20191201', 30),
-	('Cilantro',		'20191111', 5),
-	('Ajo',				'20200215', 5),
+	('Cilantro',		'20191111', 50),
+	('Ajo',				'20200215', 50),
 	('Lechuga romana',	'20191125', 15),
 	('Queso fresco',	'20191215', 15),
 	('Queso chihuahua',	'20200315', 20),
 	('Rabano',			'20200105', 15),
-	('Brocoli',			'20191115', 5),
+	('Brocoli',			'20191115', 15),
 	('Harina',			'20191215',	15),
-	('Naranja',			'20191215',	30)
-
-
+	('Naranja',			'20191215',	30),
+	('Limón',			'20191201', 15),
+	('Plátano',			'20191121', 30)
+	
 insert into alimento_ingrediente(id_alimento, id_ingrediente, cantidad) values
 	(1, 9,  1),
 	(2, 1,  1),
@@ -498,8 +557,13 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 
 /*
 	select * from tutor
+<<<<<<< HEAD
 	select * from ni�o
 	select * from ni�oAlergias
+=======
+	select * from niño
+	select * from niñoAlergias
+>>>>>>> 78313d9ad7ad5dc4cb3ccd7e3530b2a3fc4f2044
 	select * from adeudo
 	select * from menu
 	select * from alimento
@@ -511,8 +575,15 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 		inner join alimento a on a.id_alimento = ai.id_alimento
 		inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
 	select * from dieta
+<<<<<<< HEAD
 	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, ni�o = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_ni�o from alimento_dieta ad
 		inner join alimento a on a.id_alimento = ad.id_alimento
 		inner join dieta d on d.id_dieta = ad.id_dieta
 		inner join ni�o n on d.id_ni�o = n.id_ni�o
+=======
+	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_niño from alimento_dieta ad
+		inner join alimento a on a.id_alimento = ad.id_alimento
+		inner join dieta d on d.id_dieta = ad.id_dieta
+		inner join niño n on d.id_niño = n.id_niño
+>>>>>>> 78313d9ad7ad5dc4cb3ccd7e3530b2a3fc4f2044
 */
