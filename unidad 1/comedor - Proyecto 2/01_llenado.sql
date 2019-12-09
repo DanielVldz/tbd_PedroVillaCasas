@@ -472,7 +472,7 @@ insert into listaDeCompras(fecha) values
 insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 	(1, 1),
 	(4, 1),
-	(2, 1), 
+	(2, 1),
 	(8, 1),
 	(15, 1),
 	(13, 1),
