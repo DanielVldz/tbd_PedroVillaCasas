@@ -581,13 +581,8 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 
 /*
 	select * from tutor
-<<<<<<< HEAD
-	select * from ni�o
-	select * from ni�oAlergias
-=======
 	select * from niño
 	select * from niñoAlergias
->>>>>>> 78313d9ad7ad5dc4cb3ccd7e3530b2a3fc4f2044
 	select * from adeudo
 	select * from menu
 	select * from alimento
@@ -599,15 +594,8 @@ insert into ingrediente_listaDeCompras(id_ingrediente, id_lista) values
 		inner join alimento a on a.id_alimento = ai.id_alimento
 		inner join ingrediente i on i.id_ingrediente = ai.id_ingrediente
 	select * from dieta
-<<<<<<< HEAD
-	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, ni�o = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_ni�o from alimento_dieta ad
-		inner join alimento a on a.id_alimento = ad.id_alimento
-		inner join dieta d on d.id_dieta = ad.id_dieta
-		inner join ni�o n on d.id_ni�o = n.id_ni�o
-=======
 	select ad.id_alimento, a.nombre, 'dieta' = ad.id_dieta, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, d.id_niño from alimento_dieta ad
 		inner join alimento a on a.id_alimento = ad.id_alimento
 		inner join dieta d on d.id_dieta = ad.id_dieta
 		inner join niño n on d.id_niño = n.id_niño
->>>>>>> 78313d9ad7ad5dc4cb3ccd7e3530b2a3fc4f2044
 */
