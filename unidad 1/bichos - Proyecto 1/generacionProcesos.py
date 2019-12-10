@@ -1,6 +1,5 @@
 import random
 import names
-listaDatos = [] 
 
 def obtenerEmpleo():
 	empleos = ["Intel", "Oracle", "Microsoft", "AMD", "VolksWagen", "Ley", "Soriana", "Wal-Mart", "Sam's Club", "Universidad autónoma de Sinaloa", "Instituto Tecnológico de Culiacán", "Farmacias Similares", "Taquería el güero", "Farmacias GI", "Delia Barraza", "Burger King", "McDonald\'s", "OXXO", "Gasolineras Pemex", "Sears", "Liverpool", "Cinépolis", "Cinemex", "Sushi Factory", "CBtis", "Conalep", "Cobaes", "Escuela Secundaria Técnica No. 50", "Escuela Secundaria Técnica No. 72", "Escuela Secundaria Técnica No. 1", "Televisa", "TV Azteca", "TV Pacífico", "Coca-Cola", "Pepsi", "Costco", "Coppel", "Electra", "Banamex", "BBVA", "Santander", "Unidad De Servicios Estatales", "Hospital General", "Hospital de la mujer", "Hospital pediátrico de Sinaloa", "Universidad Autónoma de Occidente", "Tecnológico de Monterrey"]
@@ -65,7 +64,16 @@ def generarAdeudo(x):
 		monto = random.randint(200, 700)
 		fecha = generarFecha()
 		print('({},{},\'{}\'),'.format(tutor, monto, fecha))
-# generarTutor(100)
-# generarNiño(100)
-# niñoAlergias(35)
-# generarAdeudo(100)
+
+def generarCapturas(x):
+	for i in range(x):
+		ususario = random.randint(1,25)
+		especie = random.randint(1,150)
+		latitud = random.randint(-50, 180)
+		longitud = random.randint(-50, 180)
+		print('({},{},{},{}),'.format(ususario, especie,latitud,longitud))
+
+def randomRango(min,max):
+	x = min + (random.random() * (max - min))
+	return x
+generarCapturas(100)
