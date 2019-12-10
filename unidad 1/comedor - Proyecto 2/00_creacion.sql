@@ -28,7 +28,6 @@ create table niño(
 	grado char(1) not null,
 	id_tutor int not null,
 	fecha_de_nacimiento date not null,
-	especial bit default 0,
 	foreign key (id_tutor) references tutor(id_tutor)
 )
 go
@@ -55,6 +54,15 @@ create table menu(
 	nombre nvarchar(15),
 	fecha_inicio datetime not null,
 	fecha_final datetime not null,
+)
+go
+
+create table niñoMenu(
+	id_niño int not null,
+	id_menu int not null,
+	foreign key (id_niño) references niño(id_niño),
+	foreign key (id_menu) references menu(id_menu),
+	primary key(id_niño, id_menu)
 )
 go
 

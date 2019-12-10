@@ -1,7 +1,7 @@
 ﻿USE comedor
 GO
 
--- 01. Cantidad de dinero que los tutores le deben a la escuela hijos de perra malapaga
+-- 01. Cantidad total de dinero que los tutores le deben a la escuela
 SELECT SUM(monto) FROM adeudo -- en realidad está bien meco, dudo que este sea bueno :'c'
 
 -- 02. Alimentos que contienen ingredientes a los que alguien sea alergico
@@ -32,12 +32,8 @@ SELECT ID = i.id_ingrediente, Nombre = i.nombre, i.caducidad
 SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, count(*) as niños
 	FROM tutor t
 	INNER JOIN  niño n ON n.id_tutor = t.id_tutor
-	WHERE 3 < (
-		SELECT COUNT(*)
-			FROM niño nn
-			WHERE nn.id_tutor = t.id_tutor
-		)
 	GROUP BY t.nombre, t.apaterno, t.amaterno
+	HAVING 3 < COUNT(DISTINCT n.id_niño)
 	ORDER BY niños DESC
 
 -- 06. ninos con alergias que sus tutores tengan adeudos
@@ -122,24 +118,21 @@ SELECT ID = h.id_niño, nombre = h.nombre+' '+h.apaterno+' '+h.amaterno, Aula = 
 SELECT a.nombre
 	FROM alimento a
 	INNER JOIN alimento_ingrediente ai ON a.id_alimento = ai.id_alimento
-	WHERE 5 < (
-		SELECT count(*)
-			FROM alimento_ingrediente aiAux
-			WHERE aiAux.id_alimento = ai.id_alimento
-	)
 	GROUP BY a.nombre
+	HAVING 5 < COUNT(*)
 
--- 16. Nombres de niños que empiecen con X, Y o Z
+-- 16. Nombres de niños que empiecen con J, K o L
 SELECT Nombre = n.nombre+' '+n.apaterno+' '+n.amaterno
 	FROM niño n
-	WHERE n.nombre LIKE '[XYZ]%'
+	WHERE n.nombre LIKE '[JKL]%'
+	ORDER BY n.nombre
 
--- 17. Alimentos que consuman más de 5 ingredientes distintos
-SELECT a.nombre, [ Distintos ingredientes usados ] = COUNT(*)
-	FROM alimento a
-	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
-	GROUP BY a.nombre
-	HAVING COUNT(*) > 5
+-- 17. Tutores que sus niños tengan alergias
+SELECT t.id_tutor, nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, t.lugar_de_trabajo, t.telefono_trabajo, t.telefono_celular
+	FROM tutor t
+	JOIN niño n on n.id_tutor = t.id_tutor
+	JOIN niñoAlergias a on a.id_niño = n.id_niño
+	GROUP BY t.id_tutor, t.nombre+' '+t.apaterno+' '+t.amaterno, t.lugar_de_trabajo, t.telefono_trabajo, t.telefono_celular
 
 -- 18. Alimentos que usan más de 10 unidades de cantidad de ingredientes en total
 SELECT a.nombre, [ Cantidad de ingredientes total ] = SUM(ai.cantidad)
@@ -157,27 +150,135 @@ SELECT bebida = a.nombre
 	GROUP BY a.nombre
 	HAVING COUNT(*) = 1
 
--- 20. 
+-- 20. Padre o tutor con mayor adeudo
+SELECT TOP 1 t.id_tutor, nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, t.lugar_de_trabajo, t.telefono_trabajo, t.telefono_celular, total = SUM(a.monto)
+	FROM tutor t
+	JOIN adeudo a on a.id_tutor = t.id_tutor
+	GROUP BY t.id_tutor, t.nombre+' '+t.apaterno+' '+t.amaterno, t.lugar_de_trabajo, t.telefono_trabajo, t.telefono_celular
+	ORDER BY SUM(a.monto)
 
--- 21. Nose chale
+-- 21. Ninos cuyos tutores tienen adeudos y que tengan familia con tutores sin adeudos
+SELECT nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, [adeudo del tutor] = SUM(a.monto)
+	FROM niño n
+	JOIN adeudo a on a.id_tutor = n.id_tutor
+	WHERE 0 IN (
+		SELECT COUNT(*)
+			FROM niño nn
+			JOIN adeudo aa on aa.id_tutor = nn.id_tutor
+			WHERE (n.apaterno = nn.apaterno OR n.apaterno = nn.amaterno OR n.amaterno = nn.apaterno OR n.amaterno = nn.amaterno)
+				AND NOT (n.nombre = nn.nombre AND n.apaterno = nn.apaterno AND n.amaterno = nn.amaterno)
+	)
+	GROUP BY n.nombre, n.apaterno, n.amaterno
 
--- 22.
+-- 22. Familiares que compartan la misma alergia
+SELECT [id niño 1] = n1.id_niño, [niño 1] = n1.nombre+' '+n1.apaterno+' '+n1.amaterno, [alergia niño 1] = na1.nombre,
+[id niño 2] = n2.id_niño, [niño 2] = n2.nombre+' '+n2.apaterno+' '+n2.amaterno, [alergia niño 2] = na2.nombre
+	FROM niño n1
+	JOIN niñoAlergias na1 on n1.id_niño = na1.id_niño
+	JOIN niño n2 on (n1.amaterno = n2.amaterno OR n1.amaterno = n2.apaterno OR n1.apaterno = n2.amaterno OR n1.apaterno = n2.apaterno)
+		AND NOT (n1.apaterno = n2.apaterno AND n1.amaterno = n2.amaterno)
+	JOIN niñoAlergias na2 on n2.id_niño = na2.id_niño
+	WHERE na1.nombre = na2.nombre
+	GROUP BY n1.id_niño, n1.nombre+' '+n1.apaterno+' '+n1.amaterno, na1.nombre, n2.id_niño, n2.nombre+' '+n2.apaterno+' '+n2.amaterno, na2.nombre
 
--- 23. Nose chale
 
--- 24.
+-- 23. El menu que mas ninos con adeudo tienen
+SELECT TOP 1 m.id_menu, m.nombre, [niños que tienen asignado este menu] = COUNT(DISTINCT n.id_niño)
+	FROM menu m
+	JOIN niñoMenu nm on nm.id_menu = m.id_menu
+	JOIN niño n on n.id_niño = nm.id_niño
+	JOIN tutor t on t.id_tutor = n.id_tutor
+	JOIN adeudo a on a.id_tutor = t.id_tutor
+	GROUP BY m.id_menu, m.nombre
+	ORDER BY COUNT(DISTINCT n.id_niño) DESC
 
--- 25. Nose chale
+-- 24. Menu con mayor numero de ingredientes apunto de agotarse existencias (existencias menores a 20)
+SELECT TOP 1 m.id_menu, m.nombre, [cantidad de ingredientes cuyas existencias sean menores a 20] = COUNT(*)
+	FROM menu m
+	JOIN menu_alimento ma on ma.id_menu = m.id_menu
+	JOIN alimento a on a.id_alimento = ma.id_alimento
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
+	WHERE i.existencias < 20
+	GROUP BY m.id_menu, m.nombre
+	ORDER BY COUNT(*) DESC
 
--- 26.
+-- 25. Menu que comen la mayor cantidad de ninos
+SELECT TOP 1 m.id_menu, m.nombre, [niños que tienen asignado este menu] = COUNT(*)
+	FROM menu m
+	JOIN niñoMenu nm on nm.id_menu = m.id_menu
+	GROUP BY m.id_menu, m.nombre
+	ORDER BY COUNT(*) DESC
 
--- 27. Nose chale
 
--- 28.
+-- 26. Niños con alergias que su menu no contenga a lo que es alergico
+SELECT n.id_niño, nombre = n.nombre+' '+n.apaterno+' '+n.amaterno, aula = CONVERT(CHAR(1), n.nivel)+n.grado
+	FROM niño n
+	JOIN niñoAlergias na on na.id_niño = n.id_niño
+	JOIN niñoMenu nm on nm.id_niño = n.id_niño
+	JOIN menu m on m.id_menu = nm.id_menu
+	JOIN menu_alimento ma on ma.id_menu = m.id_menu
+	JOIN alimento a on a.id_alimento = ma.id_alimento
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
+	WHERE na.nombre <> i.nombre
+	GROUP BY n.id_niño, n.nombre+' '+n.apaterno+' '+n.amaterno, CONVERT(CHAR(1), n.nivel)+n.grado
 
--- 29. Nose chale
+-- 27. Ingrediente menos utilizado en los menus y la cantidad de veces que se usa
+SELECT TOP 1 i.nombre, [veces usado] = COUNT(*)
+	FROM menu m
+	JOIN menu_alimento ma on ma.id_menu = m.id_menu
+	JOIN alimento a on a.id_alimento = ma.id_alimento
+	JOIN alimento_ingrediente ai on ai.id_alimento = a.id_alimento
+	JOIN ingrediente i on i.id_ingrediente = ai.id_ingrediente
+	GROUP BY i.nombre
+	ORDER BY COUNT(*)
 
--- 30.
+-- 28. Tutores de varios ninos(2 o mas) con adeudos
+SELECT nombre = t.nombre+' '+t.apaterno+' '+t.amaterno, niños = COUNT(DISTINCT n.id_niño), adeudo = SUM(a.monto)
+	FROM tutor t
+	JOIN niño n on n.id_tutor = t.id_tutor
+	JOIN adeudo a on a.id_tutor = t.id_tutor
+	GROUP BY t.nombre+' '+t.apaterno+' '+t.amaterno
+	HAVING 2 <= COUNT(DISTINCT n.id_niño)
+
+-- 29. Ninos sin familiares(Hermanos, Primos), sin alergias y sin adeudos
+SELECT nombre = n.nombre+' '+n.apaterno+' '+n.amaterno
+	FROM niño n
+	JOIN tutor t on t.id_tutor = n.id_tutor
+	WHERE 0 IN (
+		SELECT COUNT(*)
+			FROM niño familiar
+			WHERE (n.amaterno = familiar.amaterno OR n.amaterno = familiar.apaterno OR n.apaterno = familiar.amaterno OR n.apaterno = familiar.apaterno)
+			AND NOT (n.apaterno = familiar.apaterno AND n.amaterno = familiar.amaterno)
+	) AND 0 IN (
+		SELECT COUNT(*)
+			FROM niñoAlergias na
+			WHERE na.id_niño = n.id_niño
+	) AND 0 IN (
+		SELECT COUNT(*)
+			FROM adeudo a
+			WHERE a.id_tutor = t.id_tutor
+	)
+
+-- 30. La lista de compras pero que me diga porque el ingrediente esta ahi, si porque esta acabando existencias (<20) o si esta a punto de caducar (10 o menos dias para la fecha)
+SELECT ingrediente = i.nombre, [razon por la cual este ingrediente esta en la lista] =
+CASE WHEN i.existencias < 20
+THEN 'Las existencias están por agotarse.'
+ELSE
+	CASE WHEN i.caducidad <= GETDATE()
+	THEN 'La fecha de caducidad ya ha expirado.'
+	ELSE
+		CASE WHEN DATEDIFF(DD, GETDATE(), i.caducidad) <= 10
+		THEN 'La fecha de caducidad está por expirar.'
+		ELSE
+			'Por alguna razón está aquí.'
+		END
+	END
+END
+	FROM listaDeCompras l
+	JOIN ingrediente_listaDeCompras il on il.id_lista = l.id_lista
+	JOIN ingrediente i on i.id_ingrediente = il.id_ingrediente
 
 /*
  * EXCEPT
@@ -186,7 +287,5 @@ SELECT bebida = a.nombre
  * UNION ALL
  * where [not] exists (<subquery>), o where <expresión><operador de comparación<(<subquery>)
  * MAX() MIN() AVG()
- * [not] LIKE 'xd' '%xd' 'xd%' '%xd%' '%[xd]' '[xd]%' '%[xd]%'
- * is [not] null
  * compute, compute by
 */
