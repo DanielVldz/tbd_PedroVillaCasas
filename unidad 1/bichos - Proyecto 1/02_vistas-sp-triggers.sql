@@ -48,9 +48,6 @@ AS
 		LEFT JOIN resitenciasTipo ON resitenciasTipo.id_atacado = e2.tipo1 OR resitenciasTipo.id_atacado = e2.tipo2
 	WHERE resitenciasTipo.eficacia > 1;
 
-SELECT max(id)
-FROM especie
-
 --6)Información de especie para la aplicación
 CREATE VIEW especieFormulario
 AS
@@ -72,11 +69,12 @@ AS
 --8)Bichos de un usuario para el formulario
 CREATE VIEW bichosUsuario
 AS
-	SELECT usuarioBicho.nombre, especie.especie, bicho.nivel
+	SELECT usuario.id AS id, usuarioBicho.nombre, especie.especie, bicho.nivel
 	FROM usuarioBicho
 		LEFT JOIN bicho ON bicho.id = usuarioBicho.id_bicho
+		LEFT JOIN usuario ON usuario.id = usuarioBicho.id_usuario
 		LEFT JOIN especie ON especie.id = bicho.id_especie
-
+GO
 --Procedimientos almacenados
 --1)Cálculo del daño del ataque y la salud restante del atacado
 CREATE PROCEDURE calculoDaño
@@ -86,12 +84,14 @@ CREATE PROCEDURE calculoDaño
 AS
 BEGIN
 	SET NOCOUNT ON
-	SELECT (((((42) * a1.potencia * e1.ataque_especial_maximo / e2.defensa_especial_base) / 50) + 2) * ea.eficacia) AS 'Daño inflingido'
-	FROM resitenciasTipo ea
-		JOIN ataque a1 ON a1.id_tipo = ea.id_tipo_ataque
-		JOIN especie e1 ON e1.tipo1 = a1.id_tipo OR e1.tipo2 = a1.id_tipo
-		JOIN especie e2 ON e2.tipo1 = ea.id_atacado OR e2.tipo2 = ea.id_atacado
-	WHERE e1.id = @atacante AND e2.id = @atacado AND a1.id = @ataque
+	declare @daño int
+SELECT top 1 @daño = max(((((42) * a1.potencia * b1.ataque_especial / b2.defensa_especial) / 50) + 2) * ea.eficacia)
+FROM resitenciasTipo ea
+	JOIN ataque a1 ON a1.id_tipo = ea.id_tipo_ataque and a1.id = @ataque
+	join bicho b1 on b1.id = @atacante
+	join bicho b2 on b2.id = @atacado
+	JOIN especie e2 ON e2.id = b2.id_especie and (e2.tipo1 = ea.id_atacado or e2.tipo2 = ea.id_atacado)
+	return @daño
 END
 GO
 --2)Cálculo de la experiencia adquirida en combate
@@ -358,3 +358,10 @@ BEGIN
 	END
 END
 GO
+use bichos
+
+SELECT e1.id, e1.especie, a.id, a.nombre, e2.id, e2.especie FROM ronda
+			 LEFT JOIN especie e1 ON e1.id = ronda.id_atacante
+		 LEFT JOIN especie e2 ON e2.id = ronda.id_atacado
+			 LEFT JOIN ataque a ON a.id = ronda.id_ataque_realizado
+				 WHERE ronda.id_combate =  15

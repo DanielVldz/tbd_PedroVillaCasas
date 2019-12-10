@@ -330,12 +330,11 @@ def obtenerResistencias(soup):
             except:
                 efecto = 1
 
-            print("Un ataque tipo ", tipo, " x ", efecto, " a ", afectado)
-            if efecto != 1:
-                renglon = [tipo, efecto, afectado]
-                escribirCSV(csv, renglon)
+            #print("Un ataque tipo ", tipo, " x ", efecto, " a ", afectado)
+            renglon = [tipo, efecto, afectado]
+            print('({},{},{}),'.format(renglon[0], renglon[1], renglon[2]))    
 
-        print("Fin del renglón número: ", (i + 1))
+        #print("Fin del renglón número: ", (i + 1))
 
 url = 'https://es.wikipedia.org/wiki/Anexo:Pok%C3%A9mon_de_la_primera_generaci%C3%B3n'
 response = requests.get(url)
@@ -344,10 +343,10 @@ soup = BeautifulSoup(response.text, "html.parser")
 direccion_csv = 'D:/Documentos/Escuela/Semestre 7/Taller de base de datos/Proyecto 1/Pokimon_primera_gen.csv'
 
 tipos = obtenerTipos(soup)
-lista_ataques = obtenerAtaques(soup, tipos)
-obtenerDetalleAtaques(soup)
-lista_poke = obtenerNombres(soup)
-datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
-obtenerDetallePokemon(soup, lista_poke)
-# obtenerResistencias(soup)
+#lista_ataques = obtenerAtaques(soup, tipos)
+#obtenerDetalleAtaques(soup)
+#lista_poke = obtenerNombres(soup)
+#datosPoke = obtenerDatosPoke(soup, lista_poke)  # Este
+#obtenerDetallePokemon(soup, lista_poke)
+obtenerResistencias(soup)
 print("Ya we")
