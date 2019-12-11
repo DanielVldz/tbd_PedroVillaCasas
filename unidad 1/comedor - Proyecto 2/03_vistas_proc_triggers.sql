@@ -395,6 +395,8 @@ BEGIN
 	DECLARE @id_menu int;
 	SELECT @id_menu = d.id_menu from deleted d
 
+	DELETE FROM niñoMenu WHERE id_menu = @id_menu
+	RAISERROR ('eliminadas las relaciones entre este menu y los niños', 10, 1)
 	DELETE FROM menu_alimento WHERE id_menu = @id_menu
 	RAISERROR ('alimentos enlistados en el menu eliminados', 10, 1)
 	DELETE FROM menu WHERE id_menu = @id_menu
@@ -415,6 +417,8 @@ BEGIN
 	DECLARE @id_niño int
 	SELECT @id_niño = d.id_niño
 		FROM deleted d
+	DELETE FROM niñoMenu WHERE id_niño = @id_niño
+	RAISERROR ('eliminadas las relaciones entre este niño y sus menus', 10, 1)
 	DELETE FROM niñoAlergias WHERE id_niño = @id_niño
 	RAISERROR ('alergias del niño eliminadas', 10, 1)
 	WHILE 0 < (SELECT COUNT(*) FROM dieta WHERE id_niño = @id_niño)

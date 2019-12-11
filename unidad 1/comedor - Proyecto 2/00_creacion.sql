@@ -15,7 +15,8 @@ create table tutor(
 	amaterno nvarchar(15) not null,
 	lugar_de_trabajo nvarchar(50) not null,
 	telefono_trabajo BIGINT,
-	telefono_celular BIGINT not null
+	telefono_celular BIGINT not null,
+	UNIQUE(nombre, apaterno, amaterno)
 )
 go
 
@@ -28,7 +29,8 @@ create table niño(
 	grado char(1) not null,
 	id_tutor int not null,
 	fecha_de_nacimiento date not null,
-	foreign key (id_tutor) references tutor(id_tutor)
+	foreign key (id_tutor) references tutor(id_tutor),
+	UNIQUE(nombre, apaterno, amaterno)
 )
 go
 
@@ -53,7 +55,7 @@ create table menu(
 	id_menu int identity not null primary key,
 	nombre nvarchar(15),
 	fecha_inicio datetime not null,
-	fecha_final datetime not null,
+	fecha_final datetime not null
 )
 go
 
