@@ -243,11 +243,19 @@ public class Panel_combates extends JPanel
 	{
 		try
 		{
+			
 			idActual++;
 			llenarDatos(DBCombate.buscarCombate(idActual));
 		} catch (Exception e)
 		{
-			idActual = 0;
+			try
+			{
+				idActual = DBCombate.getMinID();
+			} catch (SQLException e1)
+			{
+
+			}
+			combateSiguiente();
 		}
 	}
 
@@ -266,13 +274,20 @@ public class Panel_combates extends JPanel
 	{
 		try
 		{
-			if (idActual == 1)
-				idActual = DBCombate.getMaxID();
 			Combate c = DBCombate.buscarCombate((idActual - 1));
 			llenarDatos(c);
 		} catch (SQLException e)
 		{
-			JOptionPane.showMessageDialog(this.getParent(), "No se pudo cargar el combate anterior", "Error", JOptionPane.INFORMATION_MESSAGE);
+			try
+			{
+				idActual = DBCombate.getMaxID();
+				JOptionPane.showMessageDialog(this.getParent(), "No se pudo cargar el combate anterior", "Error", JOptionPane.INFORMATION_MESSAGE);
+			} catch (SQLException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			combateAnterior();
 		}
 	}
 

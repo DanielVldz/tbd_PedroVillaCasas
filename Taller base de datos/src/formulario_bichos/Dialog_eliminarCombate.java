@@ -37,7 +37,7 @@ public class Dialog_eliminarCombate extends JDialog
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridy = 1;
 		gbc.gridwidth = 2;
-		btn_eliminarr = new JButton("Agregar usuario");
+		btn_eliminarr = new JButton("Eliminar combate");
 		btn_eliminarr.addActionListener(e -> eliminar());
 		add(btn_eliminarr, gbc);
 		gbc.gridwidth = 1;

@@ -379,49 +379,24 @@ BEGIN
 END
 GO
 
-CREATE TRIGGER eliminarRondas
-ON combate
-FOR DELETE
-AS
-BEGIN
-	DECLARE @id INT
-	SELECT @id = inserted.id_combate
-	FROM inserted
-	PRINT @id
-	DELETE FROM ronda WHERE id_combate = @id
-	DELETE FROM combate WHERE id_combate = @id
-END
-GO
+
 
 CREATE TRIGGER eliminarUsuario
 ON usuario
-FOR DELETE
+instead OF DELETE
 AS
+SET nocount ON
 BEGIN
 	DECLARE @id INT
-	SELECT @id = inserted.id
-	FROM inserted
+	SELECT @id = deleted.id
+	FROM deleted
+	PRINT @id
+	DELETE FROM ronda WHERE id_entrenador = @id
 	DELETE FROM combate WHERE id_entrenador1 = @id OR id_entrenador2 = @id
-	DELETE FROM usuarioBicho WHERE id_usuario = @id
 	DELETE FROM intercambio WHERE id_entrenador1 = @id OR id_entrenador2 = @id
-	DELETE FROM usuario WHERE id = @id
+	DELETE FROM usuarioBicho WHERE id_usuario = @id
+	DELETE FROM usuarioBicho WHERE id_usuario = @id
+	DELETE FROM usuario WHERE usuario.id = @id
 END
-GO
-
---drop trigger eliminarUsuario
 
 --use master
-
-SELECT *
-FROM usuario
-
---use bichos
-
---delete from intercambio where id_entrenador1 = 2 or id_entrenador2 = 2
-
---delete from usuario where id = 2
-
---delete from combate where id_entrenador1 = 2 or id_entrenador2 = 2
-
-SELECT *
-FROM combate

@@ -116,8 +116,8 @@ GO
 CREATE TABLE intercambio
 (
 	id_intercambio INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-	id_entrenador1 INT NOT NULL,
-	id_entrenador2 INT NOT NULL,
+	id_entrenador1 INT,
+	id_entrenador2 INT,
 	id_bicho1 INT NOT NULL,
 	id_bicho2 INT NOT NULL,
 	FOREIGN KEY(id_entrenador1) REFERENCES usuario(id),
