@@ -491,7 +491,7 @@ END
 GO
 
 -- 8. Igual que las dos anteriores, pero para ingredientes
-CREATE TRIGGER TR_InsertarIngrediente
+CREATE TRIGGER TR_InsertarIngrediente 
 ON ingrediente
 FOR INSERT
 AS
