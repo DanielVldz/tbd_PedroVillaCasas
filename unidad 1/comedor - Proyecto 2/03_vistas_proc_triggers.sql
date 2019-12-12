@@ -26,10 +26,19 @@ GO
 -- 3. Niños y cuantas alergias tiene cada uno
 CREATE VIEW ViewNiñoAlergias
 AS
-SELECT n.id_niño, niño = n.nombre+' '+n.apaterno+' '+n.amaterno, count(*) as alergias
+SELECT n.id_niño, n.nombre, n.apaterno, n.amaterno, n.nivel, n.grado, n.id_tutor, n.fecha_de_nacimiento, alergia = Count(na.nombre)
 	FROM niño n
 	INNER JOIN  niñoAlergias na ON na.id_niño = n.id_niño
-	GROUP BY n.id_niño, n.nombre, n.apaterno, n.amaterno
+	group by n.id_niño, n.nombre, n.apaterno, n.amaterno, n.nivel, n.grado, n.id_tutor, n.fecha_de_nacimiento
+GO
+
+-- Formulario niño
+CREATE VIEW ViewNiñoFormulario
+AS
+SELECT n.id_niño, n.nombre, n.apaterno, n.amaterno, n.nivel, n.grado, n.id_tutor, n.fecha_de_nacimiento,
+  tutorNombre = t.nombre, tutorApaterno = t.apaterno, tutorAmaterno = t.amaterno
+	FROM niño n
+	JOIN tutor t on t.id_tutor = n.id_tutor
 GO
 
 -- 4. Tutores con adeudos
@@ -74,9 +83,62 @@ SELECT m.id_menu, menu = m.nombre, a.id_alimento, alimento = a.nombre
 	inner join alimento a on a.id_alimento = ma.id_alimento
 GO
 
+-- tutor con su adeudo total
+CREATE VIEW ViewTutorFormulario
+AS
+SELECT t.id_tutor, t.nombre, t.apaterno, t.amaterno, t.lugar_de_trabajo, t.telefono_celular, t.telefono_trabajo, adeudo = SUM(a.monto)
+	FROM tutor t
+	JOIN adeudo a on a.id_tutor = t.id_tutor
+	GROUP BY t.id_tutor, t.nombre, t.apaterno, t.amaterno, t.lugar_de_trabajo, t.telefono_celular, t.telefono_trabajo
+GO
 --######################################################################################--
 --############################# PROCEDIMIENTOS ALMACENADOS #############################--
 --######################################################################################--
+-- alergias niño, concatenadas
+select nombre, apaterno, amaterno from niño
+select i.nombre, ai.cantidad
+	from ingrediente i
+	JOIN alimento_ingrediente ai on ai.id_ingrediente = i.id_ingrediente
+	JOIN alimento a on ai.id_alimento = a.id_alimento
+GO
+CREATE PROCEDURE devuelveIDTutor
+	@nom NVARCHAR(30),
+	@apa NVARCHAR(30),
+	@ama NVARCHAR(30),
+	@id  INT OUTPUT
+AS
+	SELECT @id = id_tutor FROM tutor WHERE nombre = @nom AND apaterno = @apa AND amaterno = @ama
+GO
+/*
+declare @menus NVARCHAR(200)
+exec menuNiñoConcatenadas 'Marco', 'Gonzales', 'Almendra', @menus OUTPUT
+SELECT @menus
+*/
+-- alergias niño, concatenadas
+CREATE PROCEDURE alergiasNiñoConcatenadas
+	@nom NVARCHAR(30),
+	@apa NVARCHAR(30),
+	@ama NVARCHAR(30),
+	@alergias NVARCHAR(200) OUTPUT
+AS 
+	SELECT @alergias = ''
+
+	SELECT @alergias+= na.nombre + ' '
+		from niño n
+		JOIN niñoAlergias na on n.id_niño = na.id_niño
+		WHERE n.nombre = @nom AND n.apaterno = @apa AND n.amaterno = @ama
+	
+	IF @alergias = ''
+	BEGIN
+		SELECT @alergias = 'Sin alergias'
+	END
+GO
+/*
+declare @alergias NVARCHAR(200) 
+exec alergiasNiñoConcatenadas 'Lucho', 'Mezquillo', 'Almendra', @alergias OUTPUT 
+SELECT @alergias
+*/
+
 -- 1. Definir alguna alergia para un niño
 CREATE PROCEDURE insertarAlergiaAUnNiño
 	@ingrediente NVARCHAR(15) = NULL,
