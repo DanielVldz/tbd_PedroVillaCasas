@@ -142,6 +142,7 @@ public class DBCombate extends DBConexion
 
 		return id;
 	}
+
 	public static int getMinID() throws SQLException
 	{
 		int id = 0;
@@ -149,17 +150,25 @@ public class DBCombate extends DBConexion
 		String query = "select min(id_combate) from combate";
 		PreparedStatement st = con.prepareStatement(query);
 		ResultSet rs = st.executeQuery();
-		
+
 		if (rs.next())
 			id = rs.getInt(1);
-		
+
 		return id;
 	}
 
 	public static void crearCombate(int usuario1, int usuario2) throws SQLException
 	{
 		Connection con = GetConnection();
-		String query = "insert into combate(id_entrenador2, id_entrenador2) values(" + usuario1 + "," + usuario2 + ")";
+		String query = "insert into combate(id_entrenador1, id_entrenador2) values(" + usuario1 + "," + usuario2 +")";
+		PreparedStatement st = con.prepareStatement(query);
+		st.executeUpdate();
+	}
+
+	public static void insertarRonda(int combate, int entrenador, int atacante, int ataque, int atacado) throws SQLException
+	{
+		Connection con = GetConnection();
+		String query = "INSERT INTO ronda" + "	(id_combate, id_entrenador, id_atacante, id_ataque_realizado, id_atacado) " + "VALUES(" + combate + "," + entrenador + "," + atacante + "," + ataque + "," + atacado + ")";
 		PreparedStatement st = con.prepareStatement(query);
 		st.executeUpdate();
 	}

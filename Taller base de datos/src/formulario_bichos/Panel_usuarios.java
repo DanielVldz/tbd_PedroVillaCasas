@@ -30,7 +30,7 @@ public class Panel_usuarios extends JPanel
 	private DefaultTableModel dtm;
 	private JScrollPane scroll_tabla;
 	private int idActual = 1;
-	private boolean combo = false;
+	private boolean combo = true;
 
 	public Panel_usuarios()
 	{
@@ -53,7 +53,7 @@ public class Panel_usuarios extends JPanel
 		btn_eliminar = new JButton("Eliminar usuario");
 		btn_eliminar.addActionListener(e -> eliminarUsuario());
 		jtb.add(btn_eliminar);
-		
+
 		btn_renombrar = new JButton("Renombrar usuario");
 		btn_renombrar.addActionListener(e -> renombrarUsuario());
 		jtb.add(btn_renombrar);
@@ -255,13 +255,18 @@ public class Panel_usuarios extends JPanel
 
 	private void seleccionarCombo()
 	{
-		try
+		if (combo)
+			return;
+		else
 		{
-			llenarDatos(DBUsuarios.getUsuraioPorID(Integer.valueOf((String) usuarios.getSelectedItem())));
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(this.getParent(), "Error al cargar usuario", "Error", JOptionPane.INFORMATION_MESSAGE);
+			try
+			{
+				llenarDatos(DBUsuarios.getUsuraioPorID(Integer.valueOf((String) usuarios.getSelectedItem())));
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(this.getParent(), "Error al cargar usuario", "Error", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 	}
 
@@ -299,12 +304,10 @@ public class Panel_usuarios extends JPanel
 	private void llenarCombo()
 	{
 		String datos[];
-		if(combo)
-			return;
 		try
 		{
 			datos = DBUsuarios.listaUsuarios();
-			usuarios.removeAll();
+			usuarios.removeAllItems();
 			for (String s : datos)
 			{
 				usuarios.addItem(s);
@@ -319,9 +322,9 @@ public class Panel_usuarios extends JPanel
 	private void llenarDatos(Usuario usr) throws SQLException
 	{
 		idActual = usr.getId();
-		combo = false;
-		llenarCombo();
 		combo = true;
+		llenarCombo();
+		combo = false;
 		lbl_id.setText("ID: " + idActual);
 		lbl_nombre.setText("Nombre: " + usr.getNombre());
 		lvl_victorias.setText("Combates ganados: " + usr.getCombatesGanados());

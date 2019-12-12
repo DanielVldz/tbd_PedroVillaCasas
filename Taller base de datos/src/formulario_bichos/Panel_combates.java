@@ -243,19 +243,19 @@ public class Panel_combates extends JPanel
 	{
 		try
 		{
-			
+
 			idActual++;
 			llenarDatos(DBCombate.buscarCombate(idActual));
 		} catch (Exception e)
 		{
 			try
 			{
-				idActual = DBCombate.getMinID();
+				idActual = DBCombate.getMinID() - 1;
+				combateSiguiente();
 			} catch (SQLException e1)
 			{
 
 			}
-			combateSiguiente();
 		}
 	}
 
@@ -280,20 +280,63 @@ public class Panel_combates extends JPanel
 		{
 			try
 			{
-				idActual = DBCombate.getMaxID();
-				JOptionPane.showMessageDialog(this.getParent(), "No se pudo cargar el combate anterior", "Error", JOptionPane.INFORMATION_MESSAGE);
+				idActual = DBCombate.getMaxID() + 1;
+				combateAnterior();
 			} catch (SQLException e1)
 			{
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				JOptionPane.showMessageDialog(this.getParent(), "No se pudo cargar el combate anterior", "Error", JOptionPane.INFORMATION_MESSAGE);
 			}
-			combateAnterior();
 		}
 	}
 
 	private void realizarRonda()
 	{
+		int combate, entrenador, atacante, ataque, atacado;
+		combate = idActual;
+		Combate c = new Combate();
+		try
+		{
+			c = DBCombate.buscarCombate(idActual);
+		} catch (SQLException e1)
+		{
+			e1.printStackTrace();
+		}
+		try
+		{
+			entrenador = c.getId_entrenador1();
+			atacante = Integer.valueOf(combo_bicho1.getSelectedItem().toString().split(" ")[0]);
+			ataque = Integer.valueOf(combo_ataques1.getSelectedItem().toString().split(" ")[0]);
+			atacado = Integer.valueOf(combo_bicho2.getSelectedItem().toString().split(" ")[0]);
+			DBCombate.insertarRonda(combate, entrenador, atacante, ataque, atacado);
+		} catch (Exception e)
+		{
+			JOptionPane.showMessageDialog(this.getParent(), "Error al insertar ronda");
+			e.printStackTrace();
 
+		}
+
+		try
+		{
+			entrenador = c.getId_entrenador2();
+			atacante = Integer.valueOf(combo_bicho2.getSelectedItem().toString().split(" ")[0]);
+			ataque = Integer.valueOf(combo_ataques2.getSelectedItem().toString().split(" ")[0]);
+			atacado = Integer.valueOf(combo_bicho1.getSelectedItem().toString().split(" ")[0]);
+
+			DBCombate.insertarRonda(combate, entrenador, atacante, ataque, atacado);
+
+			llenarDatos(DBCombate.buscarCombate(idActual));
+
+		} catch (SQLException e)
+		{
+		}
+
+		try
+		{
+			llenarDatos(DBCombate.buscarCombate(idActual));
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	private void llenarDatos(Combate c) throws SQLException
@@ -307,10 +350,12 @@ public class Panel_combates extends JPanel
 		lbl_entrenador2.setText(c.getId_entrenador2() + " - " + c.getEntrenador2());
 
 		lbl_combate.setText("Combate " + idActual);
-		
+
 		ganador = c.getGanador();
 		if (!(ganador == null))
 			lbl_ganador.setText("Ganador: " + ganador);
+		else
+			lbl_ganador.setText("Combate sin ganador");
 
 		log = DBCombate.lsitaRondas(idActual);
 		for (String s : log)

@@ -2,6 +2,8 @@ package formulario_bichos;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.sql.SQLException;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -32,10 +34,10 @@ public class Dialog_crearCombate extends JDialog
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.fill = GridBagConstraints.BOTH;
-		add(new JLabel("Usuario "), gbc);
+		add(new JLabel("Entrenador 1: "), gbc);
 
 		gbc.gridy = 1;
-		add(new JLabel("Especie: "), gbc);
+		add(new JLabel("Entrenador 2: "), gbc);
 
 		gbc.gridy = 3;
 		gbc.gridwidth = 2;
@@ -61,12 +63,15 @@ public class Dialog_crearCombate extends JDialog
 		try
 		{
 			entrenador1 = Integer.valueOf(txt_entrenador1.getText());
-			entrenador2= Integer.valueOf(txt_entrenador2.getText());
-			JOptionPane.showMessageDialog(this.getParent(), "Captura realizada con éxito");
-		}
-		catch(NumberFormatException e)
+			entrenador2 = Integer.valueOf(txt_entrenador2.getText());
+			DBCombate.crearCombate(entrenador1, entrenador2);
+			JOptionPane.showMessageDialog(this.getParent(), "Combate iniciado con exito");
+		} catch (NumberFormatException e)
 		{
 			JOptionPane.showMessageDialog(this.getParent(), "ID usuario o ID bicho no pueden estar vacíos", "Inserción realizada", JOptionPane.OK_OPTION);
+		} catch (SQLException e)
+		{
+			JOptionPane.showMessageDialog(this.getParent(), "No se pudo crear el combate", "Inserción realizada", JOptionPane.OK_OPTION);
 		}
-	}	
+	}
 }

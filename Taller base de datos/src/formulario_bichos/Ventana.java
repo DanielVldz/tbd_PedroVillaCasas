@@ -13,16 +13,19 @@ public class Ventana extends JFrame
 	private Panel_especies especies;
 	private Panel_usuarios usuarios;
 	private Panel_combates combates;
-	
+	private Panel_bichos bichos;
+
 	public Ventana()
 	{
 		super("PokeMongo");
-		try {
+		try
+		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		}catch(Exception e)
-		{}
+		} catch (Exception e)
+		{
+		}
 		setLayout(new BorderLayout());
-		setSize(720,550);
+		setSize(720, 550);
 		setMinimumSize(new Dimension(720, 570));
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -34,15 +37,17 @@ public class Ventana extends JFrame
 	{
 		jtb_pestañas = new JTabbedPane();
 		add(jtb_pestañas, BorderLayout.CENTER);
-		
+
 		especies = new Panel_especies();
 		jtb_pestañas.add(especies, "Especies");
-		
+
 		usuarios = new Panel_usuarios();
 		jtb_pestañas.add(usuarios, "Usuarios");
-	
+
 		combates = new Panel_combates();
 		jtb_pestañas.add(combates, "Combates");
-		
+
+		bichos = new Panel_bichos();
+		jtb_pestañas.add(bichos, "Bichos");
 	}
 }
