@@ -8,7 +8,7 @@ AS
 	FROM combate
 		LEFT JOIN usuario ON usuario.id = combate.id_entrenador1 OR usuario.id = combate.id_entrenador2
 	WHERE usuario.id <> combate.id_ganador;
-
+GO
 --2)Bichos que están en nivel para evolucionar
 CREATE VIEW puedeEvolucionar
 AS
@@ -16,6 +16,7 @@ AS
 	FROM bicho
 		LEFT JOIN especie ON especie.id = bicho.id_especie
 	WHERE bicho.nivel >= especie.nivel_evolucion;
+GO
 
 --3)Entrenadores con bichos eléctricos
 CREATE VIEW entrenadorElectrico
@@ -27,6 +28,7 @@ AS
 		LEFT JOIN especie ON especie.id = bicho.id_especie
 		LEFT JOIN tipo ON tipo.id = especie.tipo1 OR tipo.id = especie.tipo2
 	WHERE tipo.nombre = 'Eléctrico'
+GO
 
 --4)Bichos que no tienen nombre asignado por su entrenador
 CREATE VIEW sinNombre
@@ -34,6 +36,7 @@ AS
 	SELECT usuarioBicho.id_bicho
 	FROM usuarioBicho
 	WHERE usuarioBicho.nombre IS NULL
+GO
 
 --5)Combates donde había ventaja de tipo
 CREATE VIEW ventajaTipo
@@ -47,6 +50,7 @@ AS
 		LEFT JOIN especie e2 ON e2.id = b2.id_especie
 		LEFT JOIN resitenciasTipo ON resitenciasTipo.id_atacado = e2.tipo1 OR resitenciasTipo.id_atacado = e2.tipo2
 	WHERE resitenciasTipo.eficacia > 1;
+GO
 
 --6)Información de especie para la aplicación
 CREATE VIEW especieFormulario
@@ -57,6 +61,7 @@ AS
 		LEFT JOIN tipo t2 ON t2.id = especie.tipo2
 		LEFT JOIN especieEvolucion ON especieEvolucion.id_especie_actual = especie.id
 		LEFT JOIN especie e2 ON e2.id = especieEvolucion.id_especie_siguiente
+GO
 
 --7)Información del usuario para el formulario
 CREATE VIEW usuarioFormulario
@@ -65,6 +70,7 @@ AS
 	FROM combate
 		LEFT JOIN usuario ON usuario.id = combate.id_ganador
 	GROUP BY usuario.id, usuario.nombre
+GO
 
 --8)Bichos de un usuario para el formulario
 CREATE VIEW bichosUsuario

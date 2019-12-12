@@ -2,7 +2,6 @@
 GO
 
 insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo, telefono_celular) values
-	('Guillermo',	'Gonzales', 'Carrazco', 'Carnicería Don Beni',   1111111111, 1010101010),
 	('Maria',		'Angulo',   'Cevilla',  'Tiendita Doña Mary',    2222222222, 2020202020),
 	('Augusto',		'Alvarado', 'Jimenez',  'Refaccionaria Jimenez', 3333333333, 3030303030),
 	('Antonia',		'Quintero', 'Zazueta',  'Ama de casa',		   4444444444, 4040404040),
@@ -15,7 +14,6 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Ben',			'Woodard', 'Goff', 'Instituto Tecnológico de Culiacán', 6230567999, 6067091747),
 	('Guillermo',	'Gonzales', 'Carrazco', 'Carnicería Don Beni',   11111111, 10101010),
 	('Maria',		'Angulo',   'Cevilla',  'Tiendita Doña Mary',    22222222, 20202020),
-	('Augusto',		'Alvarado', 'Jimenez',  'Refaccionaria Jimenez', 33333333, 30303030),
 	('Antonia',		'Quintero', 'Zazueta',  'Ama de casa',		   44444444, 40404040),
 	('Douglas',		'Steger', 'Kraus', 'BBVA', 4962857555, 3895654889),
 	('Tammie',		'Wade', 'Lannon', 'Microsoft', 1689752242, 9805260895),
@@ -148,7 +146,6 @@ insert into tutor(nombre, apaterno, amaterno, lugar_de_trabajo, telefono_trabajo
 	('Ali', 'Ames', 'Tucker', 'Farmacias GI', 8038240622, 3543177266);
 
 insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_nacimiento) values
-	('Jorge',		'Martinez',  'Aispuro',  2, 'A', 1, '20070102'),
 	('Luis',		'Mezquillo', 'Almendra',  6, 'A', 1, '20010622'),
 	('Fernando',	'Salazar',   'Salazar',   3, 'B', 2, '20070312'),
 	('Jose',		'Martinez',  'Gonzales',  2, 'A', 1, '20070102'),
@@ -269,7 +266,6 @@ insert into niño(nombre, apaterno, amaterno, nivel, grado, id_tutor, fecha_de_n
 	('Hazel','Mendes','Flores',2,'B',92,'20080818');
 
 insert into niñoAlergias(id_niño, nombre) values
-	(5, 'Ajonjolí'),
 	(33,'Trigo'),
 	(11,'Maní'),
 	(39,'Huevo'),
@@ -437,17 +433,17 @@ insert into menu(nombre, fecha_inicio, fecha_final) values
 	('Menu triste', '20190808', '20190815'),
 	('Menu enojado', '20190816', '20190823')
 
-insert into alimento(nombre, tipo, calorias, carbohidratos, proteinas, grasas) values
-	('Leche de soja',		'Bebida', 127,	12.08,	10.98,	4.7),
-	('Albondigas',			'Comida', 57,	2.12,	3.47,	3.69),
-	('Ensalada de huevo',	'Comida', 706,	4.28,	20.42,	67.18),
-	('3 Enchiladas Suizas', 'Comida', 500,	52.9,	25,		11),
-	('Caldo Tlalpeño',		'Comida', 318,	31,		21,		13),
-	('Pay de limón',	    'Postre', 230,	28,		7,		10),
-	('Helado de limón',		'Postre', 301,	46,		4,		13),
-	('Licuado de frutas',	'Bebida', 130,	33.52,	0.88,	0.29),
-	('Jugo de Manzana',		'Bebida', 117,	28.97,	0.15,	0.27),
-	('Jugo de Naranja',		'Bebida', 100,	30,		0.5,	0.5)
+insert into alimento(nombre, tipo, calorias, carbohidratos, proteinas, grasas, porcionesDisponibles) values
+	('Leche de soja',		'Bebida', 127,	12.08,	10.98,	4.7, 10),
+	('Albondigas',			'Comida', 57,	2.12,	3.47,	3.69, 8),
+	('Ensalada de huevo',	'Comida', 706,	4.28,	20.42,	67.18, 5),
+	('3 Enchiladas Suizas', 'Comida', 500,	52.9,	25,		11, 4),
+	('Caldo Tlalpeño',		'Comida', 318,	31,		21,		13, 6),
+	('Pay de limón',	    'Postre', 230,	28,		7,		10, 4),
+	('Helado de limón',		'Postre', 301,	46,		4,		13, 3),
+	('Licuado de frutas',	'Bebida', 130,	33.52,	0.88,	0.29, 2),
+	('Jugo de Manzana',		'Bebida', 117,	28.97,	0.15,	0.27, 15),
+	('Jugo de Naranja',		'Bebida', 100,	30,		0.5,	0.5, 30)
 
 insert into menu_alimento(id_menu, id_alimento) values
 	(1, 2),
