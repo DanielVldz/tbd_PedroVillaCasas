@@ -120,7 +120,7 @@ CREATE PROCEDURE alergiasNiñoConcatenadas
 	@apa NVARCHAR(30),
 	@ama NVARCHAR(30),
 	@alergias NVARCHAR(200) OUTPUT
-AS
+AS 
 	SELECT @alergias = ''
 
 	SELECT @alergias+= na.nombre + ' '

@@ -5,7 +5,7 @@
 
 create database comedor
 go
-use comedor
+use comedor 
 go
 
 create table tutor(
