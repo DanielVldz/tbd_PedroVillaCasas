@@ -1,5 +1,6 @@
 USE bichos
 GO
+--use master
 --Vistas del proyecto
 --1)Entrenadores que han perdido
 CREATE VIEW entrenadoresDerrotados
@@ -379,8 +380,6 @@ BEGIN
 END
 GO
 
-
-
 CREATE TRIGGER eliminarUsuario
 ON usuario
 instead OF DELETE
@@ -398,5 +397,23 @@ BEGIN
 	DELETE FROM usuarioBicho WHERE id_usuario = @id
 	DELETE FROM usuario WHERE usuario.id = @id
 END
+go
 
+Create trigger eliminarBicho
+on bicho
+instead of delete
+as
+set nocount on
+begin
+	declare @id int
+	select @id = deleted.id from deleted
+	print @id
+	delete from ronda where id_atacado = @id or id_atacante = @id
+	delete from intercambio where id_bicho1 = @id or id_bicho2 = @id
+	delete from usuarioBicho where id_bicho = @id
+	delete from bicho where id = @id
+end
+go
+--drop trigger eliminarBicho
 --use master
+--use bichos
