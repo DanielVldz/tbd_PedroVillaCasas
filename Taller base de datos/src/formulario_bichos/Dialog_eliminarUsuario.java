@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 public class Dialog_eliminarUsuario extends JDialog
 {
@@ -36,7 +39,7 @@ public class Dialog_eliminarUsuario extends JDialog
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridy = 1;
 		gbc.gridwidth = 2;
-		btn_eliminarr = new JButton("Agregar usuario");
+		btn_eliminarr = new JButton("Eliminar usuario");
 		btn_eliminarr.addActionListener(e -> eliminar());
 		add(btn_eliminarr, gbc);
 		gbc.gridwidth = 1;
@@ -54,6 +57,10 @@ public class Dialog_eliminarUsuario extends JDialog
 		{
 			int id = Integer.valueOf(txt_id.getText());
 			DBUsuarios.eliminarUsuario(id);
+		}
+		catch(SQLServerException e1)
+		{
+			JOptionPane.showMessageDialog(this.getParent(), "Error al eliminar usuario " + e1.getMessage());
 		}
 		catch(Exception e)
 		{

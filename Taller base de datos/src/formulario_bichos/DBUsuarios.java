@@ -91,7 +91,7 @@ public class DBUsuarios extends DBConexion
 		rs.next();
 		return rs.getInt(1);
 	}
-	
+
 	public static int minUsuario() throws SQLException
 	{
 		Connection con = GetConnection();
@@ -139,6 +139,14 @@ public class DBUsuarios extends DBConexion
 		String query = "delete from usuario where id = " + id;
 		PreparedStatement st = con.prepareStatement(query);
 		st.executeUpdate();
-		
+
+	}
+
+	public static void renombrarUsuario(int id, String nombre) throws SQLException
+	{
+		Connection con = GetConnection();
+		String query = "update usuario set nombre = \'" + nombre + "\' where id = " + id;
+		PreparedStatement st = con.prepareStatement(query);
+		st.executeUpdate();
 	}
 }

@@ -17,7 +17,10 @@ AS
 		LEFT JOIN especie ON especie.id = bicho.id_especie
 	WHERE bicho.nivel >= especie.nivel_evolucion;
 GO
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --3)Entrenadores con bichos eléctricos
 CREATE VIEW entrenadorElectrico
 AS
@@ -29,7 +32,10 @@ AS
 		LEFT JOIN tipo ON tipo.id = especie.tipo1 OR tipo.id = especie.tipo2
 	WHERE tipo.nombre = 'Eléctrico'
 GO
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --4)Bichos que no tienen nombre asignado por su entrenador
 CREATE VIEW sinNombre
 AS
@@ -37,7 +43,10 @@ AS
 	FROM usuarioBicho
 	WHERE usuarioBicho.nombre IS NULL
 GO
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --5)Combates donde había ventaja de tipo
 CREATE VIEW ventajaTipo
 AS
@@ -51,7 +60,10 @@ AS
 		LEFT JOIN resitenciasTipo ON resitenciasTipo.id_atacado = e2.tipo1 OR resitenciasTipo.id_atacado = e2.tipo2
 	WHERE resitenciasTipo.eficacia > 1;
 GO
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --6)Información de especie para la aplicación
 CREATE VIEW especieFormulario
 AS
@@ -61,17 +73,24 @@ AS
 		LEFT JOIN tipo t2 ON t2.id = especie.tipo2
 		LEFT JOIN especieEvolucion ON especieEvolucion.id_especie_actual = especie.id
 		LEFT JOIN especie e2 ON e2.id = especieEvolucion.id_especie_siguiente
+<<<<<<< HEAD
 GO
 
+=======
+	GO
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --7)Información del usuario para el formulario
 CREATE VIEW usuarioFormulario
 AS
-	SELECT usuario.id, usuario.nombre, count(*) AS victorias
-	FROM combate
-		LEFT JOIN usuario ON usuario.id = combate.id_ganador
+	SELECT usuario.id, usuario.nombre
+	FROM usuario
+	WHERE usuario.id = 26
 	GROUP BY usuario.id, usuario.nombre
 GO
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5191da550a922fa3033a40ad036f637b99980ee
 --8)Bichos de un usuario para el formulario
 CREATE VIEW bichosUsuario
 AS
@@ -90,16 +109,18 @@ CREATE PROCEDURE calculoDaño
 AS
 BEGIN
 	SET NOCOUNT ON
-	declare @daño int
-SELECT top 1 @daño = max(((((42) * a1.potencia * b1.ataque_especial / b2.defensa_especial) / 50) + 2) * ea.eficacia)
-FROM resitenciasTipo ea
-	JOIN ataque a1 ON a1.id_tipo = ea.id_tipo_ataque and a1.id = @ataque
-	join bicho b1 on b1.id = @atacante
-	join bicho b2 on b2.id = @atacado
-	JOIN especie e2 ON e2.id = b2.id_especie and (e2.tipo1 = ea.id_atacado or e2.tipo2 = ea.id_atacado)
-	return @daño
+	DECLARE @daño INT
+	SELECT TOP 1
+		@daño = max(((((42) * a1.potencia * b1.ataque_especial / b2.defensa_especial) / 50) + 2) * ea.eficacia)
+	FROM resitenciasTipo ea
+		JOIN ataque a1 ON a1.id_tipo = ea.id_tipo_ataque AND a1.id = @ataque
+		JOIN bicho b1 ON b1.id = @atacante
+		JOIN bicho b2 ON b2.id = @atacado
+		JOIN especie e2 ON e2.id = b2.id_especie AND (e2.tipo1 = ea.id_atacado OR e2.tipo2 = ea.id_atacado)
+	RETURN @daño
 END
 GO
+
 --2)Cálculo de la experiencia adquirida en combate
 --(6/5)n^3 - 15n^2 + 100n - 140 -> Dónde n es el nivel actual
 CREATE PROCEDURE calculoExperiencia
@@ -175,7 +196,6 @@ BEGIN
 	WHERE bicho.id = @bicho
 END
 GO
-
 
 --5)Evolucionar un bicho
 CREATE PROCEDURE evolucionarBicho
@@ -295,6 +315,7 @@ BEGIN
 	DECLARE @generoFinal CHAR
 	SELECT @especie = inserted.id_especie
 	FROM inserted
+
 	SET @genero = rand()*(2 - 1) + 1
 	IF @genero = 1
 	BEGIN
@@ -330,6 +351,7 @@ BEGIN
 	VALUES(@usuario, @bichoNuevo)
 END
 GO
+
 --5)Realizar el cálculo del daño y determinar un ganador si un bicho llega a 0 de vida
 CREATE TRIGGER calculoPostRonda
 ON ronda
@@ -364,10 +386,42 @@ BEGIN
 	END
 END
 GO
-use bichos
 
-SELECT e1.id, e1.especie, a.id, a.nombre, e2.id, e2.especie FROM ronda
-			 LEFT JOIN especie e1 ON e1.id = ronda.id_atacante
-		 LEFT JOIN especie e2 ON e2.id = ronda.id_atacado
-			 LEFT JOIN ataque a ON a.id = ronda.id_ataque_realizado
-				 WHERE ronda.id_combate =  15
+CREATE TRIGGER validarCambioCombate
+ON combate
+after UPDATE
+AS
+BEGIN
+	DECLARE @nuevoGanador INT,@e1 INT, @e2 INT
+	SELECT @nuevoGanador = inserted.id_ganador, @e1 = inserted.id_entrenador1, @e2 = inserted.id_entrenador2
+	FROM inserted
+
+	IF  @nuevoGanador <> @e1 AND @nuevoGanador <> @e2
+	BEGIN
+		ROLLBACK TRANSACTION
+		RAISERROR('El usuario no participó en el combate', 16, 1)
+	END
+END
+GO
+
+
+
+CREATE TRIGGER eliminarUsuario
+ON usuario
+instead OF DELETE
+AS
+SET nocount ON
+BEGIN
+	DECLARE @id INT
+	SELECT @id = deleted.id
+	FROM deleted
+	PRINT @id
+	DELETE FROM ronda WHERE id_entrenador = @id
+	DELETE FROM combate WHERE id_entrenador1 = @id OR id_entrenador2 = @id
+	DELETE FROM intercambio WHERE id_entrenador1 = @id OR id_entrenador2 = @id
+	DELETE FROM usuarioBicho WHERE id_usuario = @id
+	DELETE FROM usuarioBicho WHERE id_usuario = @id
+	DELETE FROM usuario WHERE usuario.id = @id
+END
+
+--use master

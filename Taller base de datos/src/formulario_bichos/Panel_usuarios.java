@@ -30,6 +30,7 @@ public class Panel_usuarios extends JPanel
 	private DefaultTableModel dtm;
 	private JScrollPane scroll_tabla;
 	private int idActual = 1;
+	private boolean combo = false;
 
 	public Panel_usuarios()
 	{
@@ -189,10 +190,16 @@ public class Panel_usuarios extends JPanel
 		pnl_centro.add(scroll_tabla, gbc);
 	}
 
-	private Object renombrarUsuario()
+	private void renombrarUsuario()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		try
+		{
+			Dialog_renombrarUsuarios r = new Dialog_renombrarUsuarios();
+			r.setVisible(true);
+			llenarDatos(DBUsuarios.getUsuraioPorID(DBUsuarios.minUsuario()));
+		} catch (SQLException e)
+		{
+		}
 	}
 
 	private void eliminarUsuario()
@@ -234,8 +241,15 @@ public class Panel_usuarios extends JPanel
 			llenarDatos(DBUsuarios.getUsuraioPorID(idActual + 1));
 		} catch (Exception e)
 		{
-			idActual = 0;
-			siguienteUsuario();
+			try
+			{
+				idActual = DBUsuarios.minUsuario() - 1;
+				siguienteUsuario();
+			} catch (SQLException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
@@ -268,22 +282,29 @@ public class Panel_usuarios extends JPanel
 	{
 		try
 		{
-			if (idActual == 1)
-				idActual = DBUsuarios.maxUsuario() + 1;
 			llenarDatos(DBUsuarios.getUsuraioPorID(idActual - 1));
 		} catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(this.getParent(), "Error al cargar usuario", "Error", JOptionPane.INFORMATION_MESSAGE);
-			e.printStackTrace();
+			try
+			{
+				idActual = DBUsuarios.maxUsuario() + 1;
+			} catch (SQLException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
 	private void llenarCombo()
 	{
 		String datos[];
+		if(combo)
+			return;
 		try
 		{
 			datos = DBUsuarios.listaUsuarios();
+			usuarios.removeAll();
 			for (String s : datos)
 			{
 				usuarios.addItem(s);
@@ -298,6 +319,9 @@ public class Panel_usuarios extends JPanel
 	private void llenarDatos(Usuario usr) throws SQLException
 	{
 		idActual = usr.getId();
+		combo = false;
+		llenarCombo();
+		combo = true;
 		lbl_id.setText("ID: " + idActual);
 		lbl_nombre.setText("Nombre: " + usr.getNombre());
 		lvl_victorias.setText("Combates ganados: " + usr.getCombatesGanados());
